@@ -1,0 +1,363 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ===== 颜色 ===== -->
+    <SolidColorBrush x:Key="WindowBrush" Color="#121318" />
+    <SolidColorBrush x:Key="PanelBrush" Color="#15161B" />
+    <SolidColorBrush x:Key="PanelBorderBrush" Color="#1E2027" />
+    <SolidColorBrush x:Key="CardBrush" Color="#1A1C22" />
+    <SolidColorBrush x:Key="CardBorderBrush" Color="#262932" />
+    <SolidColorBrush x:Key="RowHoverBrush" Color="#202229" />
+    <SolidColorBrush x:Key="HoverBrush" Color="#262932" />
+    <SolidColorBrush x:Key="PressedBrush" Color="#2E313B" />
+    <SolidColorBrush x:Key="AccentBrush" Color="#8B7CF6" />
+    <SolidColorBrush x:Key="AccentLightBrush" Color="#B1A6FF" />
+    <SolidColorBrush x:Key="AccentSoftBrush" Color="#8B7CF6" Opacity="0.16" />
+    <SolidColorBrush x:Key="TextBrush" Color="#E8E9EE" />
+    <SolidColorBrush x:Key="SubtleTextBrush" Color="#8D92A0" />
+    <SolidColorBrush x:Key="DividerBrush" Color="#262932" />
+
+    <LinearGradientBrush x:Key="LogoBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#B4A9FF" Offset="0" />
+        <GradientStop Color="#6C5CE7" Offset="1" />
+    </LinearGradientBrush>
+
+    <FontFamily x:Key="IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+
+    <!-- 图标字形 -->
+    <Style x:Key="Glyph" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource IconFont}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- ===== 卡片 ===== -->
+    <Style x:Key="Card" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource CardBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="18,12,14,12" />
+    </Style>
+
+    <!-- 每一行：鼠标移上去整行微微变亮 -->
+    <Style x:Key="RowBorder" TargetType="Border">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Margin" Value="-8,0,-6,0" />
+        <Setter Property="Padding" Value="8,0,6,0" />
+        <Setter Property="Height" Value="38" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource RowHoverBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ===== 开关：复选框换一套模板，画成胶囊开关，圆点滑动有动画 ===== -->
+    <Style x:Key="Switch" TargetType="CheckBox">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <Grid Width="40" Height="20" Background="Transparent">
+                        <Border x:Name="Track" CornerRadius="10" BorderThickness="1"
+                                BorderBrush="#4A4F5C" Background="#1E2027" />
+                        <Border x:Name="TrackOn" CornerRadius="10" Background="{StaticResource AccentBrush}" Opacity="0" />
+                        <Grid x:Name="Knob" Width="12" Height="12" HorizontalAlignment="Left" Margin="4,0,0,0">
+                            <Ellipse Fill="#A4A9B6" />
+                            <Ellipse x:Name="KnobOn" Fill="#FFFFFF" Opacity="0" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <!-- 最终状态用 Setter 保底，动画只负责过渡 -->
+                            <Setter TargetName="Knob" Property="Margin" Value="24,0,0,0" />
+                            <Setter TargetName="TrackOn" Property="Opacity" Value="1" />
+                            <Setter TargetName="KnobOn" Property="Opacity" Value="1" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetName="Knob" Storyboard.TargetProperty="Margin"
+                                                            From="4,0,0,0" To="24,0,0,0" Duration="0:0:0.15">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="TrackOn" Storyboard.TargetProperty="Opacity"
+                                                         From="0" To="1" Duration="0:0:0.15" />
+                                        <DoubleAnimation Storyboard.TargetName="KnobOn" Storyboard.TargetProperty="Opacity"
+                                                         From="0" To="1" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetName="Knob" Storyboard.TargetProperty="Margin"
+                                                            From="24,0,0,0" To="4,0,0,0" Duration="0:0:0.15">
+                                            <ThicknessAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </ThicknessAnimation.EasingFunction>
+                                        </ThicknessAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="TrackOn" Storyboard.TargetProperty="Opacity"
+                                                         From="1" To="0" Duration="0:0:0.15" />
+                                        <DoubleAnimation Storyboard.TargetName="KnobOn" Storyboard.TargetProperty="Opacity"
+                                                         From="1" To="0" Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Track" Property="BorderBrush" Value="#6B7181" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== 无边框图标按钮（齿轮、左下角设置） ===== -->
+    <Style x:Key="IconButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="6" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource HoverBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource PressedBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ===== 自绘标题栏的最小化 / 关闭按钮 ===== -->
+    <ControlTemplate x:Key="CaptionTemplate" TargetType="Button">
+        <Border Background="{TemplateBinding Background}">
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="CaptionButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Width" Value="46" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="Template" Value="{StaticResource CaptionTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource HoverBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="CloseButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Width" Value="46" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="Template" Value="{StaticResource CaptionTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#E81123" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ===== 左侧图标栏：单选按钮画成图标，选中时左边有一条强调色竖条 ===== -->
+    <Style x:Key="RailButton" TargetType="RadioButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid Width="56" Height="44" Background="Transparent">
+                        <Border x:Name="Bg" Width="40" Height="40" CornerRadius="8" Background="Transparent" />
+                        <Border x:Name="Bar" Width="3" Height="18" CornerRadius="1.5" Margin="2,0,0,0"
+                                HorizontalAlignment="Left" Background="{StaticResource AccentBrush}" Opacity="0" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bg" Property="Background" Value="{StaticResource HoverBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Bg" Property="Background" Value="{StaticResource AccentSoftBrush}" />
+                            <Setter TargetName="Bar" Property="Opacity" Value="1" />
+                            <Setter Property="Foreground" Value="{StaticResource AccentLightBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== 顶部标签：图标（放在 Tag 里）+ 文字，选中时下方强调色短线展开 ===== -->
+    <Style x:Key="TabButton" TargetType="RadioButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleTextBrush}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid Height="42" Background="Transparent">
+                        <Border x:Name="Bg" CornerRadius="6" Margin="0,3,0,7" Background="Transparent" />
+                        <StackPanel Orientation="Horizontal" Margin="12,0,12,4" VerticalAlignment="Center">
+                            <TextBlock x:Name="Icon" Style="{StaticResource Glyph}" FontSize="15" Margin="0,0,8,0"
+                                       Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" />
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Border x:Name="Underline" Width="20" Height="3" CornerRadius="1.5" Margin="0,0,0,1"
+                                VerticalAlignment="Bottom" Background="{StaticResource AccentBrush}" Opacity="0" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bg" Property="Background" Value="{StaticResource RowHoverBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Underline" Property="Opacity" Value="1" />
+                            <Setter TargetName="Icon" Property="Foreground" Value="{StaticResource AccentLightBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Underline" Storyboard.TargetProperty="Width"
+                                                         From="0" To="20" Duration="0:0:0.2">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== 滑块：细轨道 + 强调色已填充部分 + 圆形滑块（带发光） ===== -->
+    <Style x:Key="SliderFill" TargetType="RepeatButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Grid Background="Transparent">
+                        <Border Height="4" CornerRadius="2" Margin="9,0,0,0" VerticalAlignment="Center"
+                                Background="{StaticResource AccentBrush}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderRest" TargetType="RepeatButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Grid Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderThumb" TargetType="Thumb">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Grid>
+                        <Ellipse Fill="{StaticResource AccentBrush}">
+                            <Ellipse.Effect>
+                                <DropShadowEffect Color="#8B7CF6" BlurRadius="12" ShadowDepth="0" Opacity="0.7" />
+                            </Ellipse.Effect>
+                        </Ellipse>
+                        <Ellipse x:Name="Dot" Width="8" Height="8" Fill="#FFFFFF" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Dot" Property="Width" Value="10" />
+                            <Setter TargetName="Dot" Property="Height" Value="10" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="Dot" Property="Width" Value="6" />
+                            <Setter TargetName="Dot" Property="Height" Value="6" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NovaSlider" TargetType="Slider">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Minimum" Value="0" />
+        <Setter Property="Maximum" Value="100" />
+        <Setter Property="SmallChange" Value="1" />
+        <Setter Property="LargeChange" Value="10" />
+        <Setter Property="IsMoveToPointEnabled" Value="True" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Slider">
+                    <Grid Background="Transparent">
+                        <Border Height="4" CornerRadius="2" Margin="9,0" VerticalAlignment="Center" Background="#2E313B" />
+                        <Track x:Name="PART_Track">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource SliderFill}" Command="{x:Static Slider.DecreaseLarge}" />
+                            </Track.DecreaseRepeatButton>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{StaticResource SliderRest}" Command="{x:Static Slider.IncreaseLarge}" />
+                            </Track.IncreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource SliderThumb}" />
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

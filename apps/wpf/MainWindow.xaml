@@ -1,0 +1,227 @@
+<Window x:Class="Nova.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nova 设置 — WPF"
+        Width="906" Height="653"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource WindowBrush}"
+        Foreground="{StaticResource TextBrush}"
+        FontFamily="Microsoft YaHei UI" FontSize="14"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <!-- 去掉系统标题栏，整个窗口都由 WPF 自己画；底边留 1 像素玻璃边框，保留系统阴影 -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40" ResizeBorderThickness="0" CornerRadius="0"
+                      GlassFrameThickness="0,0,0,1" UseAeroCaptionButtons="False" />
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <!-- 一行设置：文字 …… [齿轮] [开关]。三个分组都用这个模板，数据在代码里 -->
+        <DataTemplate x:Key="RowTemplate">
+            <Border Style="{StaticResource RowBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Text}" VerticalAlignment="Center" />
+                    <Button Grid.Column="1" Style="{StaticResource IconButton}" Margin="0,0,10,0"
+                            Visibility="{Binding Gear, Converter={StaticResource BoolToVis}}"
+                            AutomationProperties.Name="{Binding GearName}">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE713;" FontSize="15" />
+                    </Button>
+                    <CheckBox Grid.Column="2" Style="{StaticResource Switch}"
+                              IsChecked="{Binding On}"
+                              AutomationProperties.Name="{Binding Text}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <!-- 卡片标题：强调色图标 + 粗体文字 -->
+        <Style x:Key="CardIcon" TargetType="TextBlock" BasedOn="{StaticResource Glyph}">
+            <Setter Property="Foreground" Value="{StaticResource AccentLightBrush}" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+        </Style>
+        <Style x:Key="CardTitle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="CardHeader" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="0,4,0,8" />
+        </Style>
+        <Style x:Key="PercentText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="{StaticResource AccentLightBrush}" />
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="#2A2D36" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="64" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- ===== 自绘标题栏 ===== -->
+            <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="21,0,0,0" VerticalAlignment="Center">
+                <Border Width="20" Height="20" CornerRadius="6" Background="{StaticResource LogoBrush}">
+                    <TextBlock Style="{StaticResource Glyph}" Text="&#xE9E9;" FontSize="12" Foreground="White" />
+                </Border>
+                <TextBlock Text="Nova 设置" FontSize="12.5" Margin="12,0,0,1" VerticalAlignment="Center" />
+                <Border Margin="10,0,0,0" Padding="6,1,6,2" CornerRadius="4" VerticalAlignment="Center"
+                        BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1">
+                    <TextBlock Text="WPF" FontSize="11" Foreground="{StaticResource SubtleTextBrush}" />
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Style="{StaticResource CaptionButton}" Click="OnMinimize" ToolTip="最小化"
+                        WindowChrome.IsHitTestVisibleInChrome="True" AutomationProperties.Name="最小化">
+                    <TextBlock Style="{StaticResource Glyph}" Text="&#xE921;" FontSize="10" />
+                </Button>
+                <Button Style="{StaticResource CloseButton}" Click="OnClose" ToolTip="关闭"
+                        WindowChrome.IsHitTestVisibleInChrome="True" AutomationProperties.Name="关闭">
+                    <TextBlock Style="{StaticResource Glyph}" Text="&#xE8BB;" FontSize="10" />
+                </Button>
+            </StackPanel>
+
+            <!-- ===== 左侧图标栏 ===== -->
+            <DockPanel Grid.Row="1" Grid.Column="0">
+                <StackPanel DockPanel.Dock="Bottom" Margin="0,0,0,12">
+                    <Border Width="30" Height="30" CornerRadius="15" Margin="0,0,0,10"
+                            Background="{StaticResource LogoBrush}" ToolTip="Nova">
+                        <TextBlock Text="N" FontSize="13" FontWeight="SemiBold" Foreground="White"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Button Style="{StaticResource IconButton}" Width="40" Height="40" ToolTip="设置"
+                            AutomationProperties.Name="设置">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE713;" FontSize="18" />
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Margin="0,4,0,0">
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" IsChecked="True" ToolTip="常规" AutomationProperties.Name="常规">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE9E9;" FontSize="18" />
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" ToolTip="画面" AutomationProperties.Name="画面">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE7F4;" FontSize="18" />
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" ToolTip="音频" AutomationProperties.Name="音频">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE767;" FontSize="18" />
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" ToolTip="网络" AutomationProperties.Name="网络">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE774;" FontSize="18" />
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" ToolTip="快捷键" AutomationProperties.Name="快捷键">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE765;" FontSize="18" />
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" ToolTip="列表" AutomationProperties.Name="列表">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE8FD;" FontSize="18" />
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource RailButton}" GroupName="Rail" ToolTip="文件夹" AutomationProperties.Name="文件夹">
+                        <TextBlock Style="{StaticResource Glyph}" Text="&#xE8B7;" FontSize="18" />
+                    </RadioButton>
+                </StackPanel>
+            </DockPanel>
+
+            <!-- ===== 内容区：左上圆角的面板 ===== -->
+            <Border Grid.Row="1" Grid.Column="1" Background="{StaticResource PanelBrush}"
+                    BorderBrush="{StaticResource PanelBorderBrush}" BorderThickness="1,1,0,0" CornerRadius="12,0,0,0">
+                <Grid Margin="20,6,20,18">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- 顶部标签 -->
+                    <StackPanel Orientation="Horizontal" Margin="-10,0,0,10">
+                        <RadioButton Style="{StaticResource TabButton}" GroupName="Tabs" Content="常规" Tag="&#xE9E9;" IsChecked="True" />
+                        <RadioButton Style="{StaticResource TabButton}" GroupName="Tabs" Content="画面" Tag="&#xE7F4;" />
+                        <RadioButton Style="{StaticResource TabButton}" GroupName="Tabs" Content="音频" Tag="&#xE767;" />
+                        <RadioButton Style="{StaticResource TabButton}" GroupName="Tabs" Content="网络" Tag="&#xE774;" />
+                        <RadioButton Style="{StaticResource TabButton}" GroupName="Tabs" Content="快捷键" Tag="&#xE765;" />
+                    </StackPanel>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="14" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 左：常规选项 -->
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel>
+                                <StackPanel Style="{StaticResource CardHeader}">
+                                    <TextBlock Style="{StaticResource CardIcon}" Text="&#xE9E9;" />
+                                    <TextBlock Style="{StaticResource CardTitle}" Text="常规选项" />
+                                </StackPanel>
+                                <ItemsControl x:Name="GeneralRows" ItemTemplate="{StaticResource RowTemplate}" Focusable="False" />
+                            </StackPanel>
+                        </Border>
+
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="14" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!-- 右上：性能 -->
+                            <Border Style="{StaticResource Card}">
+                                <StackPanel>
+                                    <StackPanel Style="{StaticResource CardHeader}">
+                                        <TextBlock Style="{StaticResource CardIcon}" Text="&#xEC4A;" />
+                                        <TextBlock Style="{StaticResource CardTitle}" Text="性能" />
+                                    </StackPanel>
+                                    <ItemsControl x:Name="PerfRows" ItemTemplate="{StaticResource RowTemplate}" Focusable="False" />
+                                </StackPanel>
+                            </Border>
+
+                            <!-- 右下：显示 -->
+                            <Border Grid.Row="2" Style="{StaticResource Card}">
+                                <StackPanel>
+                                    <StackPanel Style="{StaticResource CardHeader}">
+                                        <TextBlock Style="{StaticResource CardIcon}" Text="&#xE706;" />
+                                        <TextBlock Style="{StaticResource CardTitle}" Text="显示" />
+                                    </StackPanel>
+                                    <ItemsControl x:Name="DisplayRows" ItemTemplate="{StaticResource RowTemplate}" Focusable="False" />
+
+                                    <Rectangle Height="1" Fill="{StaticResource DividerBrush}" Margin="0,6,0,10" />
+
+                                    <Grid>
+                                        <TextBlock Text="亮度" />
+                                        <TextBlock Style="{StaticResource PercentText}"
+                                                   Text="{Binding Value, ElementName=Bright, StringFormat={}{0:0}%}" />
+                                    </Grid>
+                                    <!-- 左右各 -9：圆形滑块的中心刚好和文字左右边对齐 -->
+                                    <Slider x:Name="Bright" Style="{StaticResource NovaSlider}" Value="80"
+                                            Margin="-9,4,-9,8" AutomationProperties.Name="亮度" />
+
+                                    <Grid>
+                                        <TextBlock Text="对比度" />
+                                        <TextBlock Style="{StaticResource PercentText}"
+                                                   Text="{Binding Value, ElementName=Contrast, StringFormat={}{0:0}%}" />
+                                    </Grid>
+                                    <Slider x:Name="Contrast" Style="{StaticResource NovaSlider}" Value="35"
+                                            Margin="-9,4,-9,0" AutomationProperties.Name="对比度" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
