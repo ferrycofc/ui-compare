@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: capture
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   plan:
@@ -89,7 +89,7 @@ jobs:
 
   capture:
     needs: [plan, build]
-    if: always() && needs.plan.result == 'success'
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
     strategy:
       fail-fast: false
       matrix:
@@ -136,7 +136,7 @@ jobs:
 
   collect:
     needs: [plan, build, capture]
-    if: always() && needs.plan.result == 'success'
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -144,8 +144,6 @@ jobs:
           fetch-depth: 0
 
       - name: Switch to shots branch
-        env:
-          APPS: ${{ needs.plan.outputs.apps }}
         run: |
           cp tools/summary.py "$RUNNER_TEMP/summary.py"
           git config user.name "github-actions[bot]"
@@ -157,21 +155,31 @@ jobs:
             git checkout --orphan shots
             git rm -rf --quiet .
           fi
-          # 旧版本的扁平结构（windows-2025/、windows-11-arm/、icons/）不再需要
+          # 旧版本的扁平结构不再需要
           rm -rf latest/windows-2025 latest/windows-11-arm latest/icons
-          for a in $(echo "$APPS" | python3 -c "import sys,json; print(' '.join(json.load(sys.stdin)))"); do rm -rf "latest/$a"; done
 
       - uses: actions/download-artifact@v4
         with:
           pattern: x64-*
-          path: latest
+          path: ${{ runner.temp }}/new
           merge-multiple: true
 
       - uses: actions/download-artifact@v4
         with:
           pattern: arm-*
-          path: latest
+          path: ${{ runner.temp }}/new
           merge-multiple: true
+
+      - name: Replace results of apps that produced new files
+        run: |
+          mkdir -p latest
+          for d in "$RUNNER_TEMP"/new/*/; do
+            [ -d "$d" ] || continue
+            a=$(basename "$d")
+            rm -rf "latest/$a"
+            cp -r "$d" "latest/$a"
+            echo "updated $a"
+          done
 
       - name: Summary
         run: |
