@@ -46,6 +46,8 @@ public static class Desk {
   [DllImport("user32.dll")] static extern bool ShowWindow(IntPtr h, int c);
   [DllImport("user32.dll")] static extern bool PostMessage(IntPtr h, uint m, IntPtr w, IntPtr l);
   [DllImport("user32.dll")] public static extern void keybd_event(byte vk, byte scan, uint flags, UIntPtr extra);
+  [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern IntPtr SendMessageTimeout(IntPtr h, uint m, IntPtr w, string l, uint f, uint t, out IntPtr r);
+  public static void BroadcastSetting(string area) { IntPtr r; SendMessageTimeout((IntPtr)0xffff, 0x001A, IntPtr.Zero, area, 2, 3000, out r); }
   public static void Escape() { keybd_event(0x1B, 0, 0, UIntPtr.Zero); keybd_event(0x1B, 0, 2, UIntPtr.Zero); }
   // 隐藏桌面图标（截全屏时更干净）
   public static bool HideDesktopIcons() {
@@ -114,7 +116,7 @@ foreach ($w in [Desk]::Windows()) { $log.Add("  $w") }
 $oobe = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\OOBE'
 New-Item -Force $oobe -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty $oobe DisablePrivacyExperience 1 -Type DWord -ErrorAction SilentlyContinue
-foreach ($n in 'WWAHost', 'UserOOBEBroker', 'CloudExperienceHostBroker', 'OOBENetworkConnectionFlow', 'oobe*') {
+foreach ($n in 'WWAHost', 'UserOOBEBroker', 'CloudExperienceHostBroker', 'OOBENetworkConnectionFlow', 'oobe*', 'wsl') {
   Get-Process -Name $n -ErrorAction SilentlyContinue | ForEach-Object { $log.Add("Killing $($_.ProcessName) ($($_.Id))"); Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue }
 }
 Start-Sleep -Seconds 3
@@ -142,6 +144,7 @@ $log.Add("Display after: $([Desk]::Current()) metrics $([Desk]::GetSystemMetrics
 $p = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize'
 New-Item -Force $p -ErrorAction SilentlyContinue | Out-Null
 Set-ItemProperty $p EnableTransparency 1 -Type DWord
+[Desk]::BroadcastSetting('ImmersiveColorSet')
 [Desk]::FontSmoothing()
 $log.Add("Effects: $([Desk]::Info())")
 

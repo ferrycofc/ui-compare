@@ -69,10 +69,17 @@ public static class Win {
     if (DwmGetWindowAttribute(h, 9, out r, Marshal.SizeOf(typeof(RECT))) != 0) GetWindowRect(h, out r);
     return r;
   }
+  [DllImport("user32.dll")] public static extern void mouse_event(uint flags, int dx, int dy, uint data, UIntPtr extra);
+  // 用鼠标点一下标题栏空白处来激活窗口（不用键盘，避免控件显示键盘焦点框），再把鼠标移到右上角
   public static void Front(IntPtr h) {
     ShowWindow(h, 9);
-    keybd_event(0x12, 0, 0, UIntPtr.Zero); keybd_event(0x12, 0, 2, UIntPtr.Zero);
     SetForegroundWindow(h);
+    RECT f = Frame(h);
+    SetCursorPos(f.L + (f.R - f.L) * 3 / 5, f.T + 14);
+    mouse_event(0x0002, 0, 0, 0, UIntPtr.Zero); mouse_event(0x0004, 0, 0, 0, UIntPtr.Zero);
+    System.Threading.Thread.Sleep(200);
+    SetCursorPos(GetSystemMetrics(0) - 20, 8);
+    mouse_event(0x0001, 1, 0, 0, UIntPtr.Zero);
   }
 }
 "@
@@ -89,7 +96,8 @@ Write-Host "Minimized: $([Win]::MinimizeOthers())"
 Start-Sleep -Milliseconds 500
 
 # 把鼠标移到角落，避免停在按钮上出现悬停效果
-[Win]::SetCursorPos(1915, 5) | Out-Null
+[Win]::SetCursorPos(1900, 8) | Out-Null
+[Win]::mouse_event(0x0001, 1, 0, 0, [UIntPtr]::Zero)
 
 $sw = [Diagnostics.Stopwatch]::StartNew()
 $startArgs = @{ FilePath = $Exe; PassThru = $true; WorkingDirectory = (Split-Path $Exe) }
@@ -129,8 +137,9 @@ $y = $wa.T + [int](($wa.B - $wa.T - $fh) / 2) - ($fr.T - $wr.T)
 [Win]::SetWindowPos($hwnd, [IntPtr]::Zero, $x, $y, 0, 0, 0x0001 -bor 0x0004) | Out-Null
 [Win]::Front($hwnd)
 Start-Sleep -Seconds $Settle
+Write-Host "Minimized before capture: $([Win]::MinimizeOthers())"
 [Win]::Front($hwnd)
-Start-Sleep -Milliseconds 800
+Start-Sleep -Milliseconds 1200
 
 # 截全屏，再裁出窗口（留一圈边，保留阴影）
 $scrW = [Win]::GetSystemMetrics(0); $scrH = [Win]::GetSystemMetrics(1)
