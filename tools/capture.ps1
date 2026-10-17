@@ -195,8 +195,12 @@ function Find-ByName($root, [string]$name) {
 
 function Test-Toggle($e) {
   if ($e.GetCurrentPropertyValue($UIA::IsTogglePatternAvailableProperty)) { return $true }
-  $ct = $e.Current.ControlType
-  return ($ct -eq [System.Windows.Automation.ControlType]::CheckBox)
+  $c = $e.Current
+  if ($c.ControlType -eq [System.Windows.Automation.ControlType]::CheckBox) { return $true }
+  # PowerShell 7 里的 UI Automation 没有 Win32 控件的代理，复选框只显示成普通窗格：
+  # 按类名 Button + 小方块尺寸认出来（齿轮按钮更宽，不会混进来）
+  $r = $c.BoundingRectangle
+  return ($c.ClassName -match 'button' -and $r.Width -ge 11 -and $r.Width -le 22 -and $r.Height -ge 11 -and $r.Height -le 22)
 }
 
 function Find-Toggle($root, [string]$name) {
@@ -243,11 +247,29 @@ function Find-Slider($root, [string]$name) {
       if ($c -and $c.Y -gt $label.Y -and ($c.Y - $label.Y) -lt 80 -and $c.W -gt 100) { $d = $c.Y - $label.Y; if ($d -lt $bestD) { $bestD = $d; $el = $e } }
     }
   }
-  if (-not $el) { return $null }
+  $frac = $null
+  if (-not $el) {
+    # Win32 的 trackbar 在这里也只是普通窗格：按类名找，数值从同一行的 “NN%” 文字读
+    $label = $hits | ForEach-Object { Get-Center $_ } | Where-Object { $_ } | Select-Object -First 1
+    if (-not $label) { return $null }
+    $bestD = 1e9
+    foreach ($e in $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, [System.Windows.Automation.Condition]::TrueCondition)) {
+      $cur = $e.Current
+      if ($cur.Name -match '^(\d+)%$') { $c = Get-Center $e; if ($c -and [Math]::Abs($c.Y - $label.Y) -le 12) { $frac = [int]$Matches[1] / 100 } }
+      if ($cur.ClassName -match 'trackbar') {
+        $c = Get-Center $e
+        if ($c -and $c.Y -gt $label.Y -and ($c.Y - $label.Y) -lt 80) { $d = $c.Y - $label.Y; if ($d -lt $bestD) { $bestD = $d; $el = $e } }
+      }
+    }
+    if (-not $el) { return $null }
+    if ($null -eq $frac) { $frac = 0.5 }
+  }
   $c = Get-Center $el
-  $rv = $el.GetCurrentPattern([System.Windows.Automation.RangeValuePattern]::Pattern).Current
   $pad = if ($cfg.sliderPad) { [int]$cfg.sliderPad } else { 10 }
-  $frac = if ($rv.Maximum -gt $rv.Minimum) { ($rv.Value - $rv.Minimum) / ($rv.Maximum - $rv.Minimum) } else { 0.5 }
+  if ($null -eq $frac) {
+    $rv = $el.GetCurrentPattern([System.Windows.Automation.RangeValuePattern]::Pattern).Current
+    $frac = if ($rv.Maximum -gt $rv.Minimum) { ($rv.Value - $rv.Minimum) / ($rv.Maximum - $rv.Minimum) } else { 0.5 }
+  }
   [pscustomobject]@{ X = [int]($c.L + $pad + ($c.W - 2 * $pad) * $frac); Y = $c.Y; L = $c.L + $pad; W = $c.W - 2 * $pad }
 }
 
