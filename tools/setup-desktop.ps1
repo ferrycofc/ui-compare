@@ -33,6 +33,30 @@ public static class Desk {
   [DllImport("user32.dll")] public static extern bool SetProcessDPIAware();
   [DllImport("user32.dll")] public static extern int GetSystemMetrics(int i);
 
+  public delegate bool EnumProc(IntPtr h, IntPtr l);
+  [DllImport("user32.dll")] static extern bool EnumWindows(EnumProc p, IntPtr l);
+  [DllImport("user32.dll")] static extern bool IsWindowVisible(IntPtr h);
+  [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern int GetWindowText(IntPtr h, System.Text.StringBuilder s, int n);
+  [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern int GetClassName(IntPtr h, System.Text.StringBuilder s, int n);
+  [DllImport("user32.dll")] static extern uint GetWindowThreadProcessId(IntPtr h, out uint pid);
+  [DllImport("user32.dll")] static extern bool GetWindowRect(IntPtr h, out RECT r);
+  [StructLayout(LayoutKind.Sequential)] public struct RECT { public int L, T, R, B; }
+  public static List<string> Windows() {
+    var list = new List<string>();
+    EnumWindows((h, l) => {
+      if (!IsWindowVisible(h)) return true;
+      var t = new System.Text.StringBuilder(256); GetWindowText(h, t, 256);
+      var c = new System.Text.StringBuilder(256); GetClassName(h, c, 256);
+      uint pid; GetWindowThreadProcessId(h, out pid);
+      RECT r; GetWindowRect(h, out r);
+      if (r.R - r.L < 50 || r.B - r.T < 50) return true;
+      string name = "?"; try { name = System.Diagnostics.Process.GetProcessById((int)pid).ProcessName; } catch {}
+      list.Add(pid + "|" + name + "|" + c + "|" + t + "|" + r.L + "," + r.T + "," + r.R + "," + r.B);
+      return true;
+    }, IntPtr.Zero);
+    return list;
+  }
+
   static DEVMODE New() { var d = new DEVMODE(); d.dmSize = (short)Marshal.SizeOf(typeof(DEVMODE)); return d; }
   public static string Current() { var d = New(); EnumDisplaySettings(null, -1, ref d); return d.dmPelsWidth + "x" + d.dmPelsHeight + " " + d.dmBitsPerPel + "bpp"; }
   public static string Modes() {
@@ -58,6 +82,19 @@ public static class Desk {
 
 [Desk]::SetProcessDPIAware() | Out-Null
 $log = [System.Collections.Generic.List[string]]::new()
+
+# 关掉 Windows 11 首次登录的“隐私设置”全屏窗口，并阻止它再出现
+$log.Add("Windows at start (pid|process|class|title|rect):")
+foreach ($w in [Desk]::Windows()) { $log.Add("  $w") }
+$oobe = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\OOBE'
+New-Item -Force $oobe -ErrorAction SilentlyContinue | Out-Null
+Set-ItemProperty $oobe DisablePrivacyExperience 1 -Type DWord -ErrorAction SilentlyContinue
+foreach ($n in 'WWAHost', 'UserOOBEBroker', 'CloudExperienceHostBroker', 'OOBENetworkConnectionFlow', 'oobe*') {
+  Get-Process -Name $n -ErrorAction SilentlyContinue | ForEach-Object { $log.Add("Killing $($_.ProcessName) ($($_.Id))"); Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue }
+}
+Start-Sleep -Seconds 2
+$log.Add("Windows after cleanup:")
+foreach ($w in [Desk]::Windows()) { $log.Add("  $w") }
 $os = Get-CimInstance Win32_OperatingSystem
 $log.Add("OS: $($os.Caption) $($os.Version) build $($os.BuildNumber) $($os.OSArchitecture)")
 $log.Add("Display before: $([Desk]::Current())")

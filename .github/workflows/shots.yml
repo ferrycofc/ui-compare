@@ -31,6 +31,11 @@ jobs:
         shell: pwsh
         run: ./tools/setup-desktop.ps1 -OutDir $env:OUT
 
+      - name: Icon sheets
+        if: matrix.os == 'windows-11-arm'
+        shell: pwsh
+        run: ./tools/icon-sheet.ps1 -OutDir out/icons
+
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: ${{ matrix.os == 'windows-11-arm' && 'arm64' || 'x64' }}

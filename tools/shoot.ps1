@@ -45,6 +45,25 @@ public static class Win {
     }, IntPtr.Zero);
     title = t; return found;
   }
+  [DllImport("user32.dll", CharSet = CharSet.Unicode)] public static extern int GetClassName(IntPtr h, StringBuilder s, int n);
+  // 把桌面上其它窗口（比如运行器的控制台）都最小化，截图里只留我们的窗口
+  public static string MinimizeOthers() {
+    var done = new StringBuilder();
+    EnumWindows((h, l) => {
+      if (!IsWindowVisible(h)) return true;
+      var c = new StringBuilder(256); GetClassName(h, c, 256);
+      string cls = c.ToString();
+      if (cls == "Shell_TrayWnd" || cls == "Shell_SecondaryTrayWnd" || cls == "Progman" || cls == "WorkerW") return true;
+      RECT r; GetWindowRect(h, out r);
+      if (r.R - r.L < 50 || r.B - r.T < 50) return true;
+      var t = new StringBuilder(256); GetWindowText(h, t, 256);
+      if (t.ToString().StartsWith("Nova")) return true;
+      ShowWindow(h, 6);
+      done.Append(cls + " '" + t + "'; ");
+      return true;
+    }, IntPtr.Zero);
+    return done.ToString();
+  }
   public static RECT Frame(IntPtr h) {
     RECT r;
     if (DwmGetWindowAttribute(h, 9, out r, Marshal.SizeOf(typeof(RECT))) != 0) GetWindowRect(h, out r);
@@ -63,6 +82,9 @@ Add-Type -AssemblyName System.Drawing
 $Exe = (Resolve-Path $Exe).Path
 if (-not $SizePath) { $SizePath = Split-Path $Exe }
 Write-Host "Launching $Exe $Arguments"
+
+Write-Host "Minimized: $([Win]::MinimizeOthers())"
+Start-Sleep -Milliseconds 500
 
 # 把鼠标移到角落，避免停在按钮上出现悬停效果
 [Win]::SetCursorPos(1915, 5) | Out-Null

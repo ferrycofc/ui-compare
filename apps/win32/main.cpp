@@ -284,8 +284,12 @@ int WINAPI wWinMain(HINSTANCE inst, HINSTANCE, PWSTR cmd, int show) {
     RegisterClassExW(&wc);
 
     const DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_CLIPCHILDREN;
+    // 现代样式的窗口外面有一圈看不见的边（左右下各 7 像素），经典边框没有，
+    // 所以经典版直接用可见尺寸 906 x 653，两者看起来一样大
+    const int w = kClassic ? kWinW - 14 : kWinW;
+    const int h = kClassic ? kWinH - 7 : kWinH;
     HWND hwnd = CreateWindowExW(WS_EX_CONTROLPARENT, wc.lpszClassName, kTitle, style, CW_USEDEFAULT, CW_USEDEFAULT,
-                                kWinW, kWinH, nullptr, nullptr, inst, nullptr);
+                                w, h, nullptr, nullptr, inst, nullptr);
     if (kClassic) {
         DWMNCRENDERINGPOLICY ncrp = DWMNCRP_DISABLED;
         DwmSetWindowAttribute(hwnd, DWMWA_NCRENDERING_POLICY, &ncrp, sizeof(ncrp));
