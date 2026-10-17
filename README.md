@@ -3,7 +3,17 @@
 用同一个“Nova 设置”界面，对比 Windows 上各种 UI 技术。每个技术都用它自己的框架真实写一遍，
 在 GitHub Actions 的 Windows 机器上编译、运行、截图、录操作视频，并测启动时间、内存和发布体积。
 
-界面内容和规则见 [SPEC.md](SPEC.md)。
+界面内容和规则见 [SPEC.md](SPEC.md)，视频文案参考见 [NOTES.md](NOTES.md)。
+
+## 快速开始（做视频用）
+
+1. **一次下载全部截图和视频**：[shots 分支打包下载](../../archive/refs/heads/shots.zip)，解压后看 `latest/` 文件夹。
+2. **数据表**：`latest/SUMMARY.md`（体积、内存、启动时间）。
+3. **自己录**：到 [Releases → nova-builds](../../releases/tag/nova-builds) 下载对应技术的 zip，解压后双击里面的 exe。
+   - 程序没有数字签名，第一次运行 Windows 可能弹出“已保护你的电脑”，点“更多信息 → 仍要运行”。
+   - UWP 不能直接双击运行，要先安装：用管理员身份打开 PowerShell，进入解压后的文件夹，运行
+     `powershell -ExecutionPolicy Bypass -File .\install.ps1`，然后在开始菜单里打开“Nova 设置 — UWP”。
+     这个脚本会把包里自带的测试证书加入“受信任”列表（UWP 必须签名才能安装）；录完可以在“管理计算机证书”里删掉名为 CN=Nova 的证书。
 
 ## 结果在哪里
 
@@ -60,5 +70,10 @@
 ## 说明
 
 - 这些虚拟机没有显卡，所以 WinUI 3 / UWP / Avalonia 的 Mica、亚克力半透明效果会退回成纯色背景。真电脑上会透出一点壁纸颜色。
+  想在视频里展示这个效果，用 Releases 里的程序在自己电脑上录。
+- 没有显卡也意味着动画是软件渲染的，偶尔会掉帧。录得不满意的技术，同样可以用 Releases 里的程序自己录（比如用 OBS）。
+- Dear ImGui 和 Flutter 不向系统提供控件信息，录屏脚本用的是程序自己报告的坐标（ImGui）或量好的坐标（Flutter）。
+- MFC 的复选框用的是普通复选框：Office 2007 皮肤画复选框要靠资源图片，在 Win11 上会退回到一种不显示对勾的画法。
+- Delphi 需要注册账号才能下载编译器，没有做。
 - `-full.png` 右下角的 “Test Mode” 水印是虚拟机自带的，视频建议用 `-pad.png` 和 `.mp4`。
 - Win32 经典版的 `win32-classic-2000`，是程序启动时把系统颜色设成 Windows 2000 经典配色后截的，程序本身没有任何自绘。
