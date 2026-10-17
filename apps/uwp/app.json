@@ -1,0 +1,7 @@
+{
+  "id": "uwp",
+  "tech": "UWP",
+  "install": "install.ps1",
+  "launch": "appx:NovaUWP!App",
+  "settle": 8
+}

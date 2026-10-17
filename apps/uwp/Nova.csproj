@@ -101,5 +101,9 @@
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup>
+    <!-- build.ps1 会传入实际找到的 UWP XAML targets 路径（VS 版本号不同时也能用） -->
+    <NovaXamlTargets Condition=" '$(NovaXamlTargets)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets</NovaXamlTargets>
+  </PropertyGroup>
+  <Import Project="$(NovaXamlTargets)" />
 </Project>
