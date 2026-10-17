@@ -1,0 +1,100 @@
+ControlType.Custom		QApplication.QWidget.rail	QFrame	508,221,56,621	toggle=False range=False
+ControlType.CheckBox	常规	QApplication.QWidget.rail.railButton	QToolButton	516,231,40,40	toggle=True range=False
+ControlType.CheckBox	画面	QApplication.QWidget.rail.railButton	QToolButton	516,275,40,40	toggle=True range=False
+ControlType.CheckBox	音频	QApplication.QWidget.rail.railButton	QToolButton	516,319,40,40	toggle=True range=False
+ControlType.CheckBox	网络	QApplication.QWidget.rail.railButton	QToolButton	516,363,40,40	toggle=True range=False
+ControlType.CheckBox	快捷键	QApplication.QWidget.rail.railButton	QToolButton	516,407,40,40	toggle=True range=False
+ControlType.CheckBox	列表	QApplication.QWidget.rail.railButton	QToolButton	516,451,40,40	toggle=True range=False
+ControlType.CheckBox	文件夹	QApplication.QWidget.rail.railButton	QToolButton	516,495,40,40	toggle=True range=False
+ControlType.Image		QApplication.QWidget.rail.QLabel	QLabel	521,748,28,28	toggle=False range=False
+ControlType.Button	设置	QApplication.QWidget.rail.railButton	QToolButton	516,790,40,40	toggle=False range=False
+ControlType.Tab	常规	QApplication.QWidget.QTabBar	QTabBar	580,229,444,35	toggle=False range=False
+ControlType.TabItem	常规	QApplication.QWidget.QTabBar		580,229,86,35	toggle=False range=False
+ControlType.TabItem	画面	QApplication.QWidget.QTabBar		666,229,86,35	toggle=False range=False
+ControlType.TabItem	音频	QApplication.QWidget.QTabBar		752,229,86,35	toggle=False range=False
+ControlType.TabItem	网络	QApplication.QWidget.QTabBar		838,229,86,35	toggle=False range=False
+ControlType.TabItem	快捷键	QApplication.QWidget.QTabBar		924,229,100,35	toggle=False range=False
+ControlType.Custom		QApplication.QWidget.card	QFrame	580,274,402,554	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,285,372,34	toggle=False range=False
+ControlType.Image		QApplication.QWidget.card.QWidget.QLabel	QLabel	597,294,16,16	toggle=False range=False
+ControlType.Text	常规选项	QApplication.QWidget.card.QWidget.QLabel	QLabel	623,285,56,34	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,321,372,38	toggle=False range=False
+ControlType.Text	开机自启	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,321,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,326,28,28	toggle=False range=False
+ControlType.CheckBox	开机自启	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,329,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,359,372,38	toggle=False range=False
+ControlType.Text	最小化到托盘	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,359,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,364,28,28	toggle=False range=False
+ControlType.CheckBox	最小化到托盘	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,367,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,397,372,38	toggle=False range=False
+ControlType.Text	自动更新	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,397,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,402,28,28	toggle=False range=False
+ControlType.CheckBox	自动更新	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,405,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,435,372,38	toggle=False range=False
+ControlType.Text	硬件加速	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,435,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,440,28,28	toggle=False range=False
+ControlType.CheckBox	硬件加速	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,443,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,473,372,38	toggle=False range=False
+ControlType.Text	垂直同步	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,473,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,478,28,28	toggle=False range=False
+ControlType.CheckBox	垂直同步	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,481,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,511,372,38	toggle=False range=False
+ControlType.Text	显示帧率	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,511,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,516,28,28	toggle=False range=False
+ControlType.CheckBox	显示帧率	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,519,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,549,372,38	toggle=False range=False
+ControlType.Text	低延迟模式	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,549,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	893,554,28,28	toggle=False range=False
+ControlType.CheckBox	低延迟模式	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,557,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,587,372,38	toggle=False range=False
+ControlType.Text	夜间模式	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,587,324,38	toggle=False range=False
+ControlType.CheckBox	夜间模式	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,595,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,625,372,38	toggle=False range=False
+ControlType.Text	后台静音	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,625,324,38	toggle=False range=False
+ControlType.CheckBox	后台静音	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,633,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	597,663,372,38	toggle=False range=False
+ControlType.Text	发送使用统计	QApplication.QWidget.card.QWidget.QLabel	QLabel	597,663,324,38	toggle=False range=False
+ControlType.CheckBox	发送使用统计	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	929,671,40,22	toggle=True range=False
+ControlType.Custom		QApplication.QWidget.card	QFrame	994,274,402,248	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,285,372,34	toggle=False range=False
+ControlType.Image		QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,294,16,16	toggle=False range=False
+ControlType.Text	性能	QApplication.QWidget.card.QWidget.QLabel	QLabel	1037,285,28,34	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,321,372,38	toggle=False range=False
+ControlType.Text	帧率限制	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,321,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	1307,326,28,28	toggle=False range=False
+ControlType.CheckBox	帧率限制	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,329,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,359,372,38	toggle=False range=False
+ControlType.Text	动态分辨率	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,359,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	1307,364,28,28	toggle=False range=False
+ControlType.CheckBox	动态分辨率	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,367,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,397,372,38	toggle=False range=False
+ControlType.Text	预加载资源	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,397,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	1307,402,28,28	toggle=False range=False
+ControlType.CheckBox	预加载资源	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,405,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,435,372,38	toggle=False range=False
+ControlType.Text	多线程渲染	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,435,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	1307,440,28,28	toggle=False range=False
+ControlType.CheckBox	多线程渲染	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,443,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,473,372,38	toggle=False range=False
+ControlType.Text	省电模式	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,473,288,38	toggle=False range=False
+ControlType.Button		QApplication.QWidget.card.QWidget.gear	QToolButton	1307,478,28,28	toggle=False range=False
+ControlType.CheckBox	省电模式	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,481,40,22	toggle=True range=False
+ControlType.Custom		QApplication.QWidget.card	QFrame	994,534,402,257	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,545,372,34	toggle=False range=False
+ControlType.Image		QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,554,16,16	toggle=False range=False
+ControlType.Text	显示	QApplication.QWidget.card.QWidget.QLabel	QLabel	1037,545,28,34	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,581,372,38	toggle=False range=False
+ControlType.Text	自动亮度	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,581,324,38	toggle=False range=False
+ControlType.CheckBox	自动亮度	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,589,40,22	toggle=True range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,619,372,38	toggle=False range=False
+ControlType.Text	HDR	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,619,324,38	toggle=False range=False
+ControlType.CheckBox	HDR	QApplication.QWidget.card.QWidget.ToggleSwitch	ToggleSwitch	1343,627,40,22	toggle=True range=False
+ControlType.Custom		QApplication.QWidget.card.divider	QFrame	1011,663,372,1	toggle=False range=False
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,672,372,22	toggle=False range=False
+ControlType.Text	亮度	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,672,335,22	toggle=False range=False
+ControlType.Text	80%	QApplication.QWidget.card.QWidget.value	QLabel	1352,672,27,22	toggle=False range=False
+ControlType.Slider	亮度	QApplication.QWidget.card.QSlider	QSlider	1011,694,372,28	toggle=False range=True
+ControlType.Group		QApplication.QWidget.card.QWidget	QWidget	1011,726,372,22	toggle=False range=False
+ControlType.Text	对比度	QApplication.QWidget.card.QWidget.QLabel	QLabel	1011,726,335,22	toggle=False range=False
+ControlType.Text	35%	QApplication.QWidget.card.QWidget.value	QLabel	1352,726,27,22	toggle=False range=False
+ControlType.Slider	对比度	QApplication.QWidget.card.QSlider	QSlider	1011,748,372,28	toggle=False range=True

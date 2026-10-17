@@ -1,27 +1,27 @@
 INFO    : aqtinstall(aqt) v3.3.0 on Python 3.12.10 [CPython MSC v.1943 64 bit (AMD64)]
 INFO    : Found extension qtwebengine
 INFO    : Found extension qtpdf
+INFO    : Downloading qtbase...
 INFO    : Downloading qtsvg...
 INFO    : Downloading qtdeclarative...
 INFO    : Downloading qttools...
-INFO    : Downloading qtbase...
-INFO    : Redirected: mirrors.20i.com
-INFO    : Redirected: mirrors.20i.com
-INFO    : Redirected: mirrors.20i.com
-INFO    : Redirected: mirrors.20i.com
-INFO    : Finished installation of qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 2.96971490
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Finished installation of qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 3.35898080
 INFO    : Downloading qttranslations...
-INFO    : Redirected: mirrors.20i.com
-INFO    : Finished installation of qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 5.70200290
-INFO    : Finished installation of qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 2.92191220
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Finished installation of qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 7.90067530
+INFO    : Finished installation of qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 5.17262270
 INFO    : Downloading d3dcompiler_47...
 INFO    : Downloading opengl32sw...
-INFO    : Redirected: mirrors.20i.com
-INFO    : Redirected: mirrors.20i.com
-INFO    : Finished installation of d3dcompiler_47-x64.7z in 2.41625450
-INFO    : Finished installation of opengl32sw-64-mesa_11_2_2-signed_sha256.7z in 2.84525260
-INFO    : Finished installation of qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 11.61910810
-INFO    : Finished installation of qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 27.41566410
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Redirected: qt.mirror.constant.com
+INFO    : Finished installation of d3dcompiler_47-x64.7z in 3.28671640
+INFO    : Finished installation of opengl32sw-64-mesa_11_2_2-signed_sha256.7z in 3.68666980
+INFO    : Finished installation of qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 15.80696760
+INFO    : Finished installation of qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 31.44512780
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\bin\qmake.exe
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Concurrent.prl
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Concurrentd.prl
@@ -174,16 +174,110 @@ INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Widgetsd.prl
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Xml.prl
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Xmld.prl
 INFO    : Finished installation
-INFO    : Time elapsed: 32.55489190 second
+INFO    : Time elapsed: 37.63315260 second
 Qt: D:\a\_temp\Qt\6.8.3\msvc2022_64
-CMake Error at CMakeLists.txt:2 (project):
-  Generator
+-- The CXX compiler identification is MSVC 19.51.36260.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+-- Configuring done (10.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: D:/a/_temp/qt-build
+[  0%] Built target Nova_autogen_timestamp_deps
+[ 20%] Automatic MOC and UIC for target Nova
+[ 20%] Built target Nova_autogen
+[ 40%] Building CXX object CMakeFiles/Nova.dir/Nova_autogen/mocs_compilation.cpp.obj
+mocs_compilation.cpp
+[ 60%] Building CXX object CMakeFiles/Nova.dir/main.cpp.obj
+main.cpp
+[ 80%] Building CXX object CMakeFiles/Nova.dir/togglesw.cpp.obj
+togglesw.cpp
+[100%] Linking CXX executable Nova.exe
+[100%] Built target Nova
+D:\a\ui-compare\ui-compare\apps\qt\dist\Nova.exe 64 bit, release executable
+Adding in plugin type generic for module: Qt6Gui
+Adding Qt6Network for qtuiotouchplugin.dll from plugin type: generic
+Adding in plugin type iconengines for module: Qt6Gui
+Adding Qt6Svg for qsvgicon.dll from plugin type: iconengines
+Adding in plugin type imageformats for module: Qt6Gui
+Adding in plugin type networkinformation for module: Qt6Network
+Adding in plugin type platforms for module: Qt6Gui
+Adding in plugin type styles for module: Qt6Widgets
+Adding in plugin type tls for module: Qt6Network
+Skipping plugin qopensslbackend.dll. Use -force-openssl or specify -openssl-root if you want to use it.
+Direct dependencies: Qt6Core Qt6Gui Qt6Widgets
+All dependencies   : Qt6Core Qt6Gui Qt6Widgets
+To be deployed     : Qt6Core Qt6Gui Qt6Network Qt6Svg Qt6Widgets
+Updating Qt6Core.dll.
+Updating Qt6Gui.dll.
+Updating Qt6Network.dll.
+Updating Qt6Svg.dll.
+Updating Qt6Widgets.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/generic.
+Updating qtuiotouchplugin.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/iconengines.
+Updating qsvgicon.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/imageformats.
+Updating qgif.dll.
+Updating qico.dll.
+Updating qjpeg.dll.
+Updating qsvg.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/networkinformation.
+Updating qnetworklistmanager.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/platforms.
+Updating qwindows.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/styles.
+Updating qmodernwindowsstyle.dll.
+Creating directory D:/a/ui-compare/ui-compare/apps/qt/dist/tls.
+Updating qcertonlybackend.dll.
+Updating qschannelbackend.dll.
+CRT: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\x64\Microsoft.VC145.CRT
 
-    Visual Studio 17 2022
+[32;1mFullName                                                                          [0m[32;1m Length[0m
+[32;1m--------                                                                          [0m [32;1m------[0m
+D:\a\ui-compare\ui-compare\apps\qt\dist\generic                                    
+D:\a\ui-compare\ui-compare\apps\qt\dist\iconengines                                
+D:\a\ui-compare\ui-compare\apps\qt\dist\imageformats                               
+D:\a\ui-compare\ui-compare\apps\qt\dist\networkinformation                         
+D:\a\ui-compare\ui-compare\apps\qt\dist\platforms                                  
+D:\a\ui-compare\ui-compare\apps\qt\dist\styles                                     
+D:\a\ui-compare\ui-compare\apps\qt\dist\tls                                        
+D:\a\ui-compare\ui-compare\apps\qt\dist\msvcp140_1.dll                             35768
+D:\a\ui-compare\ui-compare\apps\qt\dist\msvcp140_2.dll                             274872
+D:\a\ui-compare\ui-compare\apps\qt\dist\msvcp140_atomic_wait.dll                   57792
+D:\a\ui-compare\ui-compare\apps\qt\dist\msvcp140_codecvt_ids.dll                   31160
+D:\a\ui-compare\ui-compare\apps\qt\dist\msvcp140.dll                               643512
+D:\a\ui-compare\ui-compare\apps\qt\dist\Nova.exe                                   69632
+D:\a\ui-compare\ui-compare\apps\qt\dist\Qt6Core.dll                                6159496
+D:\a\ui-compare\ui-compare\apps\qt\dist\Qt6Gui.dll                                 9285768
+D:\a\ui-compare\ui-compare\apps\qt\dist\Qt6Network.dll                             1755784
+D:\a\ui-compare\ui-compare\apps\qt\dist\Qt6Svg.dll                                 528520
+D:\a\ui-compare\ui-compare\apps\qt\dist\Qt6Widgets.dll                             6500488
+D:\a\ui-compare\ui-compare\apps\qt\dist\vcruntime140_1.dll                         50112
+D:\a\ui-compare\ui-compare\apps\qt\dist\vcruntime140_threads.dll                   38840
+D:\a\ui-compare\ui-compare\apps\qt\dist\vcruntime140.dll                           178616
+D:\a\ui-compare\ui-compare\apps\qt\dist\generic\qtuiotouchplugin.dll               102024
+D:\a\ui-compare\ui-compare\apps\qt\dist\iconengines\qsvgicon.dll                   77448
+D:\a\ui-compare\ui-compare\apps\qt\dist\imageformats\qgif.dll                      47752
+D:\a\ui-compare\ui-compare\apps\qt\dist\imageformats\qico.dll                      46216
+D:\a\ui-compare\ui-compare\apps\qt\dist\imageformats\qjpeg.dll                     575624
+D:\a\ui-compare\ui-compare\apps\qt\dist\imageformats\qsvg.dll                      39048
+D:\a\ui-compare\ui-compare\apps\qt\dist\networkinformation\qnetworklistmanager.dll 71304
+D:\a\ui-compare\ui-compare\apps\qt\dist\platforms\qwindows.dll                     907912
+D:\a\ui-compare\ui-compare\apps\qt\dist\styles\qmodernwindowsstyle.dll             215688
+D:\a\ui-compare\ui-compare\apps\qt\dist\tls\qcertonlybackend.dll                   102024
+D:\a\ui-compare\ui-compare\apps\qt\dist\tls\qschannelbackend.dll                   254600
 
-  could not find any instance of Visual Studio.
-
-
-
--- Configuring incomplete, errors occurred!
-cmake configure failed

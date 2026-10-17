@@ -10,11 +10,12 @@
 | Win32 API | 1993 | win32-classic-2000 | 276 KB | 2 | 1.7 MB | 1 | 73 ms | — | 有 |
 | Win32 API | 1993 | win32-classic | 276 KB | 2 | 1.8 MB | 1 | 76 ms | — | 有 |
 | Win32 API | 1993 | win32 | 276 KB | 2 | 1.7 MB | 1 | 49 ms | — | 有 |
+| Qt Widgets | 1995 | qt | 26.8 MB | 25 | 22.6 MB | 1 | 532 ms | 380 ms | 有 |
 | WinForms | 2002 | winforms | 159.9 MB | 463 | 7.4 MB | 1 | 132 ms | — | 有 |
 | WPF | 2006 | wpf | 159.9 MB | 463 | 31.4 MB | 1 | 456 ms | 658 ms | 有 |
 | Electron | 2013 | electron | 368.4 MB | 73 | 65.4 MB | 4 | 298 ms | 433 ms | 有 |
 | WinUI 3 | 2021 | winui3 | 208.2 MB | 503 | 43.8 MB | 1 | 711 ms | — | 有 |
-| Flutter | 2022 | flutter | 26.8 MB | 20 | 67.1 MB | 1 | 1639 ms | — | 有 |
+| Flutter | 2022 | flutter | 26.8 MB | 20 | 67.5 MB | 1 | 937 ms | — | 有 |
 | Tauri | 2022 | tauri | 3.0 MB | 1 | 35.1 MB | 6 | 54 ms | 1667 ms | 有 |
 
 还没有结果：mfc、imgui、uwp、avalonia、maui
