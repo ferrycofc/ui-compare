@@ -1,3 +1,15 @@
+Windows at start (pid|process|class|title|rect):
+  9064|wsl|ConsoleWindowClass|C:\Windows\system32\wsl.exe|31,52,1024,571
+  9936|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,156,1024,675
+  876|explorer|Shell_OOBEProxy|Microsoft account|0,0,1024,768
+  6992|SystemPropertiesPerformance|#32770|System Properties|311,319,731,511
+  876|explorer|Progman|Program Manager|0,0,1024,768
+Killing WWAHost (8212)
+Windows after cleanup:
+  9064|wsl|ConsoleWindowClass|C:\Windows\system32\wsl.exe|31,52,1024,571
+  9936|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,156,1024,675
+  6992|SystemPropertiesPerformance|#32770|System Properties|311,319,731,511
+  876|explorer|Progman|Program Manager|0,0,1024,768
 OS: Microsoft Windows 11 Enterprise 10.0.26200 build 26200 ARM 64-bit Processor
 Display before: 1024x768 32bpp
 Modes: 640x480, 800x600, 1024x768, 1152x864, 1280x720, 1280x800, 1280x1024, 1366x768, 1440x900, 1600x900, 1600x1200, 1680x1050, 1920x1080

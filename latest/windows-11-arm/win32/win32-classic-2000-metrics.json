@@ -1,12 +1,12 @@
 {
   "name": "win32-classic-2000",
   "title": "Nova 设置 — Win32 API（经典主题）",
-  "startup_ms": 111,
-  "memory_mb": 1.7,
-  "working_set_mb": 15.4,
+  "startup_ms": 108,
+  "memory_mb": 1.5,
+  "working_set_mb": 15.3,
   "processes": 1,
   "dist_size_mb": 0.13,
   "dist_files": 1,
   "exe_size_kb": 137.5,
-  "window": "920x660"
+  "window": "906x653"
 }
