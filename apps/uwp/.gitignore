@@ -1,0 +1,7 @@
+dist/
+bin/
+obj/
+Assets/
+AppPackages/
+*.pfx
+*.cer

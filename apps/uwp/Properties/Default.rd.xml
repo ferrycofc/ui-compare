@@ -1,0 +1,6 @@
+<!-- .NET Native 运行时指令：保留本程序集的元数据（模板默认写法） -->
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+    <Assembly Name="*Application*" Dynamic="Required All" />
+  </Application>
+</Directives>

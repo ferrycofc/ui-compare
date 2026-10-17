@@ -137,6 +137,8 @@ public partial class MainWindow : Window
                 IsChecked = r.On,
                 OnContent = null,
                 OffContent = null,
+                // 模板里开关右边留了 12 的空列（给 On/Off 文字），抵消掉让开关贴右
+                Margin = new Thickness(0, 0, -12, 0),
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
             };
