@@ -1,4 +1,4 @@
-commit: b7c30617c98fef42d9a0382eed429c2bb675a029
-run: https://github.com/ferrycofc/ui-compare/actions/runs/38995638099
-jobs: win32=success winui3=success
-Sat Oct 17 02:42:26 UTC 2026
+commit: 2060693bca283777cba15b37e07f81867f9325fe
+run: https://github.com/ferrycofc/ui-compare/actions/runs/38996973628
+build: failure  capture: success
+Sat Oct 17 03:05:07 UTC 2026
