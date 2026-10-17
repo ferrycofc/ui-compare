@@ -1,0 +1,188 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="NovaAvalonia.MainWindow"
+        Title="Nova 设置 — Avalonia"
+        Width="906" Height="653"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="32"
+        Background="Transparent"
+        TransparencyBackgroundFallback="#FF202020"
+        FontSize="14">
+
+  <Window.Resources>
+    <SolidColorBrush x:Key="CardBrush" Color="#0DFFFFFF" />
+    <SolidColorBrush x:Key="CardStrokeBrush" Color="#19000000" />
+    <SolidColorBrush x:Key="SubtleBrush" Color="#0FFFFFFF" />
+    <SolidColorBrush x:Key="DividerBrush" Color="#15FFFFFF" />
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#C5FFFFFF" />
+    <SolidColorBrush x:Key="TertiaryTextBrush" Color="#87FFFFFF" />
+    <SolidColorBrush x:Key="AccentTextBrush" Color="#FF60CDFF" />
+  </Window.Resources>
+
+  <Window.Styles>
+    <!-- Avalonia 的样式用类似 CSS 的选择器 -->
+    <!-- 字体图标：Win11 用 Segoe Fluent Icons，Win10 回退到 Segoe MDL2 Assets -->
+    <Style Selector="TextBlock.icon">
+      <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="{StaticResource CardBrush}" />
+      <Setter Property="BorderBrush" Value="{StaticResource CardStrokeBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="16,12,12,12" />
+    </Style>
+
+    <Style Selector="TextBlock.cardTitle">
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- 左侧图标栏 -->
+    <Style Selector="ListBox.rail">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Padding" Value="0" />
+    </Style>
+    <Style Selector="ListBox.rail > ListBoxItem">
+      <Setter Property="Width" Value="40" />
+      <Setter Property="Height" Value="36" />
+      <Setter Property="Margin" Value="0,2" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+      <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="ListBox.rail > ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{StaticResource SubtleBrush}" />
+    </Style>
+    <Style Selector="ListBox.rail > ListBoxItem Border.pill">
+      <Setter Property="IsVisible" Value="False" />
+      <Setter Property="Background" Value="{DynamicResource SystemAccentColor}" />
+    </Style>
+    <Style Selector="ListBox.rail > ListBoxItem:selected Border.pill">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <!-- 顶部标签：图标 + 文字，选中项下面是强调色横条 -->
+    <Style Selector="TabStripItem">
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="FontWeight" Value="Normal" />
+      <Setter Property="MinHeight" Value="40" />
+      <Setter Property="Padding" Value="12,0" />
+    </Style>
+
+    <!-- 齿轮按钮：透明、只显示图标 -->
+    <Style Selector="Button.gear">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Width" Value="32" />
+      <Setter Property="Height" Value="32" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="0,0,4,0" />
+      <Setter Property="Foreground" Value="{StaticResource SecondaryTextBrush}" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+  </Window.Styles>
+
+  <Grid RowDefinitions="32,*">
+
+    <!-- 自绘标题栏：客户区延伸到标题栏，右上角三个按钮仍由 Avalonia 画 -->
+    <Grid x:Name="AppTitleBar" Background="Transparent"
+          Win32Properties.NonClientHitTestResult="Caption">
+      <StackPanel Orientation="Horizontal" Spacing="12" Margin="16,0,0,0"
+                  VerticalAlignment="Center" IsHitTestVisible="False">
+        <Border Width="20" Height="20" CornerRadius="5" Background="{DynamicResource SystemAccentColor}">
+          <TextBlock Classes="icon" Text="&#xE9E9;" FontSize="12" Foreground="White" />
+        </Border>
+        <TextBlock Text="Nova 设置" FontSize="12" VerticalAlignment="Center" />
+        <TextBlock Text="Avalonia" FontSize="12" VerticalAlignment="Center"
+                   Foreground="{StaticResource TertiaryTextBrush}" />
+      </StackPanel>
+    </Grid>
+
+    <Grid Grid.Row="1" ColumnDefinitions="56,*">
+
+      <!-- 左侧竖排图标栏 -->
+      <DockPanel Margin="0,4,0,8">
+        <StackPanel DockPanel.Dock="Bottom" Spacing="6" HorizontalAlignment="Center">
+          <Border Width="28" Height="28" CornerRadius="14" Background="#FF5C5C5C"
+                  HorizontalAlignment="Center" ToolTip.Tip="Nova">
+            <TextBlock Text="N" FontSize="12" FontWeight="SemiBold" Foreground="White"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Border>
+          <Button Classes="gear" Width="40" Height="36" Margin="0" CornerRadius="4"
+                  ToolTip.Tip="设置" AutomationProperties.Name="设置">
+            <TextBlock Classes="icon" Text="&#xE713;" FontSize="16" Foreground="White" />
+          </Button>
+        </StackPanel>
+
+        <ListBox x:Name="Rail" Classes="rail" SelectedIndex="0" />
+      </DockPanel>
+
+      <!-- 右侧内容 -->
+      <Grid Grid.Column="1" RowDefinitions="Auto,*" Margin="8,0,20,16">
+
+        <!-- 顶部带图标的标签 -->
+        <TabStrip x:Name="Tabs" SelectedIndex="0" Margin="0,0,0,10" />
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,12,*">
+
+          <!-- 左：常规选项 -->
+          <Border Classes="card" VerticalAlignment="Top">
+            <StackPanel>
+              <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,2,0,6">
+                <TextBlock Classes="icon" Text="&#xE9E9;" FontSize="16" Foreground="{StaticResource AccentTextBrush}" />
+                <TextBlock Classes="cardTitle" Text="常规选项" />
+              </StackPanel>
+              <StackPanel x:Name="GeneralRows" />
+            </StackPanel>
+          </Border>
+
+          <StackPanel Grid.Column="2" Spacing="12">
+            <!-- 右上：性能 -->
+            <Border Classes="card">
+              <StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,2,0,6">
+                  <TextBlock Classes="icon" Text="&#xEC4A;" FontSize="16" Foreground="{StaticResource AccentTextBrush}" />
+                  <TextBlock Classes="cardTitle" Text="性能" />
+                </StackPanel>
+                <StackPanel x:Name="PerfRows" />
+              </StackPanel>
+            </Border>
+
+            <!-- 右下：显示 -->
+            <Border Classes="card">
+              <StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,2,0,6">
+                  <TextBlock Classes="icon" Text="&#xE706;" FontSize="16" Foreground="{StaticResource AccentTextBrush}" />
+                  <TextBlock Classes="cardTitle" Text="显示" />
+                </StackPanel>
+                <StackPanel x:Name="DisplayRows" />
+                <Rectangle Height="1" Margin="0,6,4,8" Fill="{StaticResource DividerBrush}" />
+                <Grid ColumnDefinitions="*,Auto" Margin="0,0,4,0">
+                  <TextBlock Text="亮度" />
+                  <TextBlock x:Name="BrightText" Grid.Column="1" Text="80%" />
+                </Grid>
+                <Slider x:Name="Bright" Minimum="0" Maximum="100" Value="80"
+                        AutomationProperties.Name="亮度" Margin="0,0,4,0" />
+                <Grid ColumnDefinitions="*,Auto" Margin="0,0,4,0">
+                  <TextBlock Text="对比度" />
+                  <TextBlock x:Name="ContrastText" Grid.Column="1" Text="35%" />
+                </Grid>
+                <Slider x:Name="Contrast" Minimum="0" Maximum="100" Value="35"
+                        AutomationProperties.Name="对比度" Margin="0,0,4,0" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>
