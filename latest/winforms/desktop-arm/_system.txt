@@ -1,0 +1,53 @@
+Windows at start (pid|process|class|title|rect):
+  7068|wsl|ConsoleWindowClass|C:\Windows\system32\wsl.exe|26,26,1019,545
+  2592|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,130,1024,649
+  940|explorer|Shell_OOBEProxy|Microsoft account|0,0,1024,768
+  816|SystemPropertiesPerformance|#32770|System Properties|311,319,731,511
+  940|explorer|Progman|Program Manager|0,0,1024,768
+Killing WWAHost (7900)
+Killing wsl (7068)
+Closed System Properties dialogs: 1
+Desktop icons hidden: True
+Windows after cleanup:
+  2592|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,130,1024,649
+  816|SystemPropertiesPerformance|#32770|Performance Options|52,52,485,578
+  940|explorer|Progman|Program Manager|0,0,1024,768
+OS: Microsoft Windows 11 Enterprise 10.0.26200 build 26200 ARM 64-bit Processor
+Display before: 1024x768 32bpp
+Modes: 640x480, 800x600, 1024x768, 1152x864, 1280x720, 1280x800, 1280x1024, 1366x768, 1440x900, 1600x900, 1600x1200, 1680x1050, 1920x1080
+ChangeDisplaySettings result: 0
+Display after: 1920x1080 32bpp metrics 1920x1080
+Effects: fontSmoothing=1 smoothingType=2 dropShadow=1 uiEffects=1 dwmComposition=True
+Wallpapers found:
+  C:\Windows\Web\Wallpaper\Spotlight\img14.jpg 1565KB
+  C:\Windows\Web\Wallpaper\Spotlight\img50.jpg 23KB
+  C:\Windows\Web\Wallpaper\ThemeA\img20.jpg 807KB
+  C:\Windows\Web\Wallpaper\ThemeA\img21.jpg 814KB
+  C:\Windows\Web\Wallpaper\ThemeA\img22.jpg 743KB
+  C:\Windows\Web\Wallpaper\ThemeA\img23.jpg 886KB
+  C:\Windows\Web\Wallpaper\ThemeB\img24.jpg 1124KB
+  C:\Windows\Web\Wallpaper\ThemeB\img25.jpg 996KB
+  C:\Windows\Web\Wallpaper\ThemeB\img26.jpg 963KB
+  C:\Windows\Web\Wallpaper\ThemeB\img27.jpg 1035KB
+  C:\Windows\Web\Wallpaper\ThemeC\img28.jpg 1085KB
+  C:\Windows\Web\Wallpaper\ThemeC\img29.jpg 1193KB
+  C:\Windows\Web\Wallpaper\ThemeC\img30.jpg 1044KB
+  C:\Windows\Web\Wallpaper\ThemeC\img31.jpg 1130KB
+  C:\Windows\Web\Wallpaper\ThemeD\img32.jpg 1052KB
+  C:\Windows\Web\Wallpaper\ThemeD\img33.jpg 1052KB
+  C:\Windows\Web\Wallpaper\ThemeD\img34.jpg 966KB
+  C:\Windows\Web\Wallpaper\ThemeD\img35.jpg 1062KB
+  C:\Windows\Web\Wallpaper\Windows\img0.jpg 1565KB
+  C:\Windows\Web\Wallpaper\Windows\img19.jpg 1351KB
+  C:\Windows\Web\4K\Wallpaper\Windows\img0_1920x1200.jpg 529KB
+  C:\Windows\Web\4K\Wallpaper\Windows\img19_1920x1200.jpg 506KB
+Wallpaper set: C:\Windows\Web\Wallpaper\Windows\img0.jpg -> True
+Font msyh.ttc : True
+Font msyhbd.ttc : True
+Font simsun.ttc : True
+Font SegUIVar.ttf : True
+Font segoeui.ttf : True
+Font SegoeIcons.ttf : True
+Font segmdl2.ttf : True
+Font tahoma.ttf : True
+Culture: en-US UI: en-US
