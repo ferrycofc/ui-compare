@@ -1,0 +1,16 @@
+{
+  "name": "maui",
+  "tech": ".NET MAUI",
+  "title": "Nova ?? — .NET MAUI",
+  "startup_ms": 478,
+  "memory_mb": 55.8,
+  "working_set_mb": 167.3,
+  "processes": 1,
+  "dist_size_mb": 227.87,
+  "dist_files": 538,
+  "window": "906x653",
+  "startup_first_ms": 659,
+  "startup_runs_ms": "659, 480, 475",
+  "ready_ms": 794,
+  "ready_runs_ms": "810, 778"
+}

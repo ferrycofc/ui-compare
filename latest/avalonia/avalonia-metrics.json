@@ -1,0 +1,16 @@
+{
+  "name": "avalonia",
+  "tech": "Avalonia",
+  "title": "Nova 设置 — Avalonia",
+  "startup_ms": 927,
+  "memory_mb": 41.0,
+  "working_set_mb": 111.8,
+  "processes": 1,
+  "dist_size_mb": 93.99,
+  "dist_files": 214,
+  "window": "906x653",
+  "startup_first_ms": 1504,
+  "startup_runs_ms": "1504, 939, 915",
+  "ready_ms": 1264,
+  "ready_runs_ms": "1296, 1233"
+}
