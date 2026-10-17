@@ -10,8 +10,9 @@
 | Win32 API | 1993 | win32-classic | 276 KB | 2 | 1.8 MB | 1 | 76 ms | 有 |
 | Win32 API | 1993 | win32 | 276 KB | 2 | 1.7 MB | 1 | 49 ms | 有 |
 | WinForms | 2002 | winforms | 159.9 MB | 463 | 7.4 MB | 1 | 132 ms | 有 |
-| Electron | 2013 | electron | 368.4 MB | 73 | 68.6 MB | 4 | 300 ms | 有 |
+| WPF | 2006 | wpf | 159.9 MB | 463 | 32.1 MB | 1 | 475 ms | 有 |
+| Electron | 2013 | electron | 368.4 MB | 73 | 63.5 MB | 4 | 217 ms | 有 |
 | WinUI 3 | 2021 | winui3 | 208.2 MB | 503 | 43.8 MB | 1 | 711 ms | 有 |
-| Tauri | 2022 | tauri | 3.0 MB | 1 | 66.4 MB | 7 | 30 ms | 有 |
+| Tauri | 2022 | tauri | 3.0 MB | 1 | 66.5 MB | 7 | 50 ms | 有 |
 
-还没有结果：mfc、qt、wpf、imgui、uwp、avalonia、flutter、maui
+还没有结果：mfc、qt、imgui、uwp、avalonia、flutter、maui

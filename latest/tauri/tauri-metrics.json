@@ -2,13 +2,13 @@
   "name": "tauri",
   "tech": "Tauri",
   "title": "Nova 设置 — Tauri",
-  "startup_ms": 30,
-  "memory_mb": 66.4,
-  "working_set_mb": 309.5,
+  "startup_ms": 50,
+  "memory_mb": 66.5,
+  "working_set_mb": 311.1,
   "processes": 7,
   "dist_size_mb": 2.96,
   "dist_files": 1,
   "window": "906x653",
-  "startup_first_ms": 87,
-  "startup_runs_ms": "87, 30, 26"
+  "startup_first_ms": 84,
+  "startup_runs_ms": "84, 50, 39"
 }

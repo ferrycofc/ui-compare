@@ -1,0 +1,14 @@
+{
+  "name": "wpf",
+  "tech": "WPF",
+  "title": "Nova 设置 — WPF",
+  "startup_ms": 475,
+  "memory_mb": 32.1,
+  "working_set_mb": 98.3,
+  "processes": 1,
+  "dist_size_mb": 159.94,
+  "dist_files": 463,
+  "window": "906x653",
+  "startup_first_ms": 904,
+  "startup_runs_ms": "904, 475, 440"
+}
