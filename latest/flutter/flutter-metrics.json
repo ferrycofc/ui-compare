@@ -2,13 +2,13 @@
   "name": "flutter",
   "tech": "Flutter",
   "title": "Nova 设置 — Flutter",
-  "startup_ms": 937,
-  "memory_mb": 67.5,
-  "working_set_mb": 105.0,
+  "startup_ms": 1339,
+  "memory_mb": 67.4,
+  "working_set_mb": 104.9,
   "processes": 1,
   "dist_size_mb": 26.77,
   "dist_files": 20,
   "window": "906x653",
-  "startup_first_ms": 1478,
-  "startup_runs_ms": "1478, 934, 937"
+  "startup_first_ms": 3590,
+  "startup_runs_ms": "3590, 1358, 1320"
 }
