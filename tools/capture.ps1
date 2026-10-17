@@ -277,7 +277,9 @@ function Get-Targets($hwnd, $frame) {
   $t = @{}
   $toggles = '开机自启', '自动更新', '低延迟模式', 'HDR'
   $sliders = '亮度'
-  for ($try = 0; $try -lt 4; $try++) {
+  # 写了固定坐标的程序（ImGui、Flutter）完全不碰 UI Automation：查询它的控件树可能让程序出问题
+  $tries = if ($cfg.points) { 0 } else { 4 }
+  for ($try = 0; $try -lt $tries; $try++) {
     try {
       $root = $UIA::FromHandle($hwnd)
       foreach ($n in $toggles) { if (-not $t[$n]) { $c = Find-Toggle $root $n; if ($c) { $t[$n] = $c } } }
@@ -334,7 +336,7 @@ function Record-Demo([string]$name, $hwnd, $frame) {
   $ff = if ($env:FFMPEG) { $env:FFMPEG } else { (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source }
   if (-not $ff) { Write-Host "::warning::ffmpeg not found, skipping video"; return }
   $t = Get-Targets $hwnd $frame
-  Save-Tree $hwnd (Join-Path $OutDir "$name-uia.txt")
+  if (-not $cfg.points) { Save-Tree $hwnd (Join-Path $OutDir "$name-uia.txt") }
   $found = ($t.Keys | Sort-Object) -join ', '
   Write-Host "Demo targets: $found"
   $t.GetEnumerator() | ForEach-Object { "$($_.Key): $($_.Value.X),$($_.Value.Y)" } | Set-Content -Encoding utf8 (Join-Path $OutDir "$name-targets.txt")
@@ -352,6 +354,12 @@ function Record-Demo([string]$name, $hwnd, $frame) {
     if (-not $proc.WaitForExit(20000)) { $proc.Kill() }
   }
   $errTask.Result | Set-Content -Encoding utf8 (Join-Path $OutDir "$name-ffmpeg.log")
+  if (-not [Win]::IsWindowVisible($hwnd)) {
+    Write-Host "::warning::$name : the window closed during the demo"
+    Get-WinEvent -FilterHashtable @{ LogName = 'Application'; StartTime = (Get-Date).AddMinutes(-2) } -MaxEvents 10 -ErrorAction SilentlyContinue |
+      Where-Object { $_.LevelDisplayName -in 'Error', 'Critical' } |
+      ForEach-Object { "--- $($_.ProviderName): $($_.Message)" } | Tee-Object -FilePath (Join-Path $OutDir "$name-crash.txt") | Write-Host
+  }
   $mp4 = Join-Path $OutDir "$name.mp4"
   & $ff -y -loglevel error -i $raw -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -movflags +faststart $mp4
   Remove-Item $raw -ErrorAction SilentlyContinue
@@ -465,12 +473,13 @@ foreach ($v in $variants) {
       Stop-Tree (Get-Tree $r2)
       Start-Sleep -Seconds 1
     }
-    $sorted = $times | Sort-Object
     $mf = Join-Path $OutDir "$($v.name)-metrics.json"
     $m = Get-Content $mf -Raw | ConvertFrom-Json
     $m | Add-Member -Force startup_first_ms $startupMs
     $m | Add-Member -Force startup_runs_ms ($times -join ', ')
-    $m.startup_ms = $sorted[[int][Math]::Floor(($sorted.Count - 1) / 2)]
+    # 第一次启动受磁盘读取影响很大；表里用第二、三次（热启动）的平均值，“界面就绪”也用这两次
+    $warm = @($times | Select-Object -Skip 1)
+    if ($warm.Count) { $m.startup_ms = [int](($warm | Measure-Object -Average).Average) }
     if ($readyTimes.Count) {
       $m | Add-Member -Force ready_ms ([int](($readyTimes | Measure-Object -Average).Average))
       $m | Add-Member -Force ready_runs_ms ($readyTimes -join ', ')
