@@ -1,0 +1,7 @@
+{
+  "id": "mfc",
+  "tech": "MFC",
+  "exe": "Nova.exe",
+  "settle": 5,
+  "sliderPad": 13
+}
