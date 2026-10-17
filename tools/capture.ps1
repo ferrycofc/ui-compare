@@ -178,7 +178,7 @@ function Get-Tree([int[]]$roots) {
     $cur = $queue.Dequeue()
     foreach ($c in ($all | Where-Object { $_.ParentProcessId -eq $cur })) { if ($ids.Add([int]$c.ProcessId)) { $queue.Enqueue([int]$c.ProcessId) } }
   }
-  return $ids
+  return ,$ids
 }
 
 # ---------- UI Automation：按名字找开关和滑块 ----------
@@ -193,21 +193,41 @@ function Find-ByName($root, [string]$name) {
   return @($root.FindAll([System.Windows.Automation.TreeScope]::Descendants, $c))
 }
 
+function Test-Toggle($e) {
+  if ($e.GetCurrentPropertyValue($UIA::IsTogglePatternAvailableProperty)) { return $true }
+  $ct = $e.Current.ControlType
+  return ($ct -eq [System.Windows.Automation.ControlType]::CheckBox)
+}
+
 function Find-Toggle($root, [string]$name) {
   $hits = Find-ByName $root $name
   foreach ($e in $hits) {
-    if ($e.GetCurrentPropertyValue($UIA::IsTogglePatternAvailableProperty)) { $c = Get-Center $e; if ($c) { return $c } }
+    if (Test-Toggle $e) { $c = Get-Center $e; if ($c -and $c.W -lt 120) { return $c } }
   }
-  # 开关本身没有名字：找同一行、在文字右边、最靠右的那个可切换控件
+  # 开关本身没有名字：找同一行、在文字右边、最靠右的那个开关/复选框
   $label = $hits | ForEach-Object { Get-Center $_ } | Where-Object { $_ } | Select-Object -First 1
   if (-not $label) { return $null }
-  $tc = New-Object System.Windows.Automation.PropertyCondition($UIA::IsTogglePatternAvailableProperty, $true)
   $best = $null
-  foreach ($e in $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, $tc)) {
+  foreach ($e in $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, [System.Windows.Automation.Condition]::TrueCondition)) {
+    if (-not (Test-Toggle $e)) { continue }
     $c = Get-Center $e
     if ($c -and [Math]::Abs($c.Y - $label.Y) -le 16 -and $c.X -gt $label.X -and $c.W -lt 120) { if (-not $best -or $c.X -gt $best.X) { $best = $c } }
   }
   return $best
+}
+
+# 把控件树写到文件里，方便排查找不到控件的问题
+function Save-Tree($hwnd, [string]$path) {
+  try {
+    $root = $UIA::FromHandle($hwnd)
+    $lines = foreach ($e in $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, [System.Windows.Automation.Condition]::TrueCondition)) {
+      $c = $e.Current; $r = $c.BoundingRectangle
+      "{0}`t{1}`t{2}`t{3}`t{4},{5},{6},{7}`ttoggle={8} range={9}" -f $c.ControlType.ProgrammaticName, $c.Name, $c.AutomationId, $c.ClassName,
+        [int]$r.X, [int]$r.Y, [int]$r.Width, [int]$r.Height,
+        $e.GetCurrentPropertyValue($UIA::IsTogglePatternAvailableProperty), $e.GetCurrentPropertyValue($UIA::IsRangeValuePatternAvailableProperty)
+    }
+    $lines | Select-Object -First 800 | Set-Content -Encoding utf8 $path
+  } catch { "UIA dump failed: $_" | Set-Content -Encoding utf8 $path }
 }
 
 function Find-Slider($root, [string]$name) {
@@ -292,6 +312,7 @@ function Record-Demo([string]$name, $hwnd, $frame) {
   $ff = if ($env:FFMPEG) { $env:FFMPEG } else { (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source }
   if (-not $ff) { Write-Host "::warning::ffmpeg not found, skipping video"; return }
   $t = Get-Targets $hwnd $frame
+  Save-Tree $hwnd (Join-Path $OutDir "$name-uia.txt")
   $found = ($t.Keys | Sort-Object) -join ', '
   Write-Host "Demo targets: $found"
   $t.GetEnumerator() | ForEach-Object { "$($_.Key): $($_.Value.X),$($_.Value.Y)" } | Set-Content -Encoding utf8 (Join-Path $OutDir "$name-targets.txt")
