@@ -14,7 +14,7 @@ namespace NovaUWP
             InitializeComponent();
 
             // 启动时的窗口大小（视图大小，不含系统标题栏），第一次启动生效
-            ApplicationView.PreferredLaunchViewSize = new Size(906, 621);
+            ApplicationView.PreferredLaunchViewSize = new Size(904, 619);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 

@@ -17,8 +17,8 @@
 #pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 // 统一的窗口外框（和 Win32 版一样，看得见的大小约 906 x 653）
-static const int kWinW = 920;
-static const int kWinH = 660;
+static const int kWinW = 924;  // CFrameWnd 的边框比普通窗口宽一点，这样看得见的大小正好是 906 x 653
+static const int kWinH = 662;
 
 struct Row { LPCWSTR text; bool gear; bool on; };
 
