@@ -1,0 +1,1 @@
+UIA dump failed: Cannot convert value "∞" to type "System.Int32". Error: "Value was either too large or too small for an Int32."

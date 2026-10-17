@@ -1,0 +1,80 @@
+== UWP tooling ==
+VSINSTALLDIR = C:\Program Files\Microsoft Visual Studio\18\Enterprise\
+VSCMD_VER    = 18.10.3
+msbuild      = C:\Program Files\Microsoft Visual Studio\18\Enterprise\\MSBuild\Current\Bin\amd64\MSBuild.exe
+18.10.1.42706
+WindowsXaml folder: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\WindowsXaml  exists=True
+  v18.0
+UWP XAML targets : C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\WindowsXaml\v18.0\Microsoft.Windows.UI.Xaml.CSharp.Targets
+AppxPackage targets: C:\Program Files\Microsoft Visual Studio\18\Enterprise\MSBuild\Microsoft\VisualStudio\v18.0\AppxPackage\Microsoft.AppxPackage.Targets
+UAP platforms folder: C:\Program Files (x86)\Windows Kits\10\Platforms\UAP  exists=True
+  10.0.26100.0
+UWPNuGetPackages: microsoft.csharp, microsoft.net.native.compiler, microsoft.net.native.sharedlibrary-arm, microsoft.net.native.sharedlibrary-x64, microsoft.net.native.sharedlibrary-x86, microsoft.net.uwpcoreruntimesdk, microsoft.netcore, microsoft.netcore.jit, microsoft.netcore.platforms, microsoft.netcore.portable.compatibility, microsoft.netcore.runtime.coreclr, microsoft.netcore.targets, microsoft.netcore.universalwindowsplatform, microsoft.netcore.windows.apisets, microsoft.visualbasic, microsoft.win32.primitives, netstandard.library, runtime.any.system.collections, runtime.any.system.diagnostics.tools, runtime.any.system.diagnostics.tracing, runtime.any.system.globalization, runtime.any.system.globalization.calendars, runtime.any.system.io, runtime.any.system.reflection, runtime.any.system.reflection.extensions, runtime.any.system.reflection.primitives, runtime.any.system.resources.resourcemanager, runtime.any.system.runtime, runtime.any.system.runtime.handles, runtime.any.system.runtime.interopservices, runtime.any.system.text.encoding, runtime.any.system.text.encoding.extensions, runtime.any.system.threading.tasks, runtime.any.system.threading.timer, runtime.aot.system.collections, runtime.aot.system.diagnostics.tools, runtime.aot.system.diagnostics.tracing, runtime.aot.system.globalization, runtime.aot.system.globalization.calendars, runtime.aot.system.io, runtime.aot.system.reflection, runtime.aot.system.reflection.extensions, runtime.aot.system.reflection.primitives, runtime.aot.system.resources.resourcemanager, runtime.aot.system.runtime, runtime.aot.system.runtime.handles, runtime.aot.system.runtime.interopservices, runtime.aot.system.text.encoding, runtime.aot.system.text.encoding.extensions, runtime.aot.system.threading.tasks, runtime.aot.system.threading.timer, runtime.native.system.io.compression, runtime.native.system.security.cryptography, runtime.win.microsoft.win32.primitives, runtime.win.system.diagnostics.debug, runtime.win.system.io.filesystem, runtime.win.system.net.primitives, runtime.win.system.net.sockets, runtime.win.system.runtime.extensions, runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform, runtime.win10-arm-aot.runtime.native.system.io.compression, runtime.win10-arm.microsoft.net.native.compiler, runtime.win10-arm.microsoft.net.native.sharedlibrary, runtime.win10-arm.microsoft.net.uwpcoreruntimesdk, runtime.win10-arm.microsoft.netcore.universalwindowsplatform, runtime.win10-arm64-aot.microsoft.netcore.universalwindowsplatform, runtime.win10-arm64.microsoft.net.native.compiler, runtime.win10-arm64.microsoft.net.native.sharedlibrary, runtime.win10-x64-aot.microsoft.netcore.universalwindowsplatform, runtime.win10-x64-aot.runtime.native.system.io.compression, runtime.win10-x64.microsoft.net.native.compiler, runtime.win10-x64.microsoft.net.native.sharedlibrary, runtime.win10-x64.microsoft.net.uwpcoreruntimesdk, runtime.win10-x64.microsoft.netcore.universalwindowsplatform, runtime.win10-x86-aot.microsoft.netcore.universalwindowsplatform, runtime.win10-x86-aot.runtime.native.system.io.compression, runtime.win10-x86.microsoft.net.native.compiler, runtime.win10-x86.microsoft.net.native.sharedlibrary, runtime.win10-x86.microsoft.net.uwpcoreruntimesdk, runtime.win10-x86.microsoft.netcore.universalwindowsplatform, runtime.win7-x64.microsoft.netcore.jit, runtime.win7-x64.microsoft.netcore.runtime.coreclr, runtime.win7-x64.runtime.native.system.io.compression, runtime.win7-x86.microsoft.netcore.jit, runtime.win7-x86.microsoft.netcore.runtime.coreclr, runtime.win7-x86.runtime.native.system.io.compression, runtime.win7.system.private.uri, runtime.win8-arm.microsoft.netcore.runtime.coreclr, runtime.win8-arm.runtime.native.system.io.compression, system.appcontext, system.buffers, system.collections, system.collections.concurrent, system.collections.immutable, system.collections.nongeneric, system.collections.specialized, system.componentmodel, system.componentmodel.annotations, system.componentmodel.eventbasedasync, system.data.common, system.diagnostics.contracts, system.diagnostics.debug, system.diagnostics.diagnosticsource, system.diagnostics.stacktrace, system.diagnostics.tools, system.diagnostics.tracing, system.dynamic.runtime, system.globalization, system.globalization.calendars, system.globalization.extensions, system.io, system.io.compression, system.io.compression.zipfile, system.io.filesystem, system.io.filesystem.primitives, system.io.isolatedstorage, system.io.unmanagedmemorystream, system.linq, system.linq.expressions, system.linq.parallel, system.linq.queryable, system.net.http, system.net.http.rtc, system.net.nameresolution, system.net.networkinformation, system.net.primitives, system.net.requests, system.net.sockets, system.net.webheadercollection, system.net.websockets, system.net.websockets.client, system.numerics.vectors, system.numerics.vectors.windowsruntime, system.objectmodel, system.private.datacontractserialization, system.private.servicemodel, system.private.uri, system.reflection, system.reflection.context, system.reflection.dispatchproxy, system.reflection.emit, system.reflection.emit.ilgeneration, system.reflection.emit.lightweight, system.reflection.extensions, system.reflection.metadata, system.reflection.primitives, system.reflection.typeextensions, system.resources.resourcemanager, system.runtime, system.runtime.extensions, system.runtime.handles, system.runtime.interopservices, system.runtime.interopservices.windowsruntime, system.runtime.numerics, system.runtime.serialization.json, system.runtime.serialization.primitives, system.runtime.serialization.xml, system.runtime.windowsruntime, system.runtime.windowsruntime.ui.xaml, system.security.claims, system.security.cryptography.algorithms, system.security.cryptography.cng, system.security.cryptography.encoding, system.security.cryptography.primitives, system.security.cryptography.x509certificates, system.security.principal, system.servicemodel.duplex, system.servicemodel.http, system.servicemodel.nettcp, system.servicemodel.primitives, system.servicemodel.security, system.text.encoding, system.text.encoding.codepages, system.text.encoding.extensions, system.text.regularexpressions, system.threading, system.threading.overlapped, system.threading.tasks, system.threading.tasks.dataflow, system.threading.tasks.extensions, system.threading.tasks.parallel, system.threading.timer, system.xml.readerwriter, system.xml.xdocument, system.xml.xmldocument, system.xml.xmlserializer
+Using TargetPlatformVersion 10.0.26100.0
+asset SplashScreen.png 3345 bytes
+asset Square150x150Logo.png 1289 bytes
+asset Square44x44Logo.png 383 bytes
+asset StoreLogo.png 491 bytes
+asset Wide310x150Logo.png 1450 bytes
+Certificate 3BE08832B2D2D31DBBB69B73740981362AB1342E -> D:\a\_temp\nova-uwp\Nova.pfx
+
+  Determining projects to restore...
+  Restored D:\a\ui-compare\ui-compare\apps\uwp\Nova.csproj (in 9.18 sec).
+  Nova -> D:\a\ui-compare\ui-compare\apps\uwp\bin\x64\Release\Nova.exe
+  Processing application code
+  Computing application closure and generating interop code
+    Loading 44 modules...
+    Generating code...
+    Interop code generated.
+  Compiling interop code
+  Generating System.Reflection.DispatchProxy proxy code.
+  Cleaning up unreferenced code
+  Generating native code
+  Generating fixups for native code
+  Nova -> D:\a\_temp\nova-uwp\AppPackages\Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.msix
+  Nova -> obj\x64\Release\Symbols\Nova_1.0.0.0_x64.appxsym
+== AppPackages ==
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.ps1 (42419)
+  \Nova_1.0.0.0_x64_Test\Install.ps1 (16554)
+  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.appxsym (1447269)
+  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.cer (768)
+  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.msix (431128)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\Add-AppDevPackage.psd1 (10150)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\cs-CZ\Add-AppDevPackage.psd1 (10278)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\de-DE\Add-AppDevPackage.psd1 (11628)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\en-US\Add-AppDevPackage.psd1 (10150)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\es-ES\Add-AppDevPackage.psd1 (10834)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\fr-FR\Add-AppDevPackage.psd1 (11344)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\it-IT\Add-AppDevPackage.psd1 (10738)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\ja-JP\Add-AppDevPackage.psd1 (6698)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\ko-KR\Add-AppDevPackage.psd1 (6348)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\pl-PL\Add-AppDevPackage.psd1 (10106)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\pt-BR\Add-AppDevPackage.psd1 (10580)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\ru-RU\Add-AppDevPackage.psd1 (10342)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\tr-TR\Add-AppDevPackage.psd1 (9608)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\zh-CN\Add-AppDevPackage.psd1 (4998)
+  \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\zh-TW\Add-AppDevPackage.psd1 (5180)
+  \Nova_1.0.0.0_x64_Test\Dependencies\arm64\Microsoft.NET.Native.Framework.2.2.appx (5172939)
+  \Nova_1.0.0.0_x64_Test\Dependencies\arm64\Microsoft.NET.Native.Runtime.2.2.appx (248183)
+  \Nova_1.0.0.0_x64_Test\Dependencies\arm64\Microsoft.VCLibs.ARM64.14.00.appx (1570406)
+  \Nova_1.0.0.0_x64_Test\Dependencies\x64\Microsoft.NET.Native.Framework.2.2.appx (5204216)
+  \Nova_1.0.0.0_x64_Test\Dependencies\x64\Microsoft.NET.Native.Runtime.2.2.appx (244530)
+  \Nova_1.0.0.0_x64_Test\Dependencies\x64\Microsoft.VCLibs.x64.14.00.appx (896581)
+  \Nova_1.0.0.0_x64_Test\Dependencies\x86\Microsoft.NET.Native.Framework.2.2.appx (4642818)
+  \Nova_1.0.0.0_x64_Test\Dependencies\x86\Microsoft.NET.Native.Runtime.2.2.appx (199111)
+  \Nova_1.0.0.0_x64_Test\Dependencies\x86\Microsoft.VCLibs.x86.14.00.appx (758544)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\LogSideloadingTelemetry.ps1 (17387)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\Microsoft.Diagnostics.Tracing.EventSource.dll (170288)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\Microsoft.VisualStudio.RemoteControl.dll (47536)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\Microsoft.VisualStudio.Telemetry.dll (1064328)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\Microsoft.VisualStudio.Utilities.Internal.dll (62480)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\Newtonsoft.Json.dll (719224)
+  \Nova_1.0.0.0_x64_Test\TelemetryDependencies\System.Runtime.CompilerServices.Unsafe.dll (19256)
+Package: D:\a\_temp\nova-uwp\AppPackages\Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.msix
+== dist ==
+  \install.ps1 (1662)
+  \Nova_1.0.0.0_x64.msix (431128)
+  \Nova.cer (768)
+  \Dependencies\Microsoft.NET.Native.Framework.2.2.appx (5204216)
+  \Dependencies\Microsoft.NET.Native.Runtime.2.2.appx (244530)
+  \Dependencies\Microsoft.VCLibs.x64.14.00.appx (896581)

@@ -14,10 +14,11 @@
 | WinForms | 2002 | winforms | 159.9 MB | 463 | 7.4 MB | 1 | 132 ms | — | 有 |
 | WPF | 2006 | wpf | 159.9 MB | 463 | 31.4 MB | 1 | 456 ms | 658 ms | 有 |
 | Electron | 2013 | electron | 368.4 MB | 73 | 65.4 MB | 4 | 298 ms | 433 ms | 有 |
+| UWP | 2015 | uwp | 6.5 MB | 4 | 12.2 MB | 1 | 336 ms | 666 ms | 有 |
 | Avalonia | 2016 | avalonia | 94.0 MB | 214 | 41.0 MB | 1 | 927 ms | 1264 ms | 有 |
 | WinUI 3 | 2021 | winui3 | 208.2 MB | 503 | 43.8 MB | 1 | 711 ms | — | 有 |
 | Flutter | 2022 | flutter | 26.8 MB | 20 | 67.4 MB | 1 | 1339 ms | — | 有 |
 | .NET MAUI | 2022 | maui | 227.9 MB | 538 | 55.8 MB | 1 | 478 ms | 794 ms | 有 |
 | Tauri | 2022 | tauri | 3.0 MB | 1 | 35.1 MB | 6 | 54 ms | 1667 ms | 有 |
 
-还没有结果：mfc、imgui、uwp
+还没有结果：mfc、imgui
