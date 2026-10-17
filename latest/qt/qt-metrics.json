@@ -2,15 +2,15 @@
   "name": "qt",
   "tech": "Qt Widgets",
   "title": "Nova 设置 — Qt Widgets",
-  "startup_ms": 532,
+  "startup_ms": 322,
   "memory_mb": 22.6,
-  "working_set_mb": 77.8,
+  "working_set_mb": 77.9,
   "processes": 1,
   "dist_size_mb": 26.75,
   "dist_files": 25,
   "window": "906x653",
-  "startup_first_ms": 3028,
-  "startup_runs_ms": "3028, 532, 97",
-  "ready_ms": 380,
-  "ready_runs_ms": "625, 134"
+  "startup_first_ms": 5463,
+  "startup_runs_ms": "5463, 580, 65",
+  "ready_ms": 419,
+  "ready_runs_ms": "751, 87"
 }

@@ -1,1 +1,92 @@
-UIA dump failed: Cannot convert value "∞" to type "System.Int32". Error: "Value was either too large or too small for an Int32."
+ControlType.Pane	Non Client Input Sink Window		InputNonClientPointerSource	508,190,904,48	toggle=False range=False
+ControlType.Pane	AppWindow Custom Title Bar		ReunionWindowingCaptionControls	1268,190,144,48	toggle=False range=False
+ControlType.Button	Minimize	Minimize		1268,190,48,48	toggle=False range=False
+ControlType.Button	Maximize	Maximize		1316,190,48,48	toggle=False range=False
+ControlType.Button	Close	Close		1364,190,48,48	toggle=False range=False
+ControlType.Pane			Microsoft.UI.Content.DesktopChildSiteBridge	508,191,904,651	toggle=False range=False
+ControlType.Pane			InputSiteWindowClass	508,191,904,651	toggle=False range=False
+ControlType.Text	Nova 设置		TextBlock	556,207,56,16	toggle=False range=False
+ControlType.Text	WinUI 3		TextBlock	624,207,43,16	toggle=False range=False
+ControlType.Custom		Nav		508,239,904,603	toggle=False range=False
+ControlType.Window		PaneRoot	SplitViewPane	508,239,48,603	toggle=False range=False
+ControlType.Pane		MenuItemsScrollViewer	ScrollViewer	508,243,48,517	toggle=False range=False
+ControlType.Group		MenuItemsHost		512,245,40,276	toggle=False range=False
+ControlType.ListItem	常规		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,245,40,36	toggle=False range=False
+ControlType.ListItem	画面		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,285,40,36	toggle=False range=False
+ControlType.ListItem	音频		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,325,40,36	toggle=False range=False
+ControlType.ListItem	网络		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,365,40,36	toggle=False range=False
+ControlType.ListItem	快捷键		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,405,40,36	toggle=False range=False
+ControlType.ListItem	列表		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,445,40,36	toggle=False range=False
+ControlType.ListItem	文件夹		Microsoft.UI.Xaml.Controls.NavigationViewItem	512,485,40,36	toggle=False range=False
+ControlType.Pane		FooterItemsScrollViewer	ScrollViewer	508,798,48,40	toggle=False range=False
+ControlType.Group		FooterMenuItemsHost		512,800,40,36	toggle=False range=False
+ControlType.ListItem	Settings	SettingsItem	Microsoft.UI.Xaml.Controls.NavigationViewItem	512,800,40,36	toggle=False range=False
+ControlType.Pane			ScrollViewer	557,240,855,602	toggle=False range=False
+ControlType.List		PART_ItemsView	Microsoft.UI.Xaml.Controls.ItemsView	577,244,394,48	toggle=False range=False
+ControlType.Pane		PART_ScrollPresenter		577,244,394,48	toggle=False range=False
+ControlType.ListItem	常规		Microsoft.UI.Xaml.Controls.SelectorBarItem	577,248,76,40	toggle=False range=False
+ControlType.Text	常规	PART_TextVisual	TextBlock	613,258,28,20	toggle=False range=False
+ControlType.ListItem	画面		Microsoft.UI.Xaml.Controls.SelectorBarItem	653,248,76,40	toggle=False range=False
+ControlType.Text	画面	PART_TextVisual	TextBlock	689,258,28,20	toggle=False range=False
+ControlType.ListItem	音频		Microsoft.UI.Xaml.Controls.SelectorBarItem	729,248,76,40	toggle=False range=False
+ControlType.Text	音频	PART_TextVisual	TextBlock	765,258,28,20	toggle=False range=False
+ControlType.ListItem	网络		Microsoft.UI.Xaml.Controls.SelectorBarItem	805,248,76,40	toggle=False range=False
+ControlType.Text	网络	PART_TextVisual	TextBlock	841,258,28,20	toggle=False range=False
+ControlType.ListItem	快捷键		Microsoft.UI.Xaml.Controls.SelectorBarItem	881,248,90,40	toggle=False range=False
+ControlType.Text	快捷键	PART_TextVisual	TextBlock	917,258,42,20	toggle=False range=False
+ControlType.Text	常规选项		TextBlock	620,317,57,19	toggle=False range=False
+ControlType.Text	开机自启		TextBlock	594,352,296,19	toggle=False range=False
+ControlType.Button			Button	890,345,32,32	toggle=False range=False
+ControlType.Button	开机自启		ToggleSwitch	926,342,52,38	toggle=True range=False
+ControlType.Text	最小化到托盘		TextBlock	594,390,296,19	toggle=False range=False
+ControlType.Button			Button	890,383,32,32	toggle=False range=False
+ControlType.Button	最小化到托盘		ToggleSwitch	926,380,52,38	toggle=True range=False
+ControlType.Text	自动更新		TextBlock	594,428,296,19	toggle=False range=False
+ControlType.Button			Button	890,421,32,32	toggle=False range=False
+ControlType.Button	自动更新		ToggleSwitch	926,418,52,38	toggle=True range=False
+ControlType.Text	硬件加速		TextBlock	594,466,296,19	toggle=False range=False
+ControlType.Button			Button	890,459,32,32	toggle=False range=False
+ControlType.Button	硬件加速		ToggleSwitch	926,456,52,38	toggle=True range=False
+ControlType.Text	垂直同步		TextBlock	594,504,296,19	toggle=False range=False
+ControlType.Button			Button	890,497,32,32	toggle=False range=False
+ControlType.Button	垂直同步		ToggleSwitch	926,494,52,38	toggle=True range=False
+ControlType.Text	显示帧率		TextBlock	594,542,296,19	toggle=False range=False
+ControlType.Button			Button	890,535,32,32	toggle=False range=False
+ControlType.Button	显示帧率		ToggleSwitch	926,532,52,38	toggle=True range=False
+ControlType.Text	低延迟模式		TextBlock	594,580,296,19	toggle=False range=False
+ControlType.Button			Button	890,573,32,32	toggle=False range=False
+ControlType.Button	低延迟模式		ToggleSwitch	926,570,52,38	toggle=True range=False
+ControlType.Text	夜间模式		TextBlock	594,618,332,19	toggle=False range=False
+ControlType.Button	夜间模式		ToggleSwitch	926,608,52,38	toggle=True range=False
+ControlType.Text	后台静音		TextBlock	594,656,332,19	toggle=False range=False
+ControlType.Button	后台静音		ToggleSwitch	926,646,52,38	toggle=True range=False
+ControlType.Text	发送使用统计		TextBlock	594,694,332,19	toggle=False range=False
+ControlType.Button	发送使用统计		ToggleSwitch	926,684,52,38	toggle=True range=False
+ControlType.Text	性能		TextBlock	1034,317,28,19	toggle=False range=False
+ControlType.Text	帧率限制		TextBlock	1008,352,295,19	toggle=False range=False
+ControlType.Button			Button	1303,345,32,32	toggle=False range=False
+ControlType.Button	帧率限制		ToggleSwitch	1339,342,52,38	toggle=True range=False
+ControlType.Text	动态分辨率		TextBlock	1008,390,295,19	toggle=False range=False
+ControlType.Button			Button	1303,383,32,32	toggle=False range=False
+ControlType.Button	动态分辨率		ToggleSwitch	1339,380,52,38	toggle=True range=False
+ControlType.Text	预加载资源		TextBlock	1008,428,295,19	toggle=False range=False
+ControlType.Button			Button	1303,421,32,32	toggle=False range=False
+ControlType.Button	预加载资源		ToggleSwitch	1339,418,52,38	toggle=True range=False
+ControlType.Text	多线程渲染		TextBlock	1008,466,295,19	toggle=False range=False
+ControlType.Button			Button	1303,459,32,32	toggle=False range=False
+ControlType.Button	多线程渲染		ToggleSwitch	1339,456,52,38	toggle=True range=False
+ControlType.Text	省电模式		TextBlock	1008,504,295,19	toggle=False range=False
+ControlType.Button			Button	1303,497,32,32	toggle=False range=False
+ControlType.Button	省电模式		ToggleSwitch	1339,494,52,38	toggle=True range=False
+ControlType.Text	显示		TextBlock	1034,572,29,19	toggle=False range=False
+ControlType.Text	自动亮度		TextBlock	1008,607,331,19	toggle=False range=False
+ControlType.Button	自动亮度		ToggleSwitch	1339,597,52,38	toggle=True range=False
+ControlType.Text	HDR		TextBlock	1008,645,331,19	toggle=False range=False
+ControlType.Button	HDR		ToggleSwitch	1339,635,52,38	toggle=True range=False
+ControlType.Text	亮度		TextBlock	1008,688,367,19	toggle=False range=False
+ControlType.Text	80%	BrightText	TextBlock	1348,688,27,19	toggle=False range=False
+ControlType.Slider	亮度	Bright	Slider	1008,707,367,32	toggle=False range=True
+ControlType.Text	对比度		TextBlock	1008,743,367,19	toggle=False range=False
+ControlType.Text	35%	ContrastText	TextBlock	1348,743,27,19	toggle=False range=False
+ControlType.Slider	对比度	Contrast	Slider	1008,762,367,32	toggle=False range=True
+ControlType.ScrollBar	Vertical	VerticalScrollBar	ScrollBar	offscreen	toggle=False range=True

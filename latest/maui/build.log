@@ -59,7 +59,7 @@ maui-windows               9.0.120/9.0.100       SDK 9.0.300
 Use `dotnet workload search` to find additional workloads to install.
 
   Determining projects to restore...
-  Restored D:\a\ui-compare\ui-compare\apps\maui\Nova.csproj (in 25.7 sec).
+  Restored D:\a\ui-compare\ui-compare\apps\maui\Nova.csproj (in 50.56 sec).
   Nova -> D:\a\ui-compare\ui-compare\apps\maui\bin\x64\Release\net9.0-windows10.0.19041.0\win-x64\Nova.dll
   Nova -> D:\a\ui-compare\ui-compare\apps\maui\dist\
 dist: 539 files

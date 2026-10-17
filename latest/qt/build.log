@@ -3,25 +3,25 @@ INFO    : Found extension qtwebengine
 INFO    : Found extension qtpdf
 INFO    : Downloading qtbase...
 INFO    : Downloading qtsvg...
-INFO    : Downloading qtdeclarative...
 INFO    : Downloading qttools...
+INFO    : Downloading qtdeclarative...
 INFO    : Redirected: qt.mirror.constant.com
 INFO    : Redirected: qt.mirror.constant.com
 INFO    : Redirected: qt.mirror.constant.com
 INFO    : Redirected: qt.mirror.constant.com
-INFO    : Finished installation of qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 3.35898080
+INFO    : Finished installation of qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 2.75265000
 INFO    : Downloading qttranslations...
 INFO    : Redirected: qt.mirror.constant.com
-INFO    : Finished installation of qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 7.90067530
-INFO    : Finished installation of qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 5.17262270
+INFO    : Finished installation of qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 2.20338640
+INFO    : Finished installation of qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 5.04587170
 INFO    : Downloading d3dcompiler_47...
 INFO    : Downloading opengl32sw...
 INFO    : Redirected: qt.mirror.constant.com
 INFO    : Redirected: qt.mirror.constant.com
-INFO    : Finished installation of d3dcompiler_47-x64.7z in 3.28671640
-INFO    : Finished installation of opengl32sw-64-mesa_11_2_2-signed_sha256.7z in 3.68666980
-INFO    : Finished installation of qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 15.80696760
-INFO    : Finished installation of qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 31.44512780
+INFO    : Finished installation of d3dcompiler_47-x64.7z in 2.03602160
+INFO    : Finished installation of opengl32sw-64-mesa_11_2_2-signed_sha256.7z in 2.22446830
+INFO    : Finished installation of qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 8.71239590
+INFO    : Finished installation of qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z in 21.47656330
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\bin\qmake.exe
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Concurrent.prl
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Concurrentd.prl
@@ -174,7 +174,7 @@ INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Widgetsd.prl
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Xml.prl
 INFO    : Patching D:\a\_temp\Qt\6.8.3\msvc2022_64\lib\Qt6Xmld.prl
 INFO    : Finished installation
-INFO    : Time elapsed: 37.63315260 second
+INFO    : Time elapsed: 30.32369450 second
 Qt: D:\a\_temp\Qt\6.8.3\msvc2022_64
 -- The CXX compiler identification is MSVC 19.51.36260.0
 -- Detecting CXX compiler ABI info
@@ -193,7 +193,7 @@ Qt: D:\a\_temp\Qt\6.8.3\msvc2022_64
 -- Performing Test HAVE_STDATOMIC - Success
 -- Found WrapAtomic: TRUE
 -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
--- Configuring done (10.1s)
+-- Configuring done (16.2s)
 -- Generating done (0.1s)
 -- Build files have been written to: D:/a/_temp/qt-build
 [  0%] Built target Nova_autogen_timestamp_deps

@@ -1,1 +1,82 @@
-UIA dump failed: Cannot convert value "∞" to type "System.Int32". Error: "Value was either too large or too small for an Int32."
+ControlType.Window	Nova 设置 — UWP	TitleBar	ApplicationFrameTitleBarWindow	1078,50,188,32	toggle=False range=False
+ControlType.MenuBar	System	SystemMenuBar		offscreen	toggle=False range=False
+ControlType.MenuItem	System			offscreen	toggle=False range=False
+ControlType.Button	Minimize Nova 设置 — UWP	Minimize		1128,50,46,32	toggle=False range=False
+ControlType.Button	Maximize Nova 设置 — UWP	Maximize		1174,50,46,32	toggle=False range=False
+ControlType.Button	Close Nova 设置 — UWP	Close		1220,50,46,32	toggle=False range=False
+ControlType.Window	Nova 设置 — UWP		Windows.UI.Core.CoreWindow	360,50,906,653	toggle=False range=False
+ControlType.Text	Nova 设置		TextBlock	408,58,56,16	toggle=False range=False
+ControlType.Text	UWP		TextBlock	476,58,27,16	toggle=False range=False
+ControlType.Window		PaneRoot	SplitViewPane	360,82,40,621	toggle=False range=False
+ControlType.List		MenuItemsHost	ListView	360,94,40,507	toggle=False range=False
+ControlType.ListItem	常规		ListViewItem	360,94,40,40	toggle=False range=False
+ControlType.ListItem	画面		ListViewItem	360,134,40,40	toggle=False range=False
+ControlType.ListItem	音频		ListViewItem	360,174,40,40	toggle=False range=False
+ControlType.ListItem	网络		ListViewItem	360,214,40,40	toggle=False range=False
+ControlType.ListItem	快捷键		ListViewItem	360,254,40,40	toggle=False range=False
+ControlType.ListItem	列表		ListViewItem	360,294,40,40	toggle=False range=False
+ControlType.ListItem	文件夹		ListViewItem	360,334,40,40	toggle=False range=False
+ControlType.ListItem	Settings	SettingsNavPaneItem	ListViewItem	360,655,40,40	toggle=False range=False
+ControlType.Pane			ScrollViewer	400,82,866,621	toggle=False range=False
+ControlType.Tab		Tabs	Pivot	408,82,838,48	toggle=False range=False
+ControlType.TabItem	常规		PivotItem	408,82,78,48	toggle=False range=False
+ControlType.TabItem	画面		PivotItem	486,82,78,48	toggle=False range=False
+ControlType.TabItem	音频		PivotItem	564,82,78,48	toggle=False range=False
+ControlType.TabItem	网络		PivotItem	642,82,78,48	toggle=False range=False
+ControlType.TabItem	快捷键		PivotItem	720,82,93,48	toggle=False range=False
+ControlType.Text	常规选项		TextBlock	463,151,58,19	toggle=False range=False
+ControlType.Text	开机自启		TextBlock	437,186,199,19	toggle=False range=False
+ControlType.Button	开机自启设置		Button	636,179,32,32	toggle=False range=False
+ControlType.Button	开机自启		ToggleSwitch	672,179,56,32	toggle=True range=False
+ControlType.Text	最小化到托盘		TextBlock	437,224,199,19	toggle=False range=False
+ControlType.Button	最小化到托盘设置		Button	636,217,32,32	toggle=False range=False
+ControlType.Button	最小化到托盘		ToggleSwitch	672,217,56,32	toggle=True range=False
+ControlType.Text	自动更新		TextBlock	437,262,199,19	toggle=False range=False
+ControlType.Button	自动更新设置		Button	636,255,32,32	toggle=False range=False
+ControlType.Button	自动更新		ToggleSwitch	672,255,56,32	toggle=True range=False
+ControlType.Text	硬件加速		TextBlock	437,300,199,19	toggle=False range=False
+ControlType.Button	硬件加速设置		Button	636,293,32,32	toggle=False range=False
+ControlType.Button	硬件加速		ToggleSwitch	672,293,56,32	toggle=True range=False
+ControlType.Text	垂直同步		TextBlock	437,338,199,19	toggle=False range=False
+ControlType.Button	垂直同步设置		Button	636,331,32,32	toggle=False range=False
+ControlType.Button	垂直同步		ToggleSwitch	672,331,56,32	toggle=True range=False
+ControlType.Text	显示帧率		TextBlock	437,376,199,19	toggle=False range=False
+ControlType.Button	显示帧率设置		Button	636,369,32,32	toggle=False range=False
+ControlType.Button	显示帧率		ToggleSwitch	672,369,56,32	toggle=True range=False
+ControlType.Text	低延迟模式		TextBlock	437,414,199,19	toggle=False range=False
+ControlType.Button	低延迟模式设置		Button	636,407,32,32	toggle=False range=False
+ControlType.Button	低延迟模式		ToggleSwitch	672,407,56,32	toggle=True range=False
+ControlType.Text	夜间模式		TextBlock	437,452,235,19	toggle=False range=False
+ControlType.Button	夜间模式		ToggleSwitch	672,445,56,32	toggle=True range=False
+ControlType.Text	后台静音		TextBlock	437,490,235,19	toggle=False range=False
+ControlType.Button	后台静音		ToggleSwitch	672,483,56,32	toggle=True range=False
+ControlType.Text	发送使用统计		TextBlock	437,528,235,19	toggle=False range=False
+ControlType.Button	发送使用统计		ToggleSwitch	672,521,56,32	toggle=True range=False
+ControlType.Text	性能		TextBlock	882,151,29,19	toggle=False range=False
+ControlType.Text	帧率限制		TextBlock	856,186,199,19	toggle=False range=False
+ControlType.Button	帧率限制设置		Button	1055,179,32,32	toggle=False range=False
+ControlType.Button	帧率限制		ToggleSwitch	1091,179,56,32	toggle=True range=False
+ControlType.Text	动态分辨率		TextBlock	856,224,199,19	toggle=False range=False
+ControlType.Button	动态分辨率设置		Button	1055,217,32,32	toggle=False range=False
+ControlType.Button	动态分辨率		ToggleSwitch	1091,217,56,32	toggle=True range=False
+ControlType.Text	预加载资源		TextBlock	856,262,199,19	toggle=False range=False
+ControlType.Button	预加载资源设置		Button	1055,255,32,32	toggle=False range=False
+ControlType.Button	预加载资源		ToggleSwitch	1091,255,56,32	toggle=True range=False
+ControlType.Text	多线程渲染		TextBlock	856,300,199,19	toggle=False range=False
+ControlType.Button	多线程渲染设置		Button	1055,293,32,32	toggle=False range=False
+ControlType.Button	多线程渲染		ToggleSwitch	1091,293,56,32	toggle=True range=False
+ControlType.Text	省电模式		TextBlock	856,338,199,19	toggle=False range=False
+ControlType.Button	省电模式设置		Button	1055,331,32,32	toggle=False range=False
+ControlType.Button	省电模式		ToggleSwitch	1091,331,56,32	toggle=True range=False
+ControlType.Text	显示		TextBlock	882,406,29,19	toggle=False range=False
+ControlType.Text	自动亮度		TextBlock	856,441,235,19	toggle=False range=False
+ControlType.Button	自动亮度		ToggleSwitch	1091,434,56,32	toggle=True range=False
+ControlType.Text	HDR		TextBlock	856,479,235,19	toggle=False range=False
+ControlType.Button	HDR		ToggleSwitch	1091,472,56,32	toggle=True range=False
+ControlType.Text	亮度		TextBlock	856,522,373,19	toggle=False range=False
+ControlType.Text	80%	BrightText	TextBlock	1202,522,27,19	toggle=False range=False
+ControlType.Slider	亮度	Bright	Slider	856,541,373,32	toggle=False range=True
+ControlType.Text	对比度		TextBlock	856,577,373,19	toggle=False range=False
+ControlType.Text	35%	ContrastText	TextBlock	1202,577,27,19	toggle=False range=False
+ControlType.Slider	对比度	Contrast	Slider	856,596,373,32	toggle=False range=True
+ControlType.Pane			ApplicationFrameInputSinkWindow	360,82,906,621	toggle=False range=False

@@ -1,1 +1,90 @@
-UIA dump failed: Cannot convert value "∞" to type "System.Int32". Error: "Value was either too large or too small for an Int32."
+ControlType.Pane			WRY_WEBVIEW	508,221,904,621	toggle=False range=False
+ControlType.Pane	Nova 设置 — Tauri		Chrome_WidgetWin_1	508,221,904,621	toggle=False range=False
+ControlType.Pane			Intermediate D3D Window	508,221,904,621	toggle=False range=False
+ControlType.Pane	Nova 设置 — Tauri - Web content		BrowserRootView	508,221,904,621	toggle=False range=False
+ControlType.Pane			NonClientView	508,221,904,621	toggle=False range=False
+ControlType.Pane			EmbeddedBrowserFrameView	508,221,904,621	toggle=False range=False
+ControlType.Pane			BrowserView	508,221,904,621	toggle=False range=False
+ControlType.Pane			TopContainerView	offscreen	toggle=False range=False
+ControlType.Pane			SidebarContentsSplitView	508,221,904,621	toggle=False range=False
+ControlType.Pane			SidebarContentsSplitView	508,221,904,621	toggle=False range=False
+ControlType.Pane			MultiContentsView	508,221,904,621	toggle=False range=False
+ControlType.Pane			View	508,221,904,621	toggle=False range=False
+ControlType.Pane			View	offscreen	toggle=False range=False
+ControlType.Document	Nova 设置 — Tauri	RootWebArea		508,221,904,621	toggle=False range=False
+ControlType.Group	分类		rail	508,221,60,621	toggle=False range=False
+ControlType.Tab			rail-group	517,233,41,316	toggle=False range=False
+ControlType.TabItem	常规		rail-btn is-active	517,233,41,40	toggle=False range=False
+ControlType.TabItem	画面		rail-btn	517,279,41,40	toggle=False range=False
+ControlType.TabItem	音频		rail-btn	517,325,41,40	toggle=False range=False
+ControlType.TabItem	网络		rail-btn	517,371,41,40	toggle=False range=False
+ControlType.TabItem	快捷键		rail-btn	517,417,41,40	toggle=False range=False
+ControlType.TabItem	列表		rail-btn	517,463,41,40	toggle=False range=False
+ControlType.TabItem	文件夹		rail-btn	517,509,41,40	toggle=False range=False
+ControlType.Button	账户		avatar	521,748,33,32	toggle=False range=False
+ControlType.Button	设置		rail-btn	517,790,41,40	toggle=False range=False
+ControlType.Group			main	568,221,844,621	toggle=False range=False
+ControlType.Group			brand	586,233,808,26	toggle=False range=False
+ControlType.Text	Nova 设置			618,236,61,18	toggle=False range=False
+ControlType.Text	Tauri			697,238,26,16	toggle=False range=False
+ControlType.Tab			tabs	586,267,808,39	toggle=False range=False
+ControlType.TabItem	常规		tab is-active	586,267,78,38	toggle=False range=False
+ControlType.TabItem	画面		tab	668,267,78,38	toggle=False range=False
+ControlType.TabItem	音频		tab	750,267,78,38	toggle=False range=False
+ControlType.TabItem	网络		tab	832,267,78,38	toggle=False range=False
+ControlType.TabItem	快捷键		tab	914,267,92,38	toggle=False range=False
+ControlType.Text	常规选项		card-head	603,331,368,30	toggle=False range=False
+ControlType.Text	开机自启			603,375,56,20	toggle=False range=False
+ControlType.Button	开机自启设置		gear	899,370,30,31	toggle=False range=False
+ControlType.Button	开机自启		switch	935,375,36,21	toggle=True range=False
+ControlType.Text	最小化到托盘			603,421,84,20	toggle=False range=False
+ControlType.Button	最小化到托盘设置		gear	899,416,30,31	toggle=False range=False
+ControlType.Button	最小化到托盘		switch	935,421,36,21	toggle=True range=False
+ControlType.Text	自动更新			603,466,56,20	toggle=False range=False
+ControlType.Button	自动更新设置		gear	899,461,30,31	toggle=False range=False
+ControlType.Button	自动更新		switch	935,466,36,21	toggle=True range=False
+ControlType.Text	硬件加速			603,512,56,20	toggle=False range=False
+ControlType.Button	硬件加速设置		gear	899,507,30,31	toggle=False range=False
+ControlType.Button	硬件加速		switch	935,512,36,21	toggle=True range=False
+ControlType.Text	垂直同步			603,558,56,20	toggle=False range=False
+ControlType.Button	垂直同步设置		gear	899,553,30,31	toggle=False range=False
+ControlType.Button	垂直同步		switch	935,558,36,21	toggle=True range=False
+ControlType.Text	显示帧率			603,604,56,20	toggle=False range=False
+ControlType.Button	显示帧率设置		gear	899,598,30,31	toggle=False range=False
+ControlType.Button	显示帧率		switch	935,603,36,21	toggle=True range=False
+ControlType.Text	低延迟模式			603,649,70,20	toggle=False range=False
+ControlType.Button	低延迟模式设置		gear	899,644,30,31	toggle=False range=False
+ControlType.Button	低延迟模式		switch	935,649,36,21	toggle=True range=False
+ControlType.Text	夜间模式			603,695,56,20	toggle=False range=False
+ControlType.Button	夜间模式		switch	935,695,36,21	toggle=True range=False
+ControlType.Text	后台静音			603,741,56,20	toggle=False range=False
+ControlType.Button	后台静音		switch	935,740,36,21	toggle=True range=False
+ControlType.Text	发送使用统计			603,786,84,20	toggle=False range=False
+ControlType.Button	发送使用统计		switch	935,786,36,21	toggle=True range=False
+ControlType.Text	性能		card-head	1013,331,368,30	toggle=False range=False
+ControlType.Text	帧率限制			1013,372,56,20	toggle=False range=False
+ControlType.Button	帧率限制设置		gear	1309,367,30,30	toggle=False range=False
+ControlType.Button	帧率限制		switch	1345,372,36,20	toggle=True range=False
+ControlType.Text	动态分辨率			1013,410,70,20	toggle=False range=False
+ControlType.Button	动态分辨率设置		gear	1309,405,30,31	toggle=False range=False
+ControlType.Button	动态分辨率		switch	1345,410,36,21	toggle=True range=False
+ControlType.Text	预加载资源			1013,448,70,20	toggle=False range=False
+ControlType.Button	预加载资源设置		gear	1309,443,30,31	toggle=False range=False
+ControlType.Button	预加载资源		switch	1345,448,36,21	toggle=True range=False
+ControlType.Text	多线程渲染			1013,486,70,20	toggle=False range=False
+ControlType.Button	多线程渲染设置		gear	1309,481,30,31	toggle=False range=False
+ControlType.Button	多线程渲染		switch	1345,486,36,21	toggle=True range=False
+ControlType.Text	省电模式			1013,524,56,20	toggle=False range=False
+ControlType.Button	省电模式设置		gear	1309,519,30,31	toggle=False range=False
+ControlType.Button	省电模式		switch	1345,524,36,21	toggle=True range=False
+ControlType.Text	显示		card-head	1013,583,368,30	toggle=False range=False
+ControlType.Text	自动亮度			1013,624,56,20	toggle=False range=False
+ControlType.Button	自动亮度		switch	1345,624,36,20	toggle=True range=False
+ControlType.Text	HDR			1013,662,29,20	toggle=False range=False
+ControlType.Button	HDR		switch	1345,662,36,21	toggle=True range=False
+ControlType.Separator			divider	1013,699,368,1	toggle=False range=False
+ControlType.Slider	亮度	bright		1013,730,368,22	toggle=False range=True
+ControlType.Slider	对比度	contrast		1013,782,368,22	toggle=False range=True
+ControlType.Pane			EmbeddedBrowserDownloadView	offscreen	toggle=False range=False
+ControlType.Pane			EmbeddedBrowserTabRootView	offscreen	toggle=False range=False
+ControlType.Pane			TopContainerOverlayView	508,221,904,621	toggle=False range=False

@@ -2,13 +2,13 @@
   "name": "imgui",
   "tech": "Dear ImGui",
   "title": "Nova 设置 — Dear ImGui",
-  "startup_ms": 32,
-  "memory_mb": 62.8,
-  "working_set_mb": 85.6,
+  "startup_ms": 34,
+  "memory_mb": 63.0,
+  "working_set_mb": 85.7,
   "processes": 1,
   "dist_size_mb": 0.6,
   "dist_files": 1,
   "window": "906x653",
-  "startup_first_ms": 105,
-  "startup_runs_ms": "105, 33, 32"
+  "startup_first_ms": 75,
+  "startup_runs_ms": "75, 31, 37"
 }

@@ -30,8 +30,8 @@ ControlType.Text	后台静音		WindowsForms10.Static.app.0.1f550a4_r3_ad1	597,64
 ControlType.CheckBox	后台静音		WindowsForms10.Button.app.0.1f550a4_r3_ad1	948,660,15,14	toggle=True range=False
 ControlType.Text	发送使用统计		WindowsForms10.Static.app.0.1f550a4_r3_ad1	597,689,302,44	toggle=False range=False
 ControlType.CheckBox	发送使用统计		WindowsForms10.Button.app.0.1f550a4_r3_ad1	948,704,15,14	toggle=True range=False
-ControlType.Group	性能		WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	992,269,396,244	toggle=False range=False
-ControlType.Pane			WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	1002,293,376,214	toggle=False range=False
+ControlType.Group	性能		WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	992,269,396,252	toggle=False range=False
+ControlType.Pane			WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	1002,293,376,222	toggle=False range=False
 ControlType.Text	帧率限制		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,293,302,40	toggle=False range=False
 ControlType.Button	帧率限制设置		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1316,301,28,24	toggle=False range=False
 ControlType.CheckBox	帧率限制		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1356,306,15,14	toggle=True range=False
@@ -47,25 +47,25 @@ ControlType.CheckBox	多线程渲染		WindowsForms10.Button.app.0.1f550a4_r3_ad1
 ControlType.Text	省电模式		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,453,302,40	toggle=False range=False
 ControlType.Button	省电模式设置		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1316,461,28,24	toggle=False range=False
 ControlType.CheckBox	省电模式		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1356,466,15,14	toggle=True range=False
-ControlType.Group	显示		WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	992,525,396,293	toggle=False range=False
-ControlType.Pane			WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	1002,549,376,263	toggle=False range=False
-ControlType.Text	自动亮度		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,549,302,40	toggle=False range=False
-ControlType.CheckBox	自动亮度		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1356,562,15,14	toggle=True range=False
-ControlType.Text	HDR		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,589,302,40	toggle=False range=False
-ControlType.CheckBox	HDR		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1356,602,15,14	toggle=True range=False
-ControlType.Text			WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,635,370,2	toggle=False range=False
-ControlType.Text	亮度		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,643,302,24	toggle=False range=False
-ControlType.Text	80%		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1313,643,62,24	toggle=False range=False
-ControlType.Slider	亮度		WindowsForms10.msctls_trackbar32.app.0.1f550a4_r3_ad1	1005,670,370,32	toggle=False range=False
-ControlType.Button	Large decrease			1013,678,274,4	toggle=False range=False
-ControlType.Thumb	Position			1287,672,11,19	toggle=False range=False
-ControlType.Button	Large increase			1298,678,69,4	toggle=False range=False
-ControlType.Text	对比度		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,705,302,24	toggle=False range=False
-ControlType.Text	35%		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1313,705,62,24	toggle=False range=False
-ControlType.Slider	对比度		WindowsForms10.msctls_trackbar32.app.0.1f550a4_r3_ad1	1005,732,370,32	toggle=False range=False
-ControlType.Button	Large decrease			1013,740,120,4	toggle=False range=False
-ControlType.Thumb	Position			1133,734,11,19	toggle=False range=False
-ControlType.Button	Large increase			1144,740,223,4	toggle=False range=False
+ControlType.Group	显示		WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	992,533,396,285	toggle=False range=False
+ControlType.Pane			WindowsForms10.Window.8.app.0.1f550a4_r3_ad1	1002,557,376,255	toggle=False range=False
+ControlType.Text	自动亮度		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,557,302,40	toggle=False range=False
+ControlType.CheckBox	自动亮度		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1356,570,15,14	toggle=True range=False
+ControlType.Text	HDR		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,597,302,40	toggle=False range=False
+ControlType.CheckBox	HDR		WindowsForms10.Button.app.0.1f550a4_r3_ad1	1356,610,15,14	toggle=True range=False
+ControlType.Text			WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,643,370,2	toggle=False range=False
+ControlType.Text	亮度		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,651,302,24	toggle=False range=False
+ControlType.Text	80%		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1313,651,62,24	toggle=False range=False
+ControlType.Slider	亮度		WindowsForms10.msctls_trackbar32.app.0.1f550a4_r3_ad1	1005,678,370,32	toggle=False range=False
+ControlType.Button	Large decrease			1013,686,274,4	toggle=False range=False
+ControlType.Thumb	Position			1287,680,11,19	toggle=False range=False
+ControlType.Button	Large increase			1298,686,69,4	toggle=False range=False
+ControlType.Text	对比度		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1005,713,302,24	toggle=False range=False
+ControlType.Text	35%		WindowsForms10.Static.app.0.1f550a4_r3_ad1	1313,713,62,24	toggle=False range=False
+ControlType.Slider	对比度		WindowsForms10.msctls_trackbar32.app.0.1f550a4_r3_ad1	1005,740,370,32	toggle=False range=False
+ControlType.Button	Large decrease			1013,748,120,4	toggle=False range=False
+ControlType.Thumb	Position			1133,742,11,19	toggle=False range=False
+ControlType.Button	Large increase			1144,748,223,4	toggle=False range=False
 ControlType.TabItem	常规			570,231,70,24	toggle=False range=False
 ControlType.TabItem	画面			640,231,70,24	toggle=False range=False
 ControlType.TabItem	音频			710,231,70,24	toggle=False range=False

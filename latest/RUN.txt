@@ -1,4 +1,4 @@
-commit: d37cbc9ca5920aafc1b45f601bd3b430bd1ad985
-run: https://github.com/ferrycofc/ui-compare/actions/runs/39019928363
-build: success  capture: success
-Sat Oct 17 09:13:34 UTC 2026
+commit: 3b0939ea4348311496061018810f6d9ac363670d
+run: https://github.com/ferrycofc/ui-compare/actions/runs/39020435503
+build: failure  capture: success
+Sat Oct 17 10:07:52 UTC 2026

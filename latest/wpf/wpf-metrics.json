@@ -2,15 +2,15 @@
   "name": "wpf",
   "tech": "WPF",
   "title": "Nova 设置 — WPF",
-  "startup_ms": 456,
-  "memory_mb": 31.4,
-  "working_set_mb": 97.5,
+  "startup_ms": 442,
+  "memory_mb": 32.4,
+  "working_set_mb": 98.6,
   "processes": 1,
   "dist_size_mb": 159.94,
   "dist_files": 463,
   "window": "906x653",
-  "startup_first_ms": 929,
-  "startup_runs_ms": "929, 456, 428",
-  "ready_ms": 658,
-  "ready_runs_ms": "699, 616"
+  "startup_first_ms": 933,
+  "startup_runs_ms": "933, 440, 445",
+  "ready_ms": 660,
+  "ready_runs_ms": "681, 638"
 }

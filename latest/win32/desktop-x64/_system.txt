@@ -1,12 +1,14 @@
 Windows at start (pid|process|class|title|rect):
-  1744|WindowsTerminal|CASCADIA_HOSTING_WINDOW_CLASS|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|18,26,1062,661
-  5972|explorer|Progman|Program Manager|0,0,1024,768
-Killing UserOOBEBroker (6256)
-Closed System Properties dialogs: 0
+  1288|WindowsTerminal|CASCADIA_HOSTING_WINDOW_CLASS|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|44,52,1088,687
+  5904|SystemPropertiesPerformance|#32770|System Properties|311,319,731,511
+  5736|explorer|Progman|Program Manager|0,0,1024,768
+Killing UserOOBEBroker (9024)
+Closed System Properties dialogs: 1
 Desktop icons hidden: True
 Windows after cleanup:
-  1744|WindowsTerminal|CASCADIA_HOSTING_WINDOW_CLASS|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|18,26,1062,661
-  5972|explorer|Progman|Program Manager|0,0,1024,768
+  1288|WindowsTerminal|CASCADIA_HOSTING_WINDOW_CLASS|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|44,52,1088,687
+  5904|SystemPropertiesPerformance|#32770|Performance Options|52,52,398,319
+  5736|explorer|Progman|Program Manager|0,0,1024,768
 OS: Microsoft Windows Server 2025 Datacenter 10.0.26100 build 26100 64-bit
 Display before: 1024x768 32bpp
 Modes: 640x480, 800x600, 1024x768, 1152x864, 1280x720, 1280x800, 1280x1024, 1366x768, 1440x900, 1600x900, 1600x1200, 1680x1050, 1920x1080

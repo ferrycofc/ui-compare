@@ -1,21 +1,21 @@
 main.cpp
 main.cpp
- Volume in drive D is Temporary Storage
- Volume Serial Number is 0231-0910
+ Volume in drive D is Temp
+ Volume Serial Number is C06C-E048
 
  Directory of D:\a\ui-compare\ui-compare\apps\win32\bin
 
-10/17/2026  07:11 AM    <DIR>          .
-10/17/2026  07:10 AM    <DIR>          ..
-10/17/2026  07:11 AM           139,264 win32.exe
-10/17/2026  07:11 AM           140,288 win32_classic.exe
+10/17/2026  09:17 AM    <DIR>          .
+10/17/2026  09:16 AM    <DIR>          ..
+10/17/2026  09:17 AM           139,264 win32.exe
+10/17/2026  09:17 AM           140,288 win32_classic.exe
                2 File(s)        279,552 bytes
-               2 Dir(s)  157,842,878,464 bytes free
+               2 Dir(s)  236,074,950,656 bytes free
 
     Directory: D:\a\ui-compare\ui-compare\apps\win32\dist
 
 [32;1mMode   [0m[32;1m              LastWriteTime[0m[32;1m         Length[0m[32;1m Name[0m
 [32;1m----   [0m [32;1m             -------------[0m [32;1m        ------[0m [32;1m----[0m
--a---          10/17/2026  7:11 AM         140288 [32;1mwin32_classic.exe[0m
--a---          10/17/2026  7:11 AM         139264 [32;1mwin32.exe[0m
+-a---          10/17/2026  9:17 AM         140288 [32;1mwin32_classic.exe[0m
+-a---          10/17/2026  9:17 AM         139264 [32;1mwin32.exe[0m
 
