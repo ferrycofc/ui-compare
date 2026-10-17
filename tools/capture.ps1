@@ -208,14 +208,14 @@ function Find-Toggle($root, [string]$name) {
   foreach ($e in $hits) {
     if (Test-Toggle $e) { $c = Get-Center $e; if ($c -and $c.W -lt 120) { return $c } }
   }
-  # 开关本身没有名字：找同一行、在文字右边、最靠右的那个开关/复选框
+  # 开关本身没有名字：找同一行、在文字右边、离文字最近的那个开关/复选框（不能跑到另一列去）
   $label = $hits | ForEach-Object { Get-Center $_ } | Where-Object { $_ } | Select-Object -First 1
   if (-not $label) { return $null }
   $best = $null
   foreach ($e in $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, [System.Windows.Automation.Condition]::TrueCondition)) {
     if (-not (Test-Toggle $e)) { continue }
     $c = Get-Center $e
-    if ($c -and [Math]::Abs($c.Y - $label.Y) -le 16 -and $c.X -gt $label.X -and $c.W -lt 120) { if (-not $best -or $c.X -gt $best.X) { $best = $c } }
+    if ($c -and [Math]::Abs($c.Y - $label.Y) -le 16 -and $c.X -gt $label.X -and $c.W -lt 120) { if (-not $best -or $c.X -lt $best.X) { $best = $c } }
   }
   return $best
 }
