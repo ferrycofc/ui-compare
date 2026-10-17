@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Nova 设置</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 图标：全部手画的内联 SVG（24×24 网格，描边由 CSS 的 .ic 统一控制） -->
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-general" viewBox="0 0 24 24">
+      <path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1" />
+      <circle cx="15" cy="6" r="2" /><circle cx="9" cy="12" r="2" /><circle cx="17" cy="18" r="2" />
+    </symbol>
+    <symbol id="i-display" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="12" rx="2" />
+      <path d="M8 20h8M12 16v4" />
+    </symbol>
+    <symbol id="i-audio" viewBox="0 0 24 24">
+      <path d="M4 9.5v5h3.5l4.5 4v-13l-4.5 4z" />
+      <path d="M15.5 9.2a4 4 0 0 1 0 5.6M18.3 6.6a7.6 7.6 0 0 1 0 10.8" />
+    </symbol>
+    <symbol id="i-network" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" />
+      <ellipse cx="12" cy="12" rx="3.8" ry="9" />
+      <path d="M4 9h16M4 15h16" />
+    </symbol>
+    <symbol id="i-keys" viewBox="0 0 24 24">
+      <rect x="2.5" y="6" width="19" height="12" rx="2" />
+      <path d="M6.5 10h.01M10.2 10h.01M13.8 10h.01M17.5 10h.01M6.5 14h.01M9.5 14h5M17.5 14h.01" />
+    </symbol>
+    <symbol id="i-list" viewBox="0 0 24 24">
+      <path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" />
+    </symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24">
+      <path d="M3 7.5a2 2 0 0 1 2-2h4l2 2.2h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    </symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24">
+      <path d="M18.72 10.45L21.21 10.71L21.21 13.29L18.72 13.55L18.37 14.64L17.85 15.66L19.43 17.6L17.6 19.43L15.66 17.85L14.64 18.37L13.55 18.72L13.29 21.21L10.71 21.21L10.45 18.72L9.36 18.37L8.34 17.85L6.4 19.43L4.57 17.6L6.15 15.66L5.63 14.64L5.28 13.55L2.79 13.29L2.79 10.71L5.28 10.45L5.63 9.36L6.15 8.34L4.57 6.4L6.4 4.57L8.34 6.15L9.36 5.63L10.45 5.28L10.71 2.79L13.29 2.79L13.55 5.28L14.64 5.63L15.66 6.15L17.6 4.57L19.43 6.4L17.85 8.34L18.37 9.36z" />
+      <circle cx="12" cy="12" r="2.8" />
+    </symbol>
+    <symbol id="i-perf" viewBox="0 0 24 24">
+      <path d="M4.6 17.5a8.5 8.5 0 1 1 14.8 0" />
+      <path d="M12 13.4l3.4-3.4" />
+      <circle cx="12" cy="13.4" r="1.1" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3.8" />
+      <path d="M12 2.8v1.8M12 19.4v1.8M2.8 12h1.8M19.4 12h1.8M5.5 5.5l1.3 1.3M17.2 17.2l1.3 1.3M5.5 18.5l1.3-1.3M17.2 6.8l1.3-1.3" />
+    </symbol>
+  </svg>
+
+  <div class="app">
+    <!-- 左侧图标栏 -->
+    <nav class="rail" aria-label="分类">
+      <div class="rail-group" role="tablist" aria-orientation="vertical">
+        <button class="rail-btn is-active" type="button" role="tab" aria-selected="true" aria-label="常规" title="常规"><svg class="ic" aria-hidden="true"><use href="#i-general" /></svg></button>
+        <button class="rail-btn" type="button" role="tab" aria-selected="false" aria-label="画面" title="画面"><svg class="ic" aria-hidden="true"><use href="#i-display" /></svg></button>
+        <button class="rail-btn" type="button" role="tab" aria-selected="false" aria-label="音频" title="音频"><svg class="ic" aria-hidden="true"><use href="#i-audio" /></svg></button>
+        <button class="rail-btn" type="button" role="tab" aria-selected="false" aria-label="网络" title="网络"><svg class="ic" aria-hidden="true"><use href="#i-network" /></svg></button>
+        <button class="rail-btn" type="button" role="tab" aria-selected="false" aria-label="快捷键" title="快捷键"><svg class="ic" aria-hidden="true"><use href="#i-keys" /></svg></button>
+        <button class="rail-btn" type="button" role="tab" aria-selected="false" aria-label="列表" title="列表"><svg class="ic" aria-hidden="true"><use href="#i-list" /></svg></button>
+        <button class="rail-btn" type="button" role="tab" aria-selected="false" aria-label="文件夹" title="文件夹"><svg class="ic" aria-hidden="true"><use href="#i-folder" /></svg></button>
+      </div>
+      <div class="rail-foot">
+        <button class="avatar" type="button" aria-label="账户" title="Nova">N</button>
+        <button class="rail-btn" type="button" aria-label="设置" title="设置"><svg class="ic" aria-hidden="true"><use href="#i-gear" /></svg></button>
+      </div>
+    </nav>
+
+    <main class="main">
+      <!-- 品牌区：名称 + 当前技术 -->
+      <header class="brand">
+        <span class="logo" aria-hidden="true"><svg class="ic"><use href="#i-general" /></svg></span>
+        <span class="brand-name">Nova 设置</span>
+        <span class="brand-tech" id="tech"></span>
+      </header>
+
+      <!-- 顶部标签（点击只切换选中样式，不切换内容） -->
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" type="button" role="tab" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-general" /></svg><span>常规</span></button>
+        <button class="tab" type="button" role="tab" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-display" /></svg><span>画面</span></button>
+        <button class="tab" type="button" role="tab" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-audio" /></svg><span>音频</span></button>
+        <button class="tab" type="button" role="tab" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-network" /></svg><span>网络</span></button>
+        <button class="tab" type="button" role="tab" aria-selected="false"><svg class="ic" aria-hidden="true"><use href="#i-keys" /></svg><span>快捷键</span></button>
+      </div>
+
+      <div class="grid">
+        <!-- 左：常规选项 -->
+        <section class="card card-general">
+          <h2 class="card-head"><svg class="ic" aria-hidden="true"><use href="#i-general" /></svg>常规选项</h2>
+          <div class="rows" id="general"></div>
+        </section>
+
+        <div class="col">
+          <!-- 右上：性能 -->
+          <section class="card">
+            <h2 class="card-head"><svg class="ic" aria-hidden="true"><use href="#i-perf" /></svg>性能</h2>
+            <div class="rows" id="perf"></div>
+          </section>
+
+          <!-- 右下：显示 -->
+          <section class="card card-display">
+            <h2 class="card-head"><svg class="ic" aria-hidden="true"><use href="#i-sun" /></svg>显示</h2>
+            <div class="rows" id="display"></div>
+            <hr class="divider">
+            <div class="sliders">
+              <div class="slider">
+                <div class="slider-head" aria-hidden="true"><span>亮度</span><span class="slider-value" id="bright-value">80%</span></div>
+                <input type="range" id="bright" min="0" max="100" value="80" aria-label="亮度">
+              </div>
+              <div class="slider">
+                <div class="slider-head" aria-hidden="true"><span>对比度</span><span class="slider-value" id="contrast-value">35%</span></div>
+                <input type="range" id="contrast" min="0" max="100" value="35" aria-label="对比度">
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
