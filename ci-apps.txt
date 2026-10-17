@@ -1,2 +1,4 @@
 win32
 winforms
+electron
+tauri

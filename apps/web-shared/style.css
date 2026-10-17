@@ -263,6 +263,8 @@ input[type="range"]:focus-visible {
 
 .card-general .row { flex: 1 1 0; height: auto; min-height: 32px; max-height: 48px; }
 
+.col .row { height: 38px; }
+
 .row + .row { border-top: 1px solid var(--line); }
 
 .row-label {
@@ -325,12 +327,12 @@ input[type="range"]:focus-visible {
 
 .divider {
   height: 1px;
-  margin: 6px 0 8px;
+  margin: 8px 0 10px;
   border: 0;
   background: var(--border);
 }
 
-.sliders { display: flex; flex-direction: column; gap: 6px; }
+.sliders { display: flex; flex-direction: column; gap: 10px; }
 
 .slider-head {
   display: flex;
