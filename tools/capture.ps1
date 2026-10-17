@@ -17,6 +17,8 @@ New-Item -ItemType Directory -Force $OutDir | Out-Null
 $OutDir = (Resolve-Path $OutDir).Path
 $Dist = (Resolve-Path $Dist).Path
 $cfg = Get-Content (Join-Path $PSScriptRoot "../apps/$App/app.json") -Raw -Encoding utf8 | ConvertFrom-Json
+# 不向系统提供控件信息的程序（Dear ImGui、Flutter）：不用 UI Automation，用坐标
+$noUia = [bool]$cfg.points -or ($cfg.uia -eq $false)
 
 Add-Type -TypeDefinition @"
 using System;
@@ -226,8 +228,8 @@ function Save-Tree($hwnd, [string]$path) {
     $root = $UIA::FromHandle($hwnd)
     $lines = foreach ($e in $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, [System.Windows.Automation.Condition]::TrueCondition)) {
       $c = $e.Current; $r = $c.BoundingRectangle
-      "{0}`t{1}`t{2}`t{3}`t{4},{5},{6},{7}`ttoggle={8} range={9}" -f $c.ControlType.ProgrammaticName, $c.Name, $c.AutomationId, $c.ClassName,
-        [int]$r.X, [int]$r.Y, [int]$r.Width, [int]$r.Height,
+      $box = if ($r.IsEmpty -or [double]::IsInfinity($r.X) -or [double]::IsInfinity($r.Width)) { 'offscreen' } else { "{0},{1},{2},{3}" -f [int]$r.X, [int]$r.Y, [int]$r.Width, [int]$r.Height }
+      "{0}`t{1}`t{2}`t{3}`t{4}`ttoggle={5} range={6}" -f $c.ControlType.ProgrammaticName, $c.Name, $c.AutomationId, $c.ClassName, $box,
         $e.GetCurrentPropertyValue($UIA::IsTogglePatternAvailableProperty), $e.GetCurrentPropertyValue($UIA::IsRangeValuePatternAvailableProperty)
     }
     $lines | Select-Object -First 800 | Set-Content -Encoding utf8 $path
@@ -278,7 +280,7 @@ function Get-Targets($hwnd, $frame) {
   $toggles = '开机自启', '自动更新', '低延迟模式', 'HDR'
   $sliders = '亮度'
   # 写了固定坐标的程序（ImGui、Flutter）完全不碰 UI Automation：查询它的控件树可能让程序出问题
-  $tries = if ($cfg.points) { 0 } else { 4 }
+  $tries = if ($noUia) { 0 } else { 4 }
   for ($try = 0; $try -lt $tries; $try++) {
     try {
       $root = $UIA::FromHandle($hwnd)
@@ -290,9 +292,11 @@ function Get-Targets($hwnd, $frame) {
     if ($t.Count -ge 6) { break }
     Start-Sleep -Seconds 1
   }
-  # 不支持 UI Automation 的（比如 Dear ImGui）：用 app.json 里写好的坐标
-  if ($cfg.points) {
-    foreach ($p in $cfg.points.PSObject.Properties) {
+  # 不支持 UI Automation 的：用程序自己写出的 nova-points.json，或 app.json 里写好的坐标
+  $pf = Join-Path $Dist 'nova-points.json'
+  $pts = if (Test-Path $pf) { Get-Content $pf -Raw -Encoding utf8 | ConvertFrom-Json } else { $cfg.points }
+  if ($pts) {
+    foreach ($p in $pts.PSObject.Properties) {
       $key = if ($p.Name -eq '常规选项') { 'label' } else { $p.Name }
       if (-not $t[$key]) {
         $x = $frame.L + [int]$p.Value[0]; $y = $frame.T + [int]$p.Value[1]
@@ -336,7 +340,7 @@ function Record-Demo([string]$name, $hwnd, $frame) {
   $ff = if ($env:FFMPEG) { $env:FFMPEG } else { (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source }
   if (-not $ff) { Write-Host "::warning::ffmpeg not found, skipping video"; return }
   $t = Get-Targets $hwnd $frame
-  if (-not $cfg.points) { Save-Tree $hwnd (Join-Path $OutDir "$name-uia.txt") }
+  if (-not $noUia) { Save-Tree $hwnd (Join-Path $OutDir "$name-uia.txt") }
   $found = ($t.Keys | Sort-Object) -join ', '
   Write-Host "Demo targets: $found"
   $t.GetEnumerator() | ForEach-Object { "$($_.Key): $($_.Value.X),$($_.Value.Y)" } | Set-Content -Encoding utf8 (Join-Path $OutDir "$name-targets.txt")
@@ -428,7 +432,7 @@ foreach ($v in $variants) {
     $perf = Get-CimInstance Win32_PerfFormattedData_PerfProc_Process | Where-Object { $ids.Contains([int]$_.IDProcess) }
     $privateWs = ($perf | Measure-Object WorkingSetPrivate -Sum).Sum
     $ws = ($ids | ForEach-Object { Get-Process -Id $_ -ErrorAction SilentlyContinue } | Measure-Object WorkingSet64 -Sum).Sum
-    $files = Get-ChildItem $Dist -Recurse -File | Where-Object { $_.Extension -notin '.pdb', '.ilk', '.obj', '.exp', '.lib', '.cer', '.ps1' -and $_.Name -ne 'crash.txt' }
+    $files = Get-ChildItem $Dist -Recurse -File | Where-Object { $_.Extension -notin '.pdb', '.ilk', '.obj', '.exp', '.lib', '.cer', '.ps1' -and $_.Name -notin 'crash.txt', 'nova-points.json' }
     $size = ($files | Measure-Object Length -Sum).Sum
     $m = [ordered]@{
       name = $v.name; tech = $cfg.tech; title = $title; startup_ms = $startupMs
@@ -459,7 +463,7 @@ foreach ($v in $variants) {
       if ($h2 -ne [IntPtr]::Zero) {
         $times += [int]$sw2.Elapsed.TotalMilliseconds
         # “界面就绪”：控件树里能找到最后一行的文字（网页类程序窗口先出现、内容后加载）
-        if (-not $cfg.points) {
+        if (-not $noUia) {
           while ($sw2.Elapsed.TotalSeconds -lt 30) {
             $found = $null
             try { $found = $UIA::FromHandle($h2).FindFirst([System.Windows.Automation.TreeScope]::Descendants, $nameCond) } catch { }

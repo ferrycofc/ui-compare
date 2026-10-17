@@ -1,0 +1,7 @@
+{
+  "id": "imgui",
+  "tech": "Dear ImGui",
+  "exe": "Nova.exe",
+  "settle": 5,
+  "uia": false
+}
