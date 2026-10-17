@@ -1,3 +1,5 @@
+using Microsoft.Maui.LifecycleEvents;
+
 namespace NovaMaui;
 
 public static class MauiProgram
@@ -16,6 +18,18 @@ public static class MauiProgram
         {
             handler.PlatformView.MinWidth = 0;
         });
+
+        // 标题栏右上角的系统按钮也用深色（背景透明、图标白色）
+        builder.ConfigureLifecycleEvents(events => events.AddWindows(w => w.OnWindowCreated(window =>
+        {
+            var bar = window.AppWindow.TitleBar;
+            bar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+            bar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+            bar.ButtonForegroundColor = Microsoft.UI.Colors.White;
+            bar.ButtonInactiveForegroundColor = Windows.UI.Color.FromArgb(0x80, 0xFF, 0xFF, 0xFF);
+            bar.ButtonHoverBackgroundColor = Windows.UI.Color.FromArgb(0x15, 0xFF, 0xFF, 0xFF);
+            bar.ButtonHoverForegroundColor = Microsoft.UI.Colors.White;
+        })));
 #endif
 
         return builder.Build();
