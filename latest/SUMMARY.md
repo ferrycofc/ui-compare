@@ -6,10 +6,12 @@
 
 | 技术 | 年份 | 版本 | 体积 | 文件数 | 内存 | 进程数 | 启动 | 视频 |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| Win32 API | 1993 | win32-classic-2000 | 276 KB | 2 | 1.7 MB | 1 | 81 ms | 有 |
-| Win32 API | 1993 | win32-classic | 276 KB | 2 | 1.8 MB | 1 | 65 ms | 有 |
-| Win32 API | 1993 | win32 | 276 KB | 2 | 1.7 MB | 1 | 58 ms | 有 |
-| WinForms | 2002 | winforms | 159.9 MB | 463 | 7.6 MB | 1 | 172 ms | 有 |
+| Win32 API | 1993 | win32-classic-2000 | 276 KB | 2 | 1.7 MB | 1 | 73 ms | 有 |
+| Win32 API | 1993 | win32-classic | 276 KB | 2 | 1.8 MB | 1 | 76 ms | 有 |
+| Win32 API | 1993 | win32 | 276 KB | 2 | 1.7 MB | 1 | 49 ms | 有 |
+| WinForms | 2002 | winforms | 159.9 MB | 463 | 7.4 MB | 1 | 132 ms | 有 |
+| Electron | 2013 | electron | 368.4 MB | 73 | 68.6 MB | 4 | 300 ms | 有 |
 | WinUI 3 | 2021 | winui3 | 208.2 MB | 503 | 43.8 MB | 1 | 711 ms | 有 |
+| Tauri | 2022 | tauri | 3.0 MB | 1 | 66.4 MB | 7 | 30 ms | 有 |
 
-还没有结果：mfc、qt、wpf、electron、imgui、uwp、avalonia、flutter、maui、tauri
+还没有结果：mfc、qt、wpf、imgui、uwp、avalonia、flutter、maui

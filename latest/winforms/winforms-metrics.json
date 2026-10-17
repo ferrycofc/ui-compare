@@ -2,13 +2,13 @@
   "name": "winforms",
   "tech": "WinForms",
   "title": "Nova 设置 — WinForms",
-  "startup_ms": 172,
-  "memory_mb": 7.6,
-  "working_set_mb": 46.6,
+  "startup_ms": 132,
+  "memory_mb": 7.4,
+  "working_set_mb": 46.4,
   "processes": 1,
   "dist_size_mb": 159.93,
   "dist_files": 463,
   "window": "906x653",
-  "startup_first_ms": 542,
-  "startup_runs_ms": "542, 172, 143"
+  "startup_first_ms": 483,
+  "startup_runs_ms": "483, 118, 132"
 }
