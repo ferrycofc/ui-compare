@@ -438,5 +438,29 @@ foreach ($v in $variants) {
   Stop-Tree $ids
   if ($cfg.launch) { Get-Process | Where-Object { $_.Id -notin $before -and $_.Id -in $ids } | Stop-Process -Force -ErrorAction SilentlyContinue }
   Start-Sleep -Seconds 1
+
+  # 启动时间再测两次（程序文件已经在磁盘缓存里），取三次的中位数
+  if ($Metrics) {
+    $times = @($startupMs)
+    for ($i = 0; $i -lt 2; $i++) {
+      $sw2 = [Diagnostics.Stopwatch]::StartNew()
+      $p2 = Start-Variant $v
+      $h2 = [IntPtr]::Zero; $t2 = $null
+      while ($sw2.Elapsed.TotalSeconds -lt 60) { $h2 = [Win]::Find('Nova', [ref]$t2); if ($h2 -ne [IntPtr]::Zero) { break }; Start-Sleep -Milliseconds 10 }
+      if ($h2 -ne [IntPtr]::Zero) { $times += [int]$sw2.Elapsed.TotalMilliseconds }
+      Start-Sleep -Seconds 2
+      $r2 = @([int][Win]::ContentPid($h2)); if ($p2) { $r2 += $p2.Id }
+      Stop-Tree (Get-Tree $r2)
+      Start-Sleep -Seconds 1
+    }
+    $sorted = $times | Sort-Object
+    $mf = Join-Path $OutDir "$($v.name)-metrics.json"
+    $m = Get-Content $mf -Raw | ConvertFrom-Json
+    $m | Add-Member -Force startup_first_ms $startupMs
+    $m | Add-Member -Force startup_runs_ms ($times -join ', ')
+    $m.startup_ms = $sorted[[int][Math]::Floor(($sorted.Count - 1) / 2)]
+    $m | ConvertTo-Json | Set-Content -Encoding utf8 $mf
+    Write-Host "startup runs: $($times -join ', ') ms -> median $($m.startup_ms) ms"
+  }
 }
 if ($failed) { exit 1 }
