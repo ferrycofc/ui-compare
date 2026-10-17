@@ -1,34 +1,64 @@
 # ui-compare
 
 用同一个“Nova 设置”界面，对比 Windows 上各种 UI 技术。每个技术都用它自己的框架真实写一遍，
-在 GitHub Actions 的 Windows 机器上编译、运行、截图，并记录启动时间、内存和发布体积。
+在 GitHub Actions 的 Windows 机器上编译、运行、截图、录操作视频，并测启动时间、内存和发布体积。
 
-## 统一的界面内容
+界面内容和规则见 [SPEC.md](SPEC.md)。
 
-- 窗口外框 920 × 660，标题 `Nova 设置 — <技术名>`
-- 顶部标签：常规、画面、音频、网络、快捷键（带图标）
-- 左侧图标栏：7 个图标 + 底部头像和设置
-- 三个分组：
-  - 常规选项：开机自启 ✓、最小化到托盘 ✓、自动更新、硬件加速 ✓、垂直同步、显示帧率、低延迟模式（以上带齿轮按钮）、夜间模式 ✓、后台静音、发送使用统计
-  - 性能：帧率限制 ✓、动态分辨率、预加载资源、多线程渲染 ✓、省电模式（都带齿轮按钮）
-  - 显示：自动亮度、HDR ✓、亮度 80%、对比度 35%
-- 没有原生开关控件的技术（Win32 等），用它自带的复选框
+## 结果在哪里
+
+| 内容 | 位置 |
+| --- | --- |
+| 截图、视频、测量数据 | [`shots` 分支的 `latest/`](../../tree/shots/latest)，每个技术一个文件夹 |
+| 所有技术的数据表 | [`latest/SUMMARY.md`](../../blob/shots/latest/SUMMARY.md) |
+| 所有窗口截图一览 | [`latest/overview.png`](../../blob/shots/latest/overview.png) |
+| 编译好的程序（zip，解压即可运行） | [Releases → nova-builds](../../releases/tag/nova-builds) |
+
+每个技术文件夹里的文件：
+
+| 文件 | 说明 |
+| --- | --- |
+| `<名字>.png` | 窗口截图（Windows 11，只有窗口） |
+| `<名字>-pad.png` | 窗口四周带 48 像素壁纸，适合直接放进视频 |
+| `<名字>-full.png` | 整个屏幕 1920×1080 |
+| `<名字>.mp4` | 操作视频：悬停、点开关、拖滑块（30 fps，和 `-pad.png` 同样大小） |
+| `<名字>-x64*.png` | 在 Windows Server 2025（x64）上测数据时顺便截的图 |
+| `<名字>-metrics.json` | 启动时间、内存、体积 |
+| `build.log` | 编译记录 |
 
 ## 目录
 
 | 目录 | 技术 |
 | --- | --- |
-| `apps/win32` | 纯 Win32 API（C++） |
-| `apps/winui3` | WinUI 3 / Windows App SDK（C#） |
+| `apps/win32` | Win32 API（C++，现代样式 + 经典主题） |
+| `apps/mfc` | MFC（C++，Feature Pack 视觉管理器） |
+| `apps/qt` | Qt Widgets（C++） |
+| `apps/winforms` | WinForms（C#） |
+| `apps/wpf` | WPF（C#/XAML） |
+| `apps/electron` | Electron（HTML/CSS/JS） |
+| `apps/imgui` | Dear ImGui（C++，Direct3D 11） |
+| `apps/uwp` | UWP（C#/XAML） |
+| `apps/avalonia` | Avalonia（C#/XAML） |
+| `apps/winui3` | WinUI 3 / Windows App SDK（C#/XAML） |
+| `apps/flutter` | Flutter（Dart） |
+| `apps/maui` | .NET MAUI（C#/XAML） |
+| `apps/tauri` | Tauri（Rust + 网页） |
+| `apps/web-shared` | Electron 和 Tauri 共用的网页界面 |
 
-## 截图怎么来的
+## 怎么生成的
 
-`.github/workflows/shots.yml` 在 `windows-2025` 和 `windows-11-arm` 两种机器上运行：
+`.github/workflows/shots.yml`：
 
-1. `tools/setup-desktop.ps1`：分辨率设成 1920×1080，用系统自带壁纸，打开透明效果和 ClearType
-2. 编译程序
-3. `tools/shoot.ps1`：启动程序，窗口居中，截全屏和窗口，记录启动时间、内存（专用工作集）和体积
+1. **build**（`windows-2025`，x64）：运行 `apps/<技术>/build.ps1` 编译，输出 `apps/<技术>/dist/`；然后启动程序测数据。
+2. **capture**（`windows-11-arm`，真正的 Windows 11）：把同一个 x64 程序拿过去运行（Windows 11 自带 x64 转译），
+   `tools/setup-desktop.ps1` 把桌面整理干净（1920×1080、系统壁纸、关掉开机弹窗），
+   `tools/capture.ps1` 截图，再用 UI Automation 找到开关和滑块，用真实的鼠标事件操作，ffmpeg 录屏。
+3. **collect**：结果提交到 `shots` 分支，编译好的程序打包上传到 Releases。
 
-结果在 `shots` 分支的 `latest/` 目录。
+只想重新跑某几个技术时，在 `ci-apps.txt` 里写它们的目录名（每行一个）再推送；写 `all` 或留空就是全部。
 
-Win32 经典版的 `win2000` 截图，是程序启动时把系统颜色设成 Windows 2000 经典配色后截的，程序本身没有任何自绘。
+## 说明
+
+- 这些虚拟机没有显卡，所以 WinUI 3 / UWP / Avalonia 的 Mica、亚克力半透明效果会退回成纯色背景。真电脑上会透出一点壁纸颜色。
+- `-full.png` 右下角的 “Test Mode” 水印是虚拟机自带的，视频建议用 `-pad.png` 和 `.mp4`。
+- Win32 经典版的 `win32-classic-2000`，是程序启动时把系统颜色设成 Windows 2000 经典配色后截的，程序本身没有任何自绘。
