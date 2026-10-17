@@ -25,12 +25,13 @@ Write-Host "Qt: $qtDir"
 # ---------- 编译 ----------
 $build = Join-Path $tmp 'qt-build'
 Remove-Item $build -Recurse -Force -ErrorAction SilentlyContinue
-cmake -S $here -B $build -G "Visual Studio 17 2022" -A x64 "-DCMAKE_PREFIX_PATH=$qtDir"
+# 用 NMake：编译环境已经由 VS 开发者命令行准备好（cl.exe 在 PATH 里），不依赖 VS 版本号
+cmake -S $here -B $build -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release "-DCMAKE_PREFIX_PATH=$qtDir"
 if ($LASTEXITCODE) { Write-Host "cmake configure failed"; exit 1 }
-cmake --build $build --config Release --parallel
+cmake --build $build
 if ($LASTEXITCODE) { Write-Host "cmake build failed"; exit 1 }
 
-$exe = Join-Path $build 'Release\Nova.exe'
+$exe = Join-Path $build 'Nova.exe'
 if (-not (Test-Path $exe)) { Get-ChildItem $build -Recurse -Filter *.exe | Select-Object FullName; Write-Host "Nova.exe not found"; exit 1 }
 
 # ---------- 打包 ----------
