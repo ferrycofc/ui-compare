@@ -1,0 +1,16 @@
+{
+  "name": "mfc",
+  "tech": "MFC",
+  "title": "Nova 设置 — MFC",
+  "startup_ms": 220,
+  "memory_mb": 4.6,
+  "working_set_mb": 23.6,
+  "processes": 1,
+  "dist_size_mb": 6.21,
+  "dist_files": 6,
+  "window": "902x651",
+  "startup_first_ms": 873,
+  "startup_runs_ms": "873, 219, 222",
+  "ready_ms": 316,
+  "ready_runs_ms": "334, 297"
+}

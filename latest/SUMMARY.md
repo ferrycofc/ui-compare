@@ -10,6 +10,7 @@
 | Win32 API | 1993 | win32-classic-2000 | 276 KB | 2 | 1.7 MB | 1 | 73 ms | — | 有 |
 | Win32 API | 1993 | win32-classic | 276 KB | 2 | 1.8 MB | 1 | 76 ms | — | 有 |
 | Win32 API | 1993 | win32 | 276 KB | 2 | 1.7 MB | 1 | 49 ms | — | 有 |
+| MFC | 1992 | mfc | 6.2 MB | 6 | 4.6 MB | 1 | 220 ms | 316 ms | 有 |
 | Qt Widgets | 1995 | qt | 26.8 MB | 25 | 22.6 MB | 1 | 532 ms | 380 ms | 有 |
 | WinForms | 2002 | winforms | 159.9 MB | 463 | 7.4 MB | 1 | 132 ms | — | 有 |
 | WPF | 2006 | wpf | 159.9 MB | 463 | 31.4 MB | 1 | 456 ms | 658 ms | 有 |
@@ -21,5 +22,3 @@
 | Flutter | 2022 | flutter | 26.8 MB | 20 | 67.4 MB | 1 | 1339 ms | — | 有 |
 | .NET MAUI | 2022 | maui | 227.9 MB | 538 | 55.3 MB | 1 | 503 ms | 843 ms | 有 |
 | Tauri | 2022 | tauri | 3.0 MB | 1 | 35.1 MB | 6 | 54 ms | 1667 ms | 有 |
-
-还没有结果：mfc

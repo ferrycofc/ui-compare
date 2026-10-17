@@ -1,0 +1,48 @@
+Windows at start (pid|process|class|title|rect):
+  8952|WindowsTerminal|CASCADIA_HOSTING_WINDOW_CLASS|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|18,26,1062,661
+  932|explorer|Progman|Program Manager|0,0,1024,768
+Killing UserOOBEBroker (4364)
+Closed System Properties dialogs: 0
+Desktop icons hidden: True
+Windows after cleanup:
+  8952|WindowsTerminal|CASCADIA_HOSTING_WINDOW_CLASS|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|18,26,1062,661
+  932|explorer|Progman|Program Manager|0,0,1024,768
+OS: Microsoft Windows Server 2025 Datacenter 10.0.26100 build 26100 64-bit
+Display before: 1024x768 32bpp
+Modes: 640x480, 800x600, 1024x768, 1152x864, 1280x720, 1280x800, 1280x1024, 1366x768, 1440x900, 1600x900, 1600x1200, 1680x1050, 1920x1080
+Set-DisplayResolution ok
+Display after: 1920x1080 32bpp metrics 1920x1080
+Effects: fontSmoothing=1 smoothingType=2 dropShadow=0 uiEffects=1 dwmComposition=True
+Wallpapers found:
+  C:\Windows\Web\Wallpaper\Spotlight\img14.jpg 1565KB
+  C:\Windows\Web\Wallpaper\Spotlight\img50.jpg 23KB
+  C:\Windows\Web\Wallpaper\ThemeA\img20.jpg 807KB
+  C:\Windows\Web\Wallpaper\ThemeA\img21.jpg 814KB
+  C:\Windows\Web\Wallpaper\ThemeA\img22.jpg 743KB
+  C:\Windows\Web\Wallpaper\ThemeA\img23.jpg 886KB
+  C:\Windows\Web\Wallpaper\ThemeB\img24.jpg 1124KB
+  C:\Windows\Web\Wallpaper\ThemeB\img25.jpg 996KB
+  C:\Windows\Web\Wallpaper\ThemeB\img26.jpg 963KB
+  C:\Windows\Web\Wallpaper\ThemeB\img27.jpg 1035KB
+  C:\Windows\Web\Wallpaper\ThemeC\img28.jpg 1085KB
+  C:\Windows\Web\Wallpaper\ThemeC\img29.jpg 1193KB
+  C:\Windows\Web\Wallpaper\ThemeC\img30.jpg 1044KB
+  C:\Windows\Web\Wallpaper\ThemeC\img31.jpg 1130KB
+  C:\Windows\Web\Wallpaper\ThemeD\img32.jpg 1052KB
+  C:\Windows\Web\Wallpaper\ThemeD\img33.jpg 1052KB
+  C:\Windows\Web\Wallpaper\ThemeD\img34.jpg 966KB
+  C:\Windows\Web\Wallpaper\ThemeD\img35.jpg 1062KB
+  C:\Windows\Web\Wallpaper\Windows\img0.jpg 3086KB
+  C:\Windows\Web\Wallpaper\Windows\img19.jpg 3035KB
+  C:\Windows\Web\4K\Wallpaper\Windows\img0_1920x1200.jpg 868KB
+  C:\Windows\Web\4K\Wallpaper\Windows\img19_1920x1200.jpg 851KB
+Wallpaper set: C:\Windows\Web\Wallpaper\Windows\img0.jpg -> True
+Font msyh.ttc : True
+Font msyhbd.ttc : True
+Font simsun.ttc : True
+Font SegUIVar.ttf : True
+Font segoeui.ttf : True
+Font SegoeIcons.ttf : True
+Font segmdl2.ttf : True
+Font tahoma.ttf : True
+Culture: en-US UI: en-US

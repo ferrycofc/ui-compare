@@ -1,0 +1,10 @@
+VCToolsInstallDir: C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\
+VCToolsRedistDir:  C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Redist\MSVC\14.51.36231\
+main.cpp
+_WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+mfc140u.dll  5466 KB
+msvcp140.dll  628 KB
+Nova.exe  38 KB
+Nova.exe.manifest  1 KB
+vcruntime140_1.dll  49 KB
+vcruntime140.dll  174 KB

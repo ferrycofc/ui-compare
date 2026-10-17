@@ -1,0 +1,69 @@
+ControlType.Pane		300	Button	516,231,40,40	toggle=False range=False
+ControlType.Pane		301	Button	516,275,40,40	toggle=False range=False
+ControlType.Pane		302	Button	516,319,40,40	toggle=False range=False
+ControlType.Pane		303	Button	516,363,40,40	toggle=False range=False
+ControlType.Pane		304	Button	516,407,40,40	toggle=False range=False
+ControlType.Pane		305	Button	516,451,40,40	toggle=False range=False
+ControlType.Pane		306	Button	516,495,40,40	toggle=False range=False
+ControlType.Pane		307	Button	516,744,40,40	toggle=False range=False
+ControlType.Pane		308	Button	516,788,40,40	toggle=False range=False
+ControlType.Pane		10	Afx:TabWnd:cbc10000:8:10003:10	568,229,836,605	toggle=False range=False
+ControlType.Pane			Button	569,233,15,15	toggle=False range=False
+ControlType.Pane			Button	1382,233,15,15	toggle=False range=False
+ControlType.Pane		1	Afx:00007FF6CBC10000:3:0000000000010003:0000000000000000:0000000000000000	571,254,830,577	toggle=False range=False
+ControlType.Pane	常规选项	1000	Button	583,262,397,557	toggle=False range=False
+ControlType.Pane	开机自启	65535	Static	597,292,279,24	toggle=False range=False
+ControlType.Pane		1001	Button	948,295,18,18	toggle=False range=False
+ControlType.Pane		1002	Button	906,292,30,24	toggle=False range=False
+ControlType.Pane	最小化到托盘	65535	Static	597,336,279,24	toggle=False range=False
+ControlType.Pane		1003	Button	948,339,18,18	toggle=False range=False
+ControlType.Pane		1004	Button	906,336,30,24	toggle=False range=False
+ControlType.Pane	自动更新	65535	Static	597,380,279,24	toggle=False range=False
+ControlType.Pane		1005	Button	948,383,18,18	toggle=False range=False
+ControlType.Pane		1006	Button	906,380,30,24	toggle=False range=False
+ControlType.Pane	硬件加速	65535	Static	597,424,279,24	toggle=False range=False
+ControlType.Pane		1007	Button	948,427,18,18	toggle=False range=False
+ControlType.Pane		1008	Button	906,424,30,24	toggle=False range=False
+ControlType.Pane	垂直同步	65535	Static	597,468,279,24	toggle=False range=False
+ControlType.Pane		1009	Button	948,471,18,18	toggle=False range=False
+ControlType.Pane		1010	Button	906,468,30,24	toggle=False range=False
+ControlType.Pane	显示帧率	65535	Static	597,512,279,24	toggle=False range=False
+ControlType.Pane		1011	Button	948,515,18,18	toggle=False range=False
+ControlType.Pane		1012	Button	906,512,30,24	toggle=False range=False
+ControlType.Pane	低延迟模式	65535	Static	597,556,279,24	toggle=False range=False
+ControlType.Pane		1013	Button	948,559,18,18	toggle=False range=False
+ControlType.Pane		1014	Button	906,556,30,24	toggle=False range=False
+ControlType.Pane	夜间模式	65535	Static	597,600,279,24	toggle=False range=False
+ControlType.Pane		1015	Button	948,603,18,18	toggle=False range=False
+ControlType.Pane	后台静音	65535	Static	597,644,279,24	toggle=False range=False
+ControlType.Pane		1016	Button	948,647,18,18	toggle=False range=False
+ControlType.Pane	发送使用统计	65535	Static	597,688,279,24	toggle=False range=False
+ControlType.Pane		1017	Button	948,691,18,18	toggle=False range=False
+ControlType.Pane	性能	1018	Button	992,262,397,236	toggle=False range=False
+ControlType.Pane	帧率限制	65535	Static	1006,292,279,24	toggle=False range=False
+ControlType.Pane		1019	Button	1357,295,18,18	toggle=False range=False
+ControlType.Pane		1020	Button	1315,292,30,24	toggle=False range=False
+ControlType.Pane	动态分辨率	65535	Static	1006,332,279,24	toggle=False range=False
+ControlType.Pane		1021	Button	1357,335,18,18	toggle=False range=False
+ControlType.Pane		1022	Button	1315,332,30,24	toggle=False range=False
+ControlType.Pane	预加载资源	65535	Static	1006,372,279,24	toggle=False range=False
+ControlType.Pane		1023	Button	1357,375,18,18	toggle=False range=False
+ControlType.Pane		1024	Button	1315,372,30,24	toggle=False range=False
+ControlType.Pane	多线程渲染	65535	Static	1006,412,279,24	toggle=False range=False
+ControlType.Pane		1025	Button	1357,415,18,18	toggle=False range=False
+ControlType.Pane		1026	Button	1315,412,30,24	toggle=False range=False
+ControlType.Pane	省电模式	65535	Static	1006,452,279,24	toggle=False range=False
+ControlType.Pane		1027	Button	1357,455,18,18	toggle=False range=False
+ControlType.Pane		1028	Button	1315,452,30,24	toggle=False range=False
+ControlType.Pane	显示	1029	Button	992,508,397,311	toggle=False range=False
+ControlType.Pane	自动亮度	65535	Static	1006,538,279,24	toggle=False range=False
+ControlType.Pane		1030	Button	1357,541,18,18	toggle=False range=False
+ControlType.Pane	HDR	65535	Static	1006,578,279,24	toggle=False range=False
+ControlType.Pane		1031	Button	1357,581,18,18	toggle=False range=False
+ControlType.Pane		65535	Static	1006,620,367,2	toggle=False range=False
+ControlType.Pane	80%	65535	Static	1295,634,80,20	toggle=False range=False
+ControlType.Pane	亮度	65535	Static	1006,634,120,20	toggle=False range=False
+ControlType.Pane		2001	msctls_trackbar32	1000,656,381,32	toggle=False range=False
+ControlType.Pane	35%	65535	Static	1295,696,80,20	toggle=False range=False
+ControlType.Pane	对比度	65535	Static	1006,696,120,20	toggle=False range=False
+ControlType.Pane		2002	msctls_trackbar32	1000,718,381,32	toggle=False range=False
