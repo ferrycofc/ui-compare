@@ -1,0 +1,14 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NovaAvalonia.App"
+             RequestedThemeVariant="Dark">
+  <Application.Styles>
+    <!-- Fluent 主题：控件全部由 Avalonia 自己用 Skia 画，三大桌面系统上长得一样 -->
+    <FluentTheme>
+      <FluentTheme.Palettes>
+        <!-- 自定义调色板：在这里换强调色（现在用的是 Windows 默认蓝） -->
+        <ColorPaletteResources x:Key="Dark" Accent="#FF0078D4" />
+      </FluentTheme.Palettes>
+    </FluentTheme>
+  </Application.Styles>
+</Application>

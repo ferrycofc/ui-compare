@@ -1,3 +1,2 @@
-electron
-tauri
-wpf
+qt
+flutter
