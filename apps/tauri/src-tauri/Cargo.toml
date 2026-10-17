@@ -1,0 +1,20 @@
+[package]
+name = "nova-tauri"
+version = "1.0.0"
+description = "Nova 设置 — Tauri"
+edition = "2021"
+publish = false
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+
+# 发布版尽量小：这正是 Tauri 想展示的
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

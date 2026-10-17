@@ -1,0 +1,388 @@
+/* Nova 设置 —— Electron / Tauri 共用样式（只针对 Chromium：Electron 和 WebView2 都是它） */
+
+:root {
+  --bg: #0f1014;
+  --rail: #0c0d11;
+  --card: #17181d;
+  --border: #23252c;
+  --line: #1e2027;
+  --accent: #8b7cf6;
+  --accent-soft: rgba(139, 124, 246, 0.16);
+  --accent-text: #c4bbff;
+  --text: #ececf1;
+  --muted: #9a9caa;
+  --track-off: #2c2e37;
+  --knob-off: #a4a6b3;
+  --hover: rgba(255, 255, 255, 0.06);
+  --radius: 10px;
+  --speed: 160ms;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.4 "Segoe UI Variable Text", "Segoe UI", "Microsoft YaHei UI", sans-serif;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  outline: none;
+}
+
+button:focus-visible,
+input[type="range"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 图标：sprite 只用来存 <symbol>，自身不显示 */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.ic {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- 整体：左侧图标栏 + 右侧主区 ---------- */
+
+.app { display: flex; height: 100vh; }
+
+.rail {
+  width: 60px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  background: var(--rail);
+  border-right: 1px solid var(--line);
+}
+
+.rail-group,
+.rail-foot { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+.rail-foot { gap: 10px; }
+
+.rail-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  transition: background-color var(--speed) ease, color var(--speed) ease;
+}
+
+.rail-btn:hover { background: var(--hover); color: var(--text); }
+
+.rail-btn.is-active { background: var(--accent-soft); color: var(--accent-text); }
+
+/* 选中项左侧的竖条指示器 */
+.rail-btn::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 11px;
+  width: 3px;
+  height: 18px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform var(--speed) ease;
+}
+
+.rail-btn.is-active::before { transform: scaleY(1); }
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #a194ff, #6a5ae0);
+  box-shadow: 0 0 0 2px var(--rail), 0 0 0 3px rgba(139, 124, 246, 0.45);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 18px 16px;
+}
+
+/* ---------- 品牌区 ---------- */
+
+.brand { display: flex; align-items: center; gap: 10px; height: 26px; flex: none; }
+
+.logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+}
+
+.logo .ic { width: 14px; height: 14px; stroke-width: 2.2; }
+
+.brand-name { font-size: 13px; font-weight: 600; }
+
+.brand-tech {
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0 8px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.brand-tech:empty { display: none; }
+
+/* ---------- 顶部标签 ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+  flex: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px 8px 0 0;
+  color: var(--muted);
+  transition: color var(--speed) ease, background-color var(--speed) ease;
+}
+
+.tab:hover { color: var(--text); background: rgba(255, 255, 255, 0.03); }
+
+.tab.is-active { color: var(--text); }
+
+.tab.is-active .ic { color: var(--accent-text); }
+
+/* 选中标签下方的紫色下划线 */
+.tab::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--speed) ease;
+}
+
+.tab.is-active::after { transform: scaleX(1); }
+
+/* ---------- 两列分组 ---------- */
+
+.grid {
+  flex: 1;
+  min-height: 0;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.col { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 10px 12px 6px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.card-display { flex: 1; }
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+  margin: 0 0 2px;
+  flex: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-head .ic { color: var(--accent); }
+
+.rows { display: flex; flex-direction: column; }
+
+/* 常规选项那一列更高：10 行均匀铺满整张卡片 */
+.card-general .rows { flex: 1; min-height: 0; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  flex: none;
+}
+
+.card-general .row { flex: 1 1 0; height: auto; min-height: 32px; max-height: 48px; }
+
+.row + .row { border-top: 1px solid var(--line); }
+
+.row-label {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gear {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  transition: background-color var(--speed) ease, color var(--speed) ease;
+}
+
+.gear:hover { background: var(--hover); color: var(--text); }
+
+.gear:active { background: rgba(255, 255, 255, 0.04); }
+
+/* ---------- 开关 ---------- */
+
+.switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex: none;
+  border-radius: 10px;
+  background: var(--track-off);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  transition: background-color var(--speed) ease, box-shadow var(--speed) ease;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--knob-off);
+  transition: transform var(--speed) ease, background-color var(--speed) ease;
+}
+
+.switch:hover::after { background: #c3c5cf; }
+
+.switch[aria-checked="true"] {
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.switch[aria-checked="true"]::after { transform: translateX(16px); background: #fff; }
+
+/* ---------- 分隔线 + 滑块 ---------- */
+
+.divider {
+  height: 1px;
+  margin: 6px 0 8px;
+  border: 0;
+  background: var(--border);
+}
+
+.sliders { display: flex; flex-direction: column; gap: 6px; }
+
+.slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  padding-right: 2px;
+}
+
+.slider-value {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --fill：已拖过的比例（0–1），由 app.js 在拖动时更新 */
+input[type="range"] {
+  --fill: 0.5;
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right,
+    var(--accent) 0, var(--accent) calc(7px + (100% - 14px) * var(--fill)),
+    var(--track-off) calc(7px + (100% - 14px) * var(--fill)), var(--track-off) 100%);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(139, 124, 246, 0.3);
+  transition: box-shadow var(--speed) ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb,
+input[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 6px rgba(139, 124, 246, 0.32);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --speed: 0ms; }
+}

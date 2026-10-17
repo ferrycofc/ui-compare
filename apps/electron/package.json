@@ -1,0 +1,17 @@
+{
+  "name": "nova-electron",
+  "productName": "Nova",
+  "version": "1.0.0",
+  "description": "Nova 设置 — Electron",
+  "author": "Nova",
+  "license": "MIT",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^44.8.0"
+  }
+}
