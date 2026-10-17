@@ -1,6 +1,7 @@
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Graphics;
 using Windows.UI;
@@ -83,6 +84,7 @@ public sealed partial class MainWindow : Window
                 IsOn = r.On,
                 VerticalAlignment = VerticalAlignment.Center,
             };
+            AutomationProperties.SetName(toggle, r.Text);
             Grid.SetColumn(toggle, 2);
             g.Children.Add(toggle);
 

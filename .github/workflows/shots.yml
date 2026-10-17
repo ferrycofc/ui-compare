@@ -1,7 +1,10 @@
-name: build-and-shoot
+name: build-and-capture
 
-# 每次推送到 main：在 GitHub 的 Windows 机器上编译每个框架的程序、运行、截图、测数据，
-# 结果统一存到 shots 分支的 latest/ 目录。
+# 每次推送到 main：
+#   build   —— 在 windows-2025（x64）上编译每个技术的程序，测体积、内存、启动时间
+#   capture —— 在 windows-11-arm（真正的 Windows 11）上运行同一个 x64 程序，截图并录操作视频
+#   collect —— 结果放到 shots 分支的 latest/<技术>/，编译好的程序打包发到 Releases（nova-builds）
+# 只想跑其中几个技术时，在 ci-apps.txt 里写它们的目录名（每行一个），写 all 或留空就是全部。
 on:
   push:
     branches: [main]
@@ -12,101 +15,128 @@ permissions:
   contents: write
 
 concurrency:
-  group: shoot
+  group: capture
   cancel-in-progress: true
 
 jobs:
-  win32:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-2025, windows-11-arm]
-    runs-on: ${{ matrix.os }}
-    env:
-      OUT: out/${{ matrix.os }}/win32
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.p.outputs.apps }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Prepare desktop
-        shell: pwsh
-        run: ./tools/setup-desktop.ps1 -OutDir $env:OUT
-
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{ matrix.os == 'windows-11-arm' && 'arm64' || 'x64' }}
-
-      - name: Build
-        shell: pwsh
+      - id: p
         run: |
-          cmd /c apps\win32\build.cmd 2>&1 | Tee-Object -FilePath "$env:OUT/build.log"
-          exit $LASTEXITCODE
+          all=$(ls apps/*/app.json | cut -d/ -f2)
+          want=$(grep -v '^#' ci-apps.txt 2>/dev/null | tr -d ' \r' | grep -v '^$' || true)
+          if [ -z "$want" ] || [ "$want" = "all" ]; then want="$all"; fi
+          json=$(printf '%s\n' $want | python3 -c "import sys,json; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))")
+          echo "apps=$json" >> "$GITHUB_OUTPUT"
+          echo "Apps: $json"
 
-      - name: Shoot (modern)
-        shell: pwsh
-        run: ./tools/shoot.ps1 -Exe apps/win32/bin/win32.exe -Name win32 -OutDir $env:OUT -SizePath apps/win32/bin/win32.exe
-
-      - name: Shoot (classic)
-        if: always()
-        shell: pwsh
-        run: ./tools/shoot.ps1 -Exe apps/win32/bin/win32_classic.exe -Name win32-classic -OutDir $env:OUT -SizePath apps/win32/bin/win32_classic.exe
-
-      - name: Shoot (classic, Windows 2000 colors)
-        if: always()
-        shell: pwsh
-        run: ./tools/shoot.ps1 -Exe apps/win32/bin/win32_classic.exe -Arguments "/win2000" -Name win32-classic-2000 -OutDir $env:OUT -SizePath apps/win32/bin/win32_classic.exe
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: win32-${{ matrix.os }}
-          path: out/
-
-  winui3:
+  build:
+    needs: plan
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2025, windows-11-arm]
-    runs-on: ${{ matrix.os }}
+        app: ${{ fromJson(needs.plan.outputs.apps) }}
+    runs-on: windows-2025
+    timeout-minutes: 75
     env:
-      OUT: out/${{ matrix.os }}/winui3
-      PLAT: ${{ matrix.os == 'windows-11-arm' && 'ARM64' || 'x64' }}
-      RID: ${{ matrix.os == 'windows-11-arm' && 'win-arm64' || 'win-x64' }}
+      OUT: out/${{ matrix.app }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Prepare desktop
-        shell: pwsh
-        run: ./tools/setup-desktop.ps1 -OutDir $env:OUT
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            8.0.x
+            9.0.x
 
-      - uses: microsoft/setup-msbuild@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
 
       - name: Build
         shell: pwsh
         run: |
-          msbuild apps/winui3/NovaWinUI.csproj -restore -p:Configuration=Release -p:Platform=$env:PLAT -p:RuntimeIdentifier=$env:RID -v:minimal -nologo 2>&1 | Tee-Object -FilePath "$env:OUT/build.log"
-          exit $LASTEXITCODE
+          New-Item -ItemType Directory -Force $env:OUT | Out-Null
+          pwsh -NoProfile -File ./apps/${{ matrix.app }}/build.ps1 2>&1 | Tee-Object -FilePath "$env:OUT/build.log"
+          $code = $LASTEXITCODE
+          if ($code -or -not (Test-Path ./apps/${{ matrix.app }}/dist)) { Write-Host "::error::build failed ($code)"; exit 1 }
 
-      - name: Shoot
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.app }}
+          path: apps/${{ matrix.app }}/dist
+          compression-level: 3
+          retention-days: 30
+
+      - name: Prepare desktop
         shell: pwsh
-        run: |
-          $exe = Get-ChildItem apps/winui3/bin -Recurse -Filter NovaWinUI.exe | Where-Object { $_.FullName -like "*$env:RID*" } | Select-Object -First 1
-          if (-not $exe) { Get-ChildItem apps/winui3/bin -Recurse | Select-Object -First 50 FullName; throw "NovaWinUI.exe not found" }
-          Write-Host "Using $($exe.FullName)"
-          ./tools/shoot.ps1 -Exe $exe.FullName -Name winui3 -OutDir $env:OUT -Settle 8
+        run: ./tools/setup-desktop.ps1 -OutDir "$env:OUT/desktop-x64"
+
+      - name: Measure
+        shell: pwsh
+        run: ./tools/capture.ps1 -App ${{ matrix.app }} -Dist apps/${{ matrix.app }}/dist -OutDir $env:OUT -Metrics -Suffix "-x64"
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: winui3-${{ matrix.os }}
+          name: x64-${{ matrix.app }}
           path: out/
+          if-no-files-found: ignore
+
+  capture:
+    needs: [plan, build]
+    if: always() && needs.plan.result == 'success'
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJson(needs.plan.outputs.apps) }}
+    runs-on: windows-11-arm
+    timeout-minutes: 45
+    env:
+      OUT: out/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        id: dl
+        continue-on-error: true
+        with:
+          name: dist-${{ matrix.app }}
+          path: dist/${{ matrix.app }}
+
+      - name: Check build
+        if: steps.dl.outcome != 'success'
+        shell: pwsh
+        run: |
+          Write-Host "::error::No build for ${{ matrix.app }}"
+          exit 1
+
+      - name: Prepare desktop
+        shell: pwsh
+        run: ./tools/setup-desktop.ps1 -OutDir "$env:OUT/desktop-arm"
+
+      - name: Get ffmpeg
+        shell: pwsh
+        run: ./tools/get-ffmpeg.ps1
+
+      - name: Screenshots and video
+        shell: pwsh
+        run: ./tools/capture.ps1 -App ${{ matrix.app }} -Dist dist/${{ matrix.app }} -OutDir $env:OUT -Video
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arm-${{ matrix.app }}
+          path: out/
+          if-no-files-found: ignore
 
   collect:
-    needs: [win32, winui3]
-    if: always()
+    needs: [plan, build, capture]
+    if: always() && needs.plan.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -114,7 +144,10 @@ jobs:
           fetch-depth: 0
 
       - name: Switch to shots branch
+        env:
+          APPS: ${{ needs.plan.outputs.apps }}
         run: |
+          cp tools/summary.py "$RUNNER_TEMP/summary.py"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git ls-remote --exit-code --heads origin shots; then
@@ -124,22 +157,58 @@ jobs:
             git checkout --orphan shots
             git rm -rf --quiet .
           fi
-          rm -rf latest
+          # 旧版本的扁平结构（windows-2025/、windows-11-arm/、icons/）不再需要
+          rm -rf latest/windows-2025 latest/windows-11-arm latest/icons
+          for a in $(echo "$APPS" | python3 -c "import sys,json; print(' '.join(json.load(sys.stdin)))"); do rm -rf "latest/$a"; done
 
       - uses: actions/download-artifact@v4
         with:
+          pattern: x64-*
           path: latest
           merge-multiple: true
 
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: arm-*
+          path: latest
+          merge-multiple: true
+
+      - name: Summary
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 "$RUNNER_TEMP/summary.py" latest
+          cat latest/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit results
         run: |
-          mkdir -p latest
           {
             echo "commit: ${GITHUB_SHA}"
             echo "run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-            echo "jobs: win32=${{ needs.win32.result }} winui3=${{ needs.winui3.result }}"
+            echo "build: ${{ needs.build.result }}  capture: ${{ needs.capture.result }}"
             date -u
           } > latest/RUN.txt
           git add -A latest
-          git commit -m "Screenshots for ${GITHUB_SHA::7}" || echo "nothing to commit"
+          git commit -q -m "Results for ${GITHUB_SHA::7}" || echo "nothing to commit"
           git push origin shots
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dist-*
+          path: dists
+
+      - name: Publish builds to Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p zips
+          for d in dists/dist-*; do
+            [ -d "$d" ] || continue
+            app=${d#dists/dist-}
+            (cd "$d" && zip -qr "$GITHUB_WORKSPACE/zips/Nova-$app-win-x64.zip" .)
+          done
+          ls -la zips
+          if ! gh release view nova-builds >/dev/null 2>&1; then
+            gh release create nova-builds --title "编译好的程序（Windows x64）" \
+              --notes "每个技术一个 zip，解压后直接运行里面的 exe。UWP 需要先运行 install.ps1 安装。由 GitHub Actions 自动编译。"
+          fi
+          if ls zips/*.zip >/dev/null 2>&1; then gh release upload nova-builds zips/*.zip --clobber; fi

@@ -1,0 +1,11 @@
+{
+  "id": "win32",
+  "tech": "Win32 API",
+  "exe": "win32.exe",
+  "settle": 4,
+  "variants": [
+    { "name": "win32", "exe": "win32.exe" },
+    { "name": "win32-classic", "exe": "win32_classic.exe" },
+    { "name": "win32-classic-2000", "exe": "win32_classic.exe", "args": "/win2000" }
+  ]
+}

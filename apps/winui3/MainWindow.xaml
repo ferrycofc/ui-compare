@@ -128,12 +128,12 @@
                                         <TextBlock Text="亮度" />
                                         <TextBlock x:Name="BrightText" Text="80%" HorizontalAlignment="Right" />
                                     </Grid>
-                                    <Slider x:Name="Bright" Minimum="0" Maximum="100" Value="80" Margin="0,0,4,4" />
+                                    <Slider x:Name="Bright" AutomationProperties.Name="亮度" Minimum="0" Maximum="100" Value="80" Margin="0,0,4,4" />
                                     <Grid Margin="0,0,4,0">
                                         <TextBlock Text="对比度" />
                                         <TextBlock x:Name="ContrastText" Text="35%" HorizontalAlignment="Right" />
                                     </Grid>
-                                    <Slider x:Name="Contrast" Minimum="0" Maximum="100" Value="35" Margin="0,0,4,0" />
+                                    <Slider x:Name="Contrast" AutomationProperties.Name="对比度" Minimum="0" Maximum="100" Value="35" Margin="0,0,4,0" />
                                 </StackPanel>
                             </Border>
                         </StackPanel>

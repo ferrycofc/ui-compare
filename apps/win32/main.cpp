@@ -116,12 +116,13 @@ static void Rows(HWND page, int x, int y, int w, const ToggleRow* rows, int n, i
     }
 }
 
-static void Slider(HWND page, int x, int y, int w, const wchar_t* label, int value, HWND* track, HWND* text) {
-    Make(L"STATIC", label, SS_LEFT | SS_NOPREFIX, x, y, 120, 20, page);
+static void Slider(HWND page, int x, int y, int w, const wchar_t* label, int value, HWND* track, HWND* text, int id) {
     wchar_t buf[16];
     swprintf_s(buf, L"%d%%", value);
     *text = Make(L"STATIC", buf, SS_RIGHT | SS_NOPREFIX, x + w - 80, y, 80, 20, page);
-    *track = Make(TRACKBAR_CLASSW, L"", TBS_HORZ | TBS_AUTOTICKS | TBS_BOTTOM | WS_TABSTOP, x - 6, y + 22, w + 12, 32, page);
+    // 名称标签紧挨在滑块前面创建：辅助功能（UI Automation）会把它当成滑块的名字
+    Make(L"STATIC", label, SS_LEFT | SS_NOPREFIX, x, y, 120, 20, page);
+    *track = Make(TRACKBAR_CLASSW, L"", TBS_HORZ | TBS_AUTOTICKS | TBS_BOTTOM | WS_TABSTOP, x - 6, y + 22, w + 12, 32, page, id);
     SendMessageW(*track, TBM_SETRANGE, TRUE, MAKELPARAM(0, 100));
     SendMessageW(*track, TBM_SETTICFREQ, 10, 0);
     SendMessageW(*track, TBM_SETPAGESIZE, 0, 10);
@@ -233,8 +234,8 @@ static void BuildUi(HWND hwnd) {
     int sy = dy + head + 2 * pitchR + 2;
     Make(L"STATIC", L"", SS_ETCHEDHORZ, rx + inset, sy, colW - 2 * inset, 2, g_page);
     sy += 14;
-    Slider(g_page, rx + inset, sy, colW - 2 * inset, L"亮度", 80, &g_tbBright, &g_valBright);
-    Slider(g_page, rx + inset, sy + 62, colW - 2 * inset, L"对比度", 35, &g_tbContrast, &g_valContrast);
+    Slider(g_page, rx + inset, sy, colW - 2 * inset, L"亮度", 80, &g_tbBright, &g_valBright, 2001);
+    Slider(g_page, rx + inset, sy + 62, colW - 2 * inset, L"对比度", 35, &g_tbContrast, &g_valContrast, 2002);
 }
 
 static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
