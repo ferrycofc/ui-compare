@@ -463,12 +463,23 @@ foreach ($v in $variants) {
       if ($h2 -ne [IntPtr]::Zero) {
         $times += [int]$sw2.Elapsed.TotalMilliseconds
         # “界面就绪”：控件树里能找到最后一行的文字（网页类程序窗口先出现、内容后加载）
+        # 放到后台线程里查，最多等 30 秒：有的程序（比如 Chromium）偶尔会让这类查询一直卡住
         if (-not $noUia) {
-          while ($sw2.Elapsed.TotalSeconds -lt 30) {
-            $found = $null
-            try { $found = $UIA::FromHandle($h2).FindFirst([System.Windows.Automation.TreeScope]::Descendants, $nameCond) } catch { }
-            if ($found) { $readyTimes += [int]$sw2.Elapsed.TotalMilliseconds; break }
-            Start-Sleep -Milliseconds 25
+          $probe = Start-ThreadJob -ArgumentList $sw2, ([int64]$h2), $nameCond -ScriptBlock {
+            param($sw, $hv, $cond)
+            $U = [System.Windows.Automation.AutomationElement]
+            while ($sw.Elapsed.TotalSeconds -lt 30) {
+              $f = $null
+              try { $f = $U::FromHandle([IntPtr]$hv).FindFirst([System.Windows.Automation.TreeScope]::Descendants, $cond) } catch { }
+              if ($f) { return [int]$sw.Elapsed.TotalMilliseconds }
+              Start-Sleep -Milliseconds 25
+            }
+          }
+          if (Wait-Job $probe -Timeout 35) {
+            $r = Receive-Job $probe
+            if ($r) { $readyTimes += [int]($r | Select-Object -Last 1) }
+          } else {
+            Write-Host "::warning::$($v.name): accessibility query did not return within 35 s; skipping 'ready' time"
           }
         }
       }

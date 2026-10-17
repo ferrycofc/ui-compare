@@ -77,6 +77,7 @@ jobs:
         run: ./tools/setup-desktop.ps1 -OutDir "$env:OUT/desktop-x64"
 
       - name: Measure
+        timeout-minutes: 15
         shell: pwsh
         run: ./tools/capture.ps1 -App ${{ matrix.app }} -Dist apps/${{ matrix.app }}/dist -OutDir $env:OUT -Metrics -Suffix "-x64"
 
@@ -124,6 +125,7 @@ jobs:
         run: ./tools/get-ffmpeg.ps1
 
       - name: Screenshots and video
+        timeout-minutes: 20
         shell: pwsh
         run: ./tools/capture.ps1 -App ${{ matrix.app }} -Dist dist/${{ matrix.app }} -OutDir $env:OUT -Video
 
