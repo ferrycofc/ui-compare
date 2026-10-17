@@ -11,13 +11,13 @@
 | Win32 API | 1993 | win32-classic-2000 | 276 KB | 2 | 1.7 MB | 1 | 76 ms | 108 ms | 有 |
 | Win32 API | 1993 | win32-classic | 276 KB | 2 | 1.8 MB | 1 | 60 ms | 96 ms | 有 |
 | Win32 API | 1993 | win32 | 276 KB | 2 | 1.7 MB | 1 | 53 ms | 182 ms | 有 |
-| MFC | 1992 | mfc | 6.2 MB | 6 | 4.5 MB | 1 | 231 ms | 317 ms | 有 |
+| MFC | 1992 | mfc | 6.2 MB | 6 | 4.5 MB | 1 | 168 ms | 258 ms | 有 |
 | Qt Widgets | 1995 | qt | 26.8 MB | 25 | 22.6 MB | 1 | 322 ms | 419 ms | 有 |
 | WinForms | 2002 | winforms | 159.9 MB | 463 | 7.6 MB | 1 | 118 ms | 215 ms | 有 |
 | WPF | 2006 | wpf | 159.9 MB | 463 | 32.4 MB | 1 | 442 ms | 660 ms | 有 |
 | Electron | 2013 | electron | 368.4 MB | 73 | 62.6 MB | 4 | 294 ms | 477 ms | 有 |
 | Dear ImGui | 2014 | imgui | 614 KB | 1 | 63.0 MB | 1 | 34 ms | — | 有 |
-| UWP | 2015 | uwp | 6.5 MB | 4 | 12.4 MB | 1 | 282 ms | 552 ms | 有 |
+| UWP | 2015 | uwp | 6.5 MB | 4 | 12.3 MB | 1 | 318 ms | 690 ms | 有 |
 | Avalonia | 2016 | avalonia | 94.0 MB | 214 | 43.6 MB | 1 | 805 ms | 1130 ms | 有 |
 | WinUI 3 | 2021 | winui3 | 208.2 MB | 503 | 43.6 MB | 1 | 446 ms | 681 ms | 有 |
 | Flutter | 2022 | flutter | 26.8 MB | 20 | 67.6 MB | 1 | 1405 ms | — | 有 |

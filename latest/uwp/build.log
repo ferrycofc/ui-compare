@@ -16,10 +16,10 @@ asset Square150x150Logo.png 1289 bytes
 asset Square44x44Logo.png 383 bytes
 asset StoreLogo.png 491 bytes
 asset Wide310x150Logo.png 1450 bytes
-Certificate 3B75AF97E9FB5D5008AFDD5458EA2A93EBF3D1E7 -> D:\a\_temp\nova-uwp\Nova.pfx
+Certificate 2AFE73E64AC73CA237218DEC782DFCB1724547FA -> D:\a\_temp\nova-uwp\Nova.pfx
 
   Determining projects to restore...
-  Restored D:\a\ui-compare\ui-compare\apps\uwp\Nova.csproj (in 6.22 sec).
+  Restored D:\a\ui-compare\ui-compare\apps\uwp\Nova.csproj (in 8.41 sec).
   Nova -> D:\a\ui-compare\ui-compare\apps\uwp\bin\x64\Release\Nova.exe
   Processing application code
   Computing application closure and generating interop code
@@ -36,9 +36,9 @@ Certificate 3B75AF97E9FB5D5008AFDD5458EA2A93EBF3D1E7 -> D:\a\_temp\nova-uwp\Nova
 == AppPackages ==
   \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.ps1 (42419)
   \Nova_1.0.0.0_x64_Test\Install.ps1 (16554)
-  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.appxsym (1448540)
+  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.appxsym (1448199)
   \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.cer (768)
-  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.msix (431124)
+  \Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.msix (431133)
   \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\Add-AppDevPackage.psd1 (10150)
   \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\cs-CZ\Add-AppDevPackage.psd1 (10278)
   \Nova_1.0.0.0_x64_Test\Add-AppDevPackage.resources\de-DE\Add-AppDevPackage.psd1 (11628)
@@ -73,7 +73,7 @@ Certificate 3B75AF97E9FB5D5008AFDD5458EA2A93EBF3D1E7 -> D:\a\_temp\nova-uwp\Nova
 Package: D:\a\_temp\nova-uwp\AppPackages\Nova_1.0.0.0_x64_Test\Nova_1.0.0.0_x64.msix
 == dist ==
   \install.ps1 (1662)
-  \Nova_1.0.0.0_x64.msix (431124)
+  \Nova_1.0.0.0_x64.msix (431133)
   \Nova.cer (768)
   \Dependencies\Microsoft.NET.Native.Framework.2.2.appx (5204216)
   \Dependencies\Microsoft.NET.Native.Runtime.2.2.appx (244530)

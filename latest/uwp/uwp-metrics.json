@@ -2,15 +2,15 @@
   "name": "uwp",
   "tech": "UWP",
   "title": "Nova 设置 — UWP",
-  "startup_ms": 282,
-  "memory_mb": 12.4,
-  "working_set_mb": 63.2,
+  "startup_ms": 318,
+  "memory_mb": 12.3,
+  "working_set_mb": 63.0,
   "processes": 1,
   "dist_size_mb": 6.46,
   "dist_files": 4,
-  "window": "908x655",
-  "startup_first_ms": 464,
-  "startup_runs_ms": "464, 293, 270",
-  "ready_ms": 552,
-  "ready_runs_ms": "572, 532"
+  "window": "906x653",
+  "startup_first_ms": 490,
+  "startup_runs_ms": "490, 325, 312",
+  "ready_ms": 690,
+  "ready_runs_ms": "748, 633"
 }
