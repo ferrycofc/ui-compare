@@ -1,0 +1,145 @@
+name: build-and-shoot
+
+# 每次推送到 main：在 GitHub 的 Windows 机器上编译每个框架的程序、运行、截图、测数据，
+# 结果统一存到 shots 分支的 latest/ 目录。
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shoot
+  cancel-in-progress: true
+
+jobs:
+  win32:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2025, windows-11-arm]
+    runs-on: ${{ matrix.os }}
+    env:
+      OUT: out/${{ matrix.os }}/win32
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare desktop
+        shell: pwsh
+        run: ./tools/setup-desktop.ps1 -OutDir $env:OUT
+
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.os == 'windows-11-arm' && 'arm64' || 'x64' }}
+
+      - name: Build
+        shell: pwsh
+        run: |
+          cmd /c apps\win32\build.cmd 2>&1 | Tee-Object -FilePath "$env:OUT/build.log"
+          exit $LASTEXITCODE
+
+      - name: Shoot (modern)
+        shell: pwsh
+        run: ./tools/shoot.ps1 -Exe apps/win32/bin/win32.exe -Name win32 -OutDir $env:OUT -SizePath apps/win32/bin/win32.exe
+
+      - name: Shoot (classic)
+        if: always()
+        shell: pwsh
+        run: ./tools/shoot.ps1 -Exe apps/win32/bin/win32_classic.exe -Name win32-classic -OutDir $env:OUT -SizePath apps/win32/bin/win32_classic.exe
+
+      - name: Shoot (classic, Windows 2000 colors)
+        if: always()
+        shell: pwsh
+        run: ./tools/shoot.ps1 -Exe apps/win32/bin/win32_classic.exe -Arguments "/win2000" -Name win32-classic-2000 -OutDir $env:OUT -SizePath apps/win32/bin/win32_classic.exe
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: win32-${{ matrix.os }}
+          path: out/
+
+  winui3:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2025, windows-11-arm]
+    runs-on: ${{ matrix.os }}
+    env:
+      OUT: out/${{ matrix.os }}/winui3
+      PLAT: ${{ matrix.os == 'windows-11-arm' && 'ARM64' || 'x64' }}
+      RID: ${{ matrix.os == 'windows-11-arm' && 'win-arm64' || 'win-x64' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare desktop
+        shell: pwsh
+        run: ./tools/setup-desktop.ps1 -OutDir $env:OUT
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Build
+        shell: pwsh
+        run: |
+          msbuild apps/winui3/NovaWinUI.csproj -restore -p:Configuration=Release -p:Platform=$env:PLAT -p:RuntimeIdentifier=$env:RID -v:minimal -nologo 2>&1 | Tee-Object -FilePath "$env:OUT/build.log"
+          exit $LASTEXITCODE
+
+      - name: Shoot
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem apps/winui3/bin -Recurse -Filter NovaWinUI.exe | Where-Object { $_.FullName -like "*$env:RID*" } | Select-Object -First 1
+          if (-not $exe) { Get-ChildItem apps/winui3/bin -Recurse | Select-Object -First 50 FullName; throw "NovaWinUI.exe not found" }
+          Write-Host "Using $($exe.FullName)"
+          ./tools/shoot.ps1 -Exe $exe.FullName -Name winui3 -OutDir $env:OUT -Settle 8
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: winui3-${{ matrix.os }}
+          path: out/
+
+  collect:
+    needs: [win32, winui3]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Switch to shots branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin shots; then
+            git fetch origin shots
+            git checkout -B shots origin/shots
+          else
+            git checkout --orphan shots
+            git rm -rf --quiet .
+          fi
+          rm -rf latest
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: latest
+          merge-multiple: true
+
+      - name: Commit results
+        run: |
+          mkdir -p latest
+          {
+            echo "commit: ${GITHUB_SHA}"
+            echo "run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "jobs: win32=${{ needs.win32.result }} winui3=${{ needs.winui3.result }}"
+            date -u
+          } > latest/RUN.txt
+          git add -A latest
+          git commit -m "Screenshots for ${GITHUB_SHA::7}" || echo "nothing to commit"
+          git push origin shots
