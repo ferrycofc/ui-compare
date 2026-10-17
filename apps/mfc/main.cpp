@@ -51,7 +51,7 @@ static HICON LoadSysIcon(const SysIcon& s, int px) {
 }
 
 // Office 2007 银色主题里的几个颜色
-static const COLORREF kPageBg = RGB(250, 251, 253);
+static const COLORREF kPageBg = RGB(255, 255, 255);
 static const COLORREF kRailTop = RGB(232, 236, 243);
 static const COLORREF kRailBottom = RGB(208, 215, 226);
 
@@ -83,14 +83,14 @@ public:
         s->SetFont(m_font);
     }
 
-    // 一行：文字 +（齿轮按钮）+ 复选框。复选框是 CMFCButton，由 Office 2007 皮肤画。
+    // 一行：文字 +（齿轮按钮，CMFCButton）+ 复选框
     void Rows(int x, int y, int w, const Row* rows, int n, int pitch) {
         for (int i = 0; i < n; i++) {
             int ry = y + i * pitch;
             Label(rows[i].text, CRect(x, ry, x + w - 90, ry + 24));  // 文字标签紧挨在复选框前面：辅助功能会把它当成复选框的名字
-            CMFCButton* cb = Add(new CMFCButton);
-            cb->Create(L"", WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_AUTOCHECKBOX, CRect(x + w - 18, ry + 3, x + w, ry + 21), this, m_nextId++);
-            cb->m_bDrawFocus = FALSE;
+            // 复选框用普通的 CButton：Office 2007 皮肤画复选框要靠资源图片，在 Win11 上会退回到一种不显示对勾的画法
+            CButton* cb = Add(new CButton);
+            cb->Create(L"", WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_AUTOCHECKBOX, CRect(x + w - 16, ry + 4, x + w, ry + 20), this, m_nextId++);
             cb->SetCheck(rows[i].on ? BST_CHECKED : BST_UNCHECKED);
             if (rows[i].gear) {
                 CMFCButton* g = Add(new CMFCButton);
