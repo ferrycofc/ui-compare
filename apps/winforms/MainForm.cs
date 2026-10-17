@@ -129,7 +129,7 @@ public sealed class MainForm : Form
         var grid = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 2 };
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
         grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        grid.RowStyles.Add(new RowStyle(SizeType.Absolute, 256F));
+        grid.RowStyles.Add(new RowStyle(SizeType.Absolute, 264F));
         grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
         var general = Group("常规选项");
