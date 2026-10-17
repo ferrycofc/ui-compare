@@ -3,3 +3,6 @@ obj/
 out/
 *.user
 .vs/
+dist/
+node_modules/
+target/
