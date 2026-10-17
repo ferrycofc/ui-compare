@@ -441,13 +441,25 @@ foreach ($v in $variants) {
 
   # 启动时间再测两次（程序文件已经在磁盘缓存里），取三次的中位数
   if ($Metrics) {
-    $times = @($startupMs)
+    $times = @($startupMs); $readyTimes = @()
+    $nameCond = New-Object System.Windows.Automation.PropertyCondition($UIA::NameProperty, '发送使用统计')
     for ($i = 0; $i -lt 2; $i++) {
       $sw2 = [Diagnostics.Stopwatch]::StartNew()
       $p2 = Start-Variant $v
       $h2 = [IntPtr]::Zero; $t2 = $null
       while ($sw2.Elapsed.TotalSeconds -lt 60) { $h2 = [Win]::Find('Nova', [ref]$t2); if ($h2 -ne [IntPtr]::Zero) { break }; Start-Sleep -Milliseconds 10 }
-      if ($h2 -ne [IntPtr]::Zero) { $times += [int]$sw2.Elapsed.TotalMilliseconds }
+      if ($h2 -ne [IntPtr]::Zero) {
+        $times += [int]$sw2.Elapsed.TotalMilliseconds
+        # “界面就绪”：控件树里能找到最后一行的文字（网页类程序窗口先出现、内容后加载）
+        if (-not $cfg.points) {
+          while ($sw2.Elapsed.TotalSeconds -lt 30) {
+            $found = $null
+            try { $found = $UIA::FromHandle($h2).FindFirst([System.Windows.Automation.TreeScope]::Descendants, $nameCond) } catch { }
+            if ($found) { $readyTimes += [int]$sw2.Elapsed.TotalMilliseconds; break }
+            Start-Sleep -Milliseconds 25
+          }
+        }
+      }
       Start-Sleep -Seconds 2
       $r2 = @([int][Win]::ContentPid($h2)); if ($p2) { $r2 += $p2.Id }
       Stop-Tree (Get-Tree $r2)
@@ -459,8 +471,12 @@ foreach ($v in $variants) {
     $m | Add-Member -Force startup_first_ms $startupMs
     $m | Add-Member -Force startup_runs_ms ($times -join ', ')
     $m.startup_ms = $sorted[[int][Math]::Floor(($sorted.Count - 1) / 2)]
+    if ($readyTimes.Count) {
+      $m | Add-Member -Force ready_ms ([int](($readyTimes | Measure-Object -Average).Average))
+      $m | Add-Member -Force ready_runs_ms ($readyTimes -join ', ')
+    }
     $m | ConvertTo-Json | Set-Content -Encoding utf8 $mf
-    Write-Host "startup runs: $($times -join ', ') ms -> median $($m.startup_ms) ms"
+    Write-Host "startup runs: $($times -join ', ') ms -> median $($m.startup_ms) ms; ready: $($readyTimes -join ', ') ms"
   }
 }
 if ($failed) { exit 1 }

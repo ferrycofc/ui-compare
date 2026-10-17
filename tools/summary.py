@@ -28,16 +28,18 @@ lines = [
     "",
     "- 体积：发布文件夹的总大小（自带运行库，拷到干净的 Windows 11 就能运行）",
     "- 内存：窗口打开后几秒的专用工作集（任务管理器“内存”那一列），多进程的加在一起",
-    "- 启动：从启动程序到窗口出现的时间，连续启动三次取中位数（第一次的时间在 metrics.json 的 startup_first_ms）",
+    "- 窗口出现：从启动程序到窗口出现的时间，连续启动三次取中位数（第一次的时间在 metrics.json 的 startup_first_ms）",
+    "- 界面就绪：从启动到界面上的文字都能被读到（网页类程序窗口先出现、内容后加载，这一项更公平）；ImGui 不支持辅助功能，没有这一项",
     "",
-    "| 技术 | 年份 | 版本 | 体积 | 文件数 | 内存 | 进程数 | 启动 | 视频 |",
-    "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |",
+    "| 技术 | 年份 | 版本 | 体积 | 文件数 | 内存 | 进程数 | 窗口出现 | 界面就绪 | 视频 |",
+    "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
 ]
 for app, d, video in rows:
     size = d["dist_size_mb"]
     size_s = f"{size * 1024:.0f} KB" if size < 1 else f"{size:.1f} MB"
     lines.append(f"| {d['tech']} | {YEARS.get(app, '')} | {d['name']} | {size_s} | {d['dist_files']} | "
-                 f"{d['memory_mb']} MB | {d['processes']} | {d['startup_ms']} ms | {'有' if video else '—'} |")
+                 f"{d['memory_mb']} MB | {d['processes']} | {d['startup_ms']} ms | "
+                 f"{str(d['ready_ms']) + ' ms' if d.get('ready_ms') else '—'} | {'有' if video else '—'} |")
 missing = [a for a in ORDER if a not in apps]
 if missing:
     lines += ["", "还没有结果：" + "、".join(missing)]
