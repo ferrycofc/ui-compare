@@ -1,9 +1,9 @@
 {
   "name": "winui3",
   "title": "Nova 设置 — WinUI 3",
-  "startup_ms": 905,
-  "memory_mb": 38.7,
-  "working_set_mb": 143.7,
+  "startup_ms": 1892,
+  "memory_mb": 35.3,
+  "working_set_mb": 143.4,
   "processes": 1,
   "dist_size_mb": 220.08,
   "dist_files": 501,

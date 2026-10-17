@@ -1,9 +1,9 @@
 {
   "name": "win32",
   "title": "Nova 设置 — Win32 API",
-  "startup_ms": 503,
-  "memory_mb": 1.6,
-  "working_set_mb": 18.3,
+  "startup_ms": 515,
+  "memory_mb": 1.4,
+  "working_set_mb": 18.4,
   "processes": 1,
   "dist_size_mb": 0.13,
   "dist_files": 1,
