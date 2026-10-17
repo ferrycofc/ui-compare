@@ -41,6 +41,31 @@ public static class Desk {
   [DllImport("user32.dll")] static extern uint GetWindowThreadProcessId(IntPtr h, out uint pid);
   [DllImport("user32.dll")] static extern bool GetWindowRect(IntPtr h, out RECT r);
   [StructLayout(LayoutKind.Sequential)] public struct RECT { public int L, T, R, B; }
+  [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern IntPtr FindWindow(string c, string t);
+  [DllImport("user32.dll", CharSet = CharSet.Unicode)] static extern IntPtr FindWindowEx(IntPtr p, IntPtr after, string c, string t);
+  [DllImport("user32.dll")] static extern bool ShowWindow(IntPtr h, int c);
+  [DllImport("user32.dll")] static extern bool PostMessage(IntPtr h, uint m, IntPtr w, IntPtr l);
+  [DllImport("user32.dll")] public static extern void keybd_event(byte vk, byte scan, uint flags, UIntPtr extra);
+  public static void Escape() { keybd_event(0x1B, 0, 0, UIntPtr.Zero); keybd_event(0x1B, 0, 2, UIntPtr.Zero); }
+  // 隐藏桌面图标（截全屏时更干净）
+  public static bool HideDesktopIcons() {
+    IntPtr view = FindWindowEx(FindWindow("Progman", null), IntPtr.Zero, "SHELLDLL_DefView", null);
+    if (view == IntPtr.Zero) {
+      IntPtr w = IntPtr.Zero;
+      while ((w = FindWindowEx(IntPtr.Zero, w, "WorkerW", null)) != IntPtr.Zero) {
+        view = FindWindowEx(w, IntPtr.Zero, "SHELLDLL_DefView", null);
+        if (view != IntPtr.Zero) break;
+      }
+    }
+    IntPtr list = FindWindowEx(view, IntPtr.Zero, "SysListView32", null);
+    return list != IntPtr.Zero && ShowWindow(list, 0) | true;
+  }
+  // 关掉镜像里自带打开的“系统属性”对话框
+  public static int CloseDialogs(string title) {
+    int n = 0; IntPtr h = IntPtr.Zero;
+    while ((h = FindWindowEx(IntPtr.Zero, h, "#32770", title)) != IntPtr.Zero) { PostMessage(h, 0x0010, IntPtr.Zero, IntPtr.Zero); n++; }
+    return n;
+  }
   public static List<string> Windows() {
     var list = new List<string>();
     EnumWindows((h, l) => {
@@ -92,7 +117,12 @@ Set-ItemProperty $oobe DisablePrivacyExperience 1 -Type DWord -ErrorAction Silen
 foreach ($n in 'WWAHost', 'UserOOBEBroker', 'CloudExperienceHostBroker', 'OOBENetworkConnectionFlow', 'oobe*') {
   Get-Process -Name $n -ErrorAction SilentlyContinue | ForEach-Object { $log.Add("Killing $($_.ProcessName) ($($_.Id))"); Stop-Process -Id $_.Id -Force -ErrorAction SilentlyContinue }
 }
-Start-Sleep -Seconds 2
+Start-Sleep -Seconds 3
+# 关掉“隐私设置”之后系统会自动弹出开始菜单，按 Esc 收起
+[Desk]::Escape(); Start-Sleep -Milliseconds 500
+$log.Add("Closed System Properties dialogs: $([Desk]::CloseDialogs('System Properties'))")
+$log.Add("Desktop icons hidden: $([Desk]::HideDesktopIcons())")
+Start-Sleep -Seconds 1
 $log.Add("Windows after cleanup:")
 foreach ($w in [Desk]::Windows()) { $log.Add("  $w") }
 $os = Get-CimInstance Win32_OperatingSystem

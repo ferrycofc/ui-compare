@@ -61,24 +61,33 @@ static HICON g_gear;
 static HWND g_page;
 static HWND g_tbBright, g_tbContrast, g_valBright, g_valContrast;
 
-static HICON StockIcon(SHSTOCKICONID id, int px) {
-    SHSTOCKICONINFO sii = {sizeof(sii)};
+// 图标全部取自 Windows 自带的 DLL（shell32 / imageres / ddores），不带任何图片资源
+struct SysIcon { const wchar_t* dll; int index; };
+static const SysIcon kIcoGeneral = {L"shell32.dll", 21};    // 控制面板
+static const SysIcon kIcoDisplay = {L"imageres.dll", 104};  // 显示器
+static const SysIcon kIcoAudio = {L"ddores.dll", 1};        // 扬声器
+static const SysIcon kIcoNetwork = {L"shell32.dll", 13};    // 地球
+static const SysIcon kIcoKeys = {L"ddores.dll", 30};        // 键盘
+static const SysIcon kIcoList = {L"shell32.dll", 70};       // 文档
+static const SysIcon kIcoFolder = {L"shell32.dll", 4};      // 文件夹
+static const SysIcon kIcoUser = {L"shell32.dll", 160};      // 用户
+static const SysIcon kIcoSettings = {L"shell32.dll", 314};  // 齿轮
+
+static HICON LoadSysIcon(const SysIcon& s, int px) {
+    wchar_t path[MAX_PATH];
+    GetSystemDirectoryW(path, MAX_PATH);
+    wcscat_s(path, L"\\");
+    wcscat_s(path, s.dll);
     HICON icon = nullptr;
-    if (SUCCEEDED(SHGetStockIconInfo(id, SHGSI_ICONLOCATION, &sii)))
-        SHDefExtractIconW(sii.szPath, sii.iIcon, 0, &icon, nullptr, MAKELONG(px, px));
-    if (!icon) {
-        sii = {sizeof(sii)};
-        if (SUCCEEDED(SHGetStockIconInfo(id, SHGSI_ICON | (px <= 16 ? SHGSI_SMALLICON : SHGSI_LARGEICON), &sii)))
-            icon = sii.hIcon;
-    }
+    SHDefExtractIconW(path, s.index, 0, &icon, nullptr, MAKELONG(px, px));
     return icon;
 }
 
-static HIMAGELIST IconList(const SHSTOCKICONID* ids, int n, int px) {
+static HIMAGELIST IconList(const SysIcon* icons, int n, int px) {
     UINT flags = kClassic ? (ILC_COLOR24 | ILC_MASK) : (ILC_COLOR32 | ILC_MASK);
     HIMAGELIST il = ImageList_Create(px, px, flags, n, 0);
     for (int i = 0; i < n; i++) {
-        HICON ic = StockIcon(ids[i], px);
+        HICON ic = LoadSysIcon(icons[i], px);
         ImageList_AddIcon(il, ic);
         if (ic) DestroyIcon(ic);
     }
@@ -119,7 +128,7 @@ static void Slider(HWND page, int x, int y, int w, const wchar_t* label, int val
     SendMessageW(*track, TBM_SETPOS, TRUE, value);
 }
 
-static HWND Toolbar(HWND parent, int x, int y, int w, int h, const SHSTOCKICONID* ids, int n, bool group, int idBase) {
+static HWND Toolbar(HWND parent, int x, int y, int w, int h, const SysIcon* ids, int n, bool group, int idBase) {
     HWND tb = CreateWindowExW(0, TOOLBARCLASSNAMEW, nullptr,
                               WS_CHILD | WS_VISIBLE | TBSTYLE_FLAT | TBSTYLE_WRAPABLE | CCS_VERT | CCS_NORESIZE |
                                   CCS_NODIVIDER | CCS_NOPARENTALIGN,
@@ -168,9 +177,8 @@ static void BuildUi(HWND hwnd) {
 
     // 左侧图标栏（竖排工具栏）
     const int railW = 44;
-    static const SHSTOCKICONID railTop[] = {SIID_SOFTWARE, SIID_DESKTOPPC, SIID_AUDIOFILES, SIID_WORLD,
-                                            SIID_KEY,      SIID_DOCNOASSOC, SIID_FOLDER};
-    static const SHSTOCKICONID railBottom[] = {SIID_USERS, SIID_SETTINGS};
+    static const SysIcon railTop[] = {kIcoGeneral, kIcoDisplay, kIcoAudio, kIcoNetwork, kIcoKeys, kIcoList, kIcoFolder};
+    static const SysIcon railBottom[] = {kIcoUser, kIcoSettings};
     Toolbar(hwnd, 8, 8, railW, 7 * 40, railTop, 7, true, 100);
     Toolbar(hwnd, 8, H - 8 - 2 * 40, railW, 2 * 40, railBottom, 2, false, 200);
 
@@ -179,7 +187,7 @@ static void BuildUi(HWND hwnd) {
     HWND tab = CreateWindowExW(0, WC_TABCONTROLW, L"", WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_TABSTOP, tx, 8,
                                W - tx - 8, H - 16, hwnd, (HMENU)10, g_inst, nullptr);
     SendMessageW(tab, WM_SETFONT, (WPARAM)g_font, FALSE);
-    static const SHSTOCKICONID tabIcons[] = {SIID_SOFTWARE, SIID_DESKTOPPC, SIID_AUDIOFILES, SIID_WORLD, SIID_KEY};
+    static const SysIcon tabIcons[] = {kIcoGeneral, kIcoDisplay, kIcoAudio, kIcoNetwork, kIcoKeys};
     TabCtrl_SetImageList(tab, IconList(tabIcons, 5, 16));
     TabCtrl_SetPadding(tab, 10, 4);
     const wchar_t* tabs[] = {L"常规", L"画面", L"音频", L"网络", L"快捷键"};
@@ -271,7 +279,7 @@ int WINAPI wWinMain(HINSTANCE inst, HINSTANCE, PWSTR cmd, int show) {
     g_font = CreateFontW(-12, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
                          CLIP_DEFAULT_PRECIS, kClassic ? NONANTIALIASED_QUALITY : CLEARTYPE_QUALITY,
                          DEFAULT_PITCH | FF_DONTCARE, kClassic ? L"SimSun" : L"Microsoft YaHei UI");
-    g_gear = StockIcon(SIID_SETTINGS, 16);
+    g_gear = LoadSysIcon(kIcoSettings, 16);
 
     WNDCLASSEXW wc = {sizeof(wc)};
     wc.lpfnWndProc = WndProc;
@@ -279,8 +287,8 @@ int WINAPI wWinMain(HINSTANCE inst, HINSTANCE, PWSTR cmd, int show) {
     wc.hCursor = LoadCursorW(nullptr, IDC_ARROW);
     wc.hbrBackground = (HBRUSH)(COLOR_BTNFACE + 1);
     wc.lpszClassName = L"NovaWin32";
-    wc.hIcon = StockIcon(SIID_SOFTWARE, 32);
-    wc.hIconSm = StockIcon(SIID_SOFTWARE, 16);
+    wc.hIcon = LoadSysIcon(kIcoGeneral, 32);
+    wc.hIconSm = LoadSysIcon(kIcoGeneral, 16);
     RegisterClassExW(&wc);
 
     const DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_CLIPCHILDREN;

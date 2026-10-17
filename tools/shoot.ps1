@@ -83,6 +83,8 @@ $Exe = (Resolve-Path $Exe).Path
 if (-not $SizePath) { $SizePath = Split-Path $Exe }
 Write-Host "Launching $Exe $Arguments"
 
+[Win]::keybd_event(0x1B, 0, 0, [UIntPtr]::Zero); [Win]::keybd_event(0x1B, 0, 2, [UIntPtr]::Zero)   # 收起可能弹出的开始菜单
+Start-Sleep -Milliseconds 300
 Write-Host "Minimized: $([Win]::MinimizeOthers())"
 Start-Sleep -Milliseconds 500
 
