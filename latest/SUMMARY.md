@@ -15,6 +15,7 @@
 | Qt Widgets | 1995 | qt | 26.8 MB | 25 | 22.6 MB | 1 | 322 ms | 419 ms | 有 |
 | WinForms | 2002 | winforms | 159.9 MB | 463 | 7.6 MB | 1 | 118 ms | 215 ms | 有 |
 | WPF | 2006 | wpf | 159.9 MB | 463 | 32.4 MB | 1 | 442 ms | 660 ms | 有 |
+| Electron | 2013 | electron | 368.4 MB | 73 | 62.6 MB | 4 | 294 ms | 477 ms | 有 |
 | Dear ImGui | 2014 | imgui | 614 KB | 1 | 63.0 MB | 1 | 34 ms | — | 有 |
 | UWP | 2015 | uwp | 6.5 MB | 4 | 12.4 MB | 1 | 282 ms | 552 ms | 有 |
 | Avalonia | 2016 | avalonia | 94.0 MB | 214 | 43.6 MB | 1 | 805 ms | 1130 ms | 有 |

@@ -1,16 +1,17 @@
 Windows at start (pid|process|class|title|rect):
-  3704|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,130,1024,649
-  4356|explorer|Shell_OOBEProxy|Microsoft account|0,0,1024,768
-  4228|SystemPropertiesPerformance|#32770|System Properties|311,319,731,511
-  4356|explorer|Progman|Program Manager|0,0,1024,768
-Killing WWAHost (7952)
+  8508|wsl|ConsoleWindowClass|C:\Windows\system32\wsl.exe|26,26,1019,545
+  5052|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,156,1024,675
+  1300|explorer|Shell_OOBEProxy|Microsoft account|0,0,1024,768
+  864|SystemPropertiesPerformance|#32770|System Properties|311,319,731,511
+  1300|explorer|Progman|Program Manager|0,0,1024,768
+Killing WWAHost (8652)
+Killing wsl (8508)
 Closed System Properties dialogs: 1
 Desktop icons hidden: True
 Windows after cleanup:
-  7920|wsl|ConsoleWindowClass|C:\Windows\system32\wsl.exe|31,52,1024,571
-  3704|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,130,1024,649
-  4228|SystemPropertiesPerformance|#32770|Performance Options|52,52,485,578
-  4356|explorer|Progman|Program Manager|0,0,1024,768
+  5052|hosted-compute-agent|ConsoleWindowClass|C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent|31,156,1024,675
+  864|SystemPropertiesPerformance|#32770|Performance Options|52,52,485,578
+  1300|explorer|Progman|Program Manager|0,0,1024,768
 OS: Microsoft Windows 11 Enterprise 10.0.26200 build 26200 ARM 64-bit Processor
 Display before: 1024x768 32bpp
 Modes: 640x480, 800x600, 1024x768, 1152x864, 1280x720, 1280x800, 1280x1024, 1366x768, 1440x900, 1600x900, 1600x1200, 1680x1050, 1920x1080

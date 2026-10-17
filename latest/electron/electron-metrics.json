@@ -1,0 +1,16 @@
+{
+  "name": "electron",
+  "tech": "Electron",
+  "title": "Nova 设置 — Electron",
+  "startup_ms": 294,
+  "memory_mb": 62.6,
+  "working_set_mb": 264.7,
+  "processes": 4,
+  "dist_size_mb": 368.41,
+  "dist_files": 73,
+  "window": "906x653",
+  "startup_first_ms": 1222,
+  "startup_runs_ms": "1222, 305, 284",
+  "ready_ms": 477,
+  "ready_runs_ms": "571, 383"
+}
